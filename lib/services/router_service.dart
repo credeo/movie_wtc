@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/pages/empty_page.dart';
+import 'package:movie_wtc/pages/loading_screen.dart';
 
 class RouterService {
   late final GoRouter _goRouter;
@@ -15,7 +16,7 @@ class RouterService {
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => const EmptyPage(),
+          builder: (context, state) => const LoadingPage()
         ),
       ],
     );
