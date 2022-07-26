@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,9 +27,11 @@ class LoginPage extends StatelessWidget {
             Stack(
               children: [
                 Align(
-                    alignment: Alignment.topCenter,
-                    child: Center(
-                        child: Image.asset('assets/images/Union 5.png'))),
+                  alignment: Alignment.topCenter,
+                  child: Center(
+                    child: Image.asset('assets/images/Union 5.png'),
+                  ),
+                ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   heightFactor: 8.79,
@@ -41,7 +44,9 @@ class LoginPage extends StatelessWidget {
                           const Color.fromRGBO(10, 132, 255, 1),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.go('/');
+                      },
                       child: const Text(
                         'Login',
                         style: TextStyle(
