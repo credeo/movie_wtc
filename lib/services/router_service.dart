@@ -5,7 +5,7 @@ import 'package:movie_wtc/pages/login_page.dart';
 class RouterService {
   late final GoRouter _goRouter;
 
-  GoRouter get router => _goRouter; //dependencies injections with kiwi
+  GoRouter get router => _goRouter;
 
   RouterService() {
     _buildRouter();
