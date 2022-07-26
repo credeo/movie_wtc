@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/injection_container.dart';
 import 'package:movie_wtc/providers/app_provider.dart';
@@ -36,6 +37,13 @@ class MyApp extends StatelessWidget {
             path: 'assets/localization',
             child: Builder(builder: (context) {
               return MaterialApp.router(
+                theme: ThemeData(
+                  scaffoldBackgroundColor: Colors.black,
+                  //colorScheme: const ColorScheme.dark(),
+                  appBarTheme: const AppBarTheme(
+                    backgroundColor: Colors.black,
+                  ),
+                ),
                 title: 'Movie Wtc',
                 routerDelegate: router.routerDelegate,
                 routeInformationParser: router.routeInformationParser,

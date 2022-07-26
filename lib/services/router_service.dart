@@ -1,10 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/pages/empty_page.dart';
+import 'package:movie_wtc/pages/login_page.dart';
 
 class RouterService {
   late final GoRouter _goRouter;
 
-  GoRouter get router => _goRouter;
+  GoRouter get router => _goRouter; //dependencies injections with kiwi
 
   RouterService() {
     _buildRouter();
@@ -12,10 +13,16 @@ class RouterService {
 
   void _buildRouter() {
     _goRouter = GoRouter(
-      routes: [
+      routes: <GoRoute>[
         GoRoute(
           path: '/',
           builder: (context, state) => const EmptyPage(),
+          routes: [
+            GoRoute(
+              path: 'login',
+              builder: (context, state) => const LoginPage(),
+            ),
+          ],
         ),
       ],
     );

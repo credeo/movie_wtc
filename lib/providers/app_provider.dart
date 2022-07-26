@@ -12,7 +12,11 @@ class AppProvider extends ChangeNotifier {
   }
 
   void _init() async {
-    EasyLocalization.logger.enableLevels = [LevelMessages.info, LevelMessages.warning, LevelMessages.error];
+    EasyLocalization.logger.enableLevels = [
+      LevelMessages.info,
+      LevelMessages.warning,
+      LevelMessages.error
+    ];
     await EasyLocalization.ensureInitialized();
 
     _isLoaded = true;

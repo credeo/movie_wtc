@@ -12,9 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
   easy_localization: ^3.0.1
-  go_router: ^4.2.1
+  go_router: ^4.2.0
   provider: ^6.0.3
   kiwi: ^4.0.2
+  easy_logger: ^0.0.2
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -28,3 +30,4 @@ flutter:
 
   assets:
     - assets/localization/en.json
+    - assets/images/
