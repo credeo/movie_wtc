@@ -32,7 +32,7 @@ class _SplashPageState extends State<SplashPage> {
           await Future.delayed(const Duration(seconds: 1));
           widget.onAnimationEnd();
         },
-        child: Image.asset('assets/icons/splash_icon.png'),
+        child: Image.asset('assets/icons/icon_splash.png'),
       ),
     );
   }
