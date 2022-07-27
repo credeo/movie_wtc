@@ -8,6 +8,8 @@ class CustomColors {
   Color get secondary => Theme.of(_context).extension<CustomColorScheme>()!.secondary!;
   Color get primaryText => Theme.of(_context).extension<CustomColorScheme>()!.primaryText!;
   Color get background => Theme.of(_context).extension<CustomColorScheme>()!.background!;
+  Color get buttonBackgroundGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientStart!;
+  Color get buttonBackgroundGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientEnd!;
 }
 
 @immutable
@@ -16,12 +18,16 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? secondary;
   final Color? primaryText;
   final Color? background;
+  final Color? buttonBackgroundGradientStart;
+  final Color? buttonBackgroundGradientEnd;
 
   const CustomColorScheme({
     required this.primary,
     required this.secondary,
     required this.primaryText,
     required this.background,
+    required this.buttonBackgroundGradientStart,
+    required this.buttonBackgroundGradientEnd,
   });
 
   const CustomColorScheme.light({
@@ -29,6 +35,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.secondary = const Color(0xffffffff),
     this.primaryText = const Color(0xffffffff),
     this.background = const Color(0xff1C1C1E),
+    this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
+    this.buttonBackgroundGradientEnd = const Color(0xff161616),
   });
 
   @override
@@ -37,12 +45,16 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? secondary,
     Color? primaryText,
     Color? background,
+    Color? buttonBackgroundGradientStart,
+    Color? buttonBackgroundGradientEnd,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
       primaryText: primaryText ?? this.primaryText,
       background: background ?? this.background,
+      buttonBackgroundGradientStart: buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
+      buttonBackgroundGradientEnd: buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
     );
   }
 
@@ -56,6 +68,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       secondary: Color.lerp(secondary, other.secondary, t),
       primaryText: Color.lerp(primaryText, other.primaryText, t),
       background: Color.lerp(background, other.background, t),
+      buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart, other.buttonBackgroundGradientStart, t),
+      buttonBackgroundGradientEnd: Color.lerp(buttonBackgroundGradientEnd, other.buttonBackgroundGradientEnd, t),
     );
   }
 }

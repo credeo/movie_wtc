@@ -7,6 +7,7 @@ class CustomTextStyles {
   TextStyle get regular13 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
   TextStyle get regular15 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
   TextStyle get regular24 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
+  TextStyle get extraBold15 => Theme.of(_context).extension<CustomTextStyleScheme>()!.extraBold15!;
 }
 
 @immutable
@@ -14,11 +15,13 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   final TextStyle? regular13;
   final TextStyle? regular15;
   final TextStyle? regular24;
+  final TextStyle? extraBold15;
 
   const CustomTextStyleScheme({
     required this.regular13,
     required this.regular15,
     required this.regular24,
+    required this.extraBold15,
   });
 
   CustomTextStyleScheme.fromPrimaryTextColor(Color primaryTextColor)
@@ -36,6 +39,11 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           fontWeight: FontWeight.w400,
           color: primaryTextColor,
           fontSize: 24,
+        ),
+        extraBold15 = TextStyle(
+          fontWeight: FontWeight.w800,
+          color: primaryTextColor,
+          fontSize: 15,
         );
 
   @override
@@ -43,11 +51,13 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     TextStyle? regular13,
     TextStyle? regular15,
     TextStyle? regular24,
+    TextStyle? extraBold15,
   }) {
     return CustomTextStyleScheme(
       regular13: regular13 ?? this.regular13,
       regular15: regular15 ?? this.regular15,
       regular24: regular24 ?? this.regular24,
+      extraBold15: extraBold15 ?? this.extraBold15,
     );
   }
 
@@ -60,6 +70,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       regular13: TextStyle.lerp(regular13, other.regular13, t),
       regular15: TextStyle.lerp(regular15, other.regular15, t),
       regular24: TextStyle.lerp(regular24, other.regular24, t),
+      extraBold15: TextStyle.lerp(extraBold15, other.extraBold15, t),
     );
   }
 }
