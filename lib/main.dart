@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/injection_container.dart';
+import 'package:movie_wtc/pages/splash_page.dart';
 import 'package:movie_wtc/providers/app_provider.dart';
 import 'package:movie_wtc/services/router_service.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,9 @@ class MyApp extends StatelessWidget {
         builder: (context, appProvider, child) {
           if (!appProvider.isLoaded) {
             // show splash screen here if needed
-            return const SizedBox.shrink();
+            return SplashPage(
+              onAnimationEnd: appProvider.splashFinished,
+            );
           }
           final router = KiwiContainer().resolve<RouterService>().router;
 
