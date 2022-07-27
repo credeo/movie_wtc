@@ -74,6 +74,7 @@ class LoginPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 56.0),
                             child: TextField(
+                              textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
                                 prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
                                 hintText: 'Email Address',
@@ -87,6 +88,7 @@ class LoginPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 56.0),
                             child: TextField(
+                              textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
                                 prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
                                 hintText: 'Password',
@@ -177,6 +179,10 @@ class LoginPage extends StatelessWidget {
                     TextSpan(
                       text: 'Sign Up',
                       style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
+                      recognizer: TapGestureRecognizer()
+                      ..onTap=(){
+                        print("Janko");
+                      },
                     ),
                   ],
                 ),
