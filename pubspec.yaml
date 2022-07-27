@@ -20,7 +20,17 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  icons_launcher: ^2.0.1
   flutter_lints: ^2.0.0
+
+icons_launcher:
+  platforms:
+    android:
+      enable: true
+      image_path: 'assets/app_icons/app_icon_android.png'
+    ios:
+      enable: true
+      image_path: 'assets/app_icons/app_icon_ios.png'
 
 flutter:
 
@@ -28,3 +38,4 @@ flutter:
 
   assets:
     - assets/localization/en.json
+    - assets/icons/
