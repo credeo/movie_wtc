@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/pages/sing_up_page.dart';
 import 'package:movie_wtc/widgets/custom_button.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +31,15 @@ class LoginPage extends StatelessWidget {
                     Positioned.fill(
                       bottom: 25.0,
                       child: Image.asset(
-                        'assets/icons/shape_login_form.png',
+                        'assets/icons/shape_signup_form.png',
                         fit: BoxFit.cover,
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: CustomButton(
-                        title: 'Login',
-                        onPressed: () {
-                          SignUpPage;
-                        },
+                        title: 'Sign Up',
+                        onPressed: () {},
                       ),
                     ),
                     Align(
@@ -51,11 +48,11 @@ class LoginPage extends StatelessWidget {
                         children: [
                           const SizedBox(height: 48),
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.centerRight,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 56.0),
+                              padding: const EdgeInsets.only(right: 56.0),
                               child: Text(
-                                'Login',
+                                'Sign Up',
                                 style: CustomTextStyles.of(context).regular24,
                               ),
                             ),
@@ -77,8 +74,27 @@ class LoginPage extends StatelessWidget {
                             child: TextField(
                               decoration: InputDecoration(
                                 prefixIcon: Image.asset(
+                                    'assets/icons/icon_profile_small.png'),
+                                hintText: 'Full Name',
+                                hintStyle: CustomTextStyles.of(context)
+                                    .regular15
+                                    .apply(
+                                      color: CustomColors.of(context)
+                                          .primaryText
+                                          .withOpacity(0.7),
+                                    ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 32),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 56.0),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                prefixIcon: Image.asset(
                                     'assets/icons/icon_email_small.png'),
-                                hintText: 'Email Address',
+                                hintText: 'Email Adress',
                                 hintStyle: CustomTextStyles.of(context)
                                     .regular15
                                     .apply(
