@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/pages/sing_up_page.dart';
@@ -42,7 +41,7 @@ class LoginPage extends StatelessWidget {
                       child: CustomButton(
                         title: 'Login',
                         onPressed: () {
-                          GoRouter.of(context).go('/sign_up_page');
+                          SignUpPage;
                         },
                       ),
                     ),
