@@ -18,7 +18,9 @@ class AppProvider extends ChangeNotifier {
       LevelMessages.error
     ];
     await EasyLocalization.ensureInitialized();
+  }
 
+  void splashFinished() {
     _isLoaded = true;
     notifyListeners();
   }
