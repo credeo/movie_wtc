@@ -1,8 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/pages/login_page.dart';
+import 'package:movie_wtc/pages/signup_page.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
 
 class RouterService {
@@ -27,6 +29,12 @@ class RouterService {
         GoRoute(
           path: '/',
           builder: (context, state) => const LoginPage(),
+          routes: [
+            GoRoute(
+              path: 'signup',
+              builder: (context, state) => const SignupPage(),
+            )
+          ]
         ),
       ],
     );

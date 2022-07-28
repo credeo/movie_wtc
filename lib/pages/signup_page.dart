@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/services/router_service.dart';
 import 'package:movie_wtc/widgets/custom_button.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+import '../services/router_service.dart';
+
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +33,16 @@ class LoginPage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      bottom: 25.0,
+                      bottom: 40.0,
                       child: Image.asset(
-                        'assets/icons/shape_login_form.png',
-                        fit: BoxFit.cover,
+                        'assets/icons/shape_signup_form.png',
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: CustomButton(
-                        title: 'Login',
+                        title: 'Sign up',
                         onPressed: () {
                           print('hello');
                         },
@@ -53,26 +54,40 @@ class LoginPage extends StatelessWidget {
                         children: [
                           const SizedBox(height: 48),
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.centerRight,
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 56.0),
+                              padding: const EdgeInsets.only(right: 56.0),
                               child: Text(
-                                'Login',
+                                'Sign up',
                                 style: CustomTextStyles.of(context).regular24,
                               ),
                             ),
                           ),
-                          const SizedBox(height: 28),
+                          const SizedBox(height: 15),
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.centerRight,
                             child: Container(
                               color: CustomColors.of(context).primary,
-                              margin: const EdgeInsets.only(left: 56.0),
+                              margin: const EdgeInsets.only(right: 56.0),
                               height: 4,
                               width: 68,
                             ),
                           ),
-                          const SizedBox(height: 58),
+                          const SizedBox(height: 38),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 56.0),
+                            child: TextField(
+                              textAlignVertical: TextAlignVertical.center,
+                              decoration: InputDecoration(
+                                prefixIcon: Image.asset('assets/icons/icon_profile_small.png'),
+                                hintText: 'Full Name',
+                                hintStyle: CustomTextStyles.of(context).regular15.apply(
+                                  color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 32),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 56.0),
                             child: TextField(
@@ -81,8 +96,8 @@ class LoginPage extends StatelessWidget {
                                 prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
                                 hintText: 'Email Address',
                                 hintStyle: CustomTextStyles.of(context).regular15.apply(
-                                      color: CustomColors.of(context).primaryText.withOpacity(0.7),
-                                    ),
+                                  color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                                ),
                               ),
                             ),
                           ),
@@ -95,22 +110,13 @@ class LoginPage extends StatelessWidget {
                                 prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
                                 hintText: 'Password',
                                 hintStyle: CustomTextStyles.of(context).regular15.apply(
-                                      color: CustomColors.of(context).primaryText.withOpacity(0.7),
-                                    ),
+                                  color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                                ),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 56.0),
-                              child: Text(
-                                'Forgot Password?',
-                                style: CustomTextStyles.of(context).regular13,
-                              ),
-                            ),
-                          ),
+                          const SizedBox(height: 28),
+
                         ],
                       ),
                     ),
@@ -176,15 +182,16 @@ class LoginPage extends StatelessWidget {
             Center(
               child: Text.rich(
                 TextSpan(
-                  text: 'Don’t have an account? ',
+                  text: 'Already have an account? ',
                   children: [
                     TextSpan(
-                      text: 'Sign Up',
+                      text: 'Login',
                       style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
                       recognizer: TapGestureRecognizer()
-                      ..onTap=(){
-                        KiwiContainer().resolve<RouterService>().router.go("/signup");
-                      },
+                        ..onTap=(){
+                          KiwiContainer().resolve<RouterService>().router.go("/");
+
+                        },
                     ),
                   ],
                 ),
