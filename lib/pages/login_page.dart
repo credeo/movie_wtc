@@ -1,7 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/pages/sing_up_page.dart';
 import 'package:movie_wtc/widgets/custom_button.dart';
 
 class LoginPage extends StatelessWidget {
@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
                       child: CustomButton(
                         title: 'Login',
                         onPressed: () {
-                          SignUpPage;
+                          print('hello');
                         },
                       ),
                     ),
@@ -72,38 +72,26 @@ class LoginPage extends StatelessWidget {
                           ),
                           const SizedBox(height: 58),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 56.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 56.0),
                             child: TextField(
                               decoration: InputDecoration(
-                                prefixIcon: Image.asset(
-                                    'assets/icons/icon_email_small.png'),
+                                prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
                                 hintText: 'Email Address',
-                                hintStyle: CustomTextStyles.of(context)
-                                    .regular15
-                                    .apply(
-                                      color: CustomColors.of(context)
-                                          .primaryText
-                                          .withOpacity(0.7),
+                                hintStyle: CustomTextStyles.of(context).regular15.apply(
+                                      color: CustomColors.of(context).primaryText.withOpacity(0.7),
                                     ),
                               ),
                             ),
                           ),
                           const SizedBox(height: 32),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 56.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 56.0),
                             child: TextField(
                               decoration: InputDecoration(
-                                prefixIcon: Image.asset(
-                                    'assets/icons/icon_eye_crossed.png'),
+                                prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
                                 hintText: 'Password',
-                                hintStyle: CustomTextStyles.of(context)
-                                    .regular15
-                                    .apply(
-                                      color: CustomColors.of(context)
-                                          .primaryText
-                                          .withOpacity(0.7),
+                                hintStyle: CustomTextStyles.of(context).regular15.apply(
+                                      color: CustomColors.of(context).primaryText.withOpacity(0.7),
                                     ),
                               ),
                             ),
@@ -188,9 +176,7 @@ class LoginPage extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: 'Sign Up',
-                      style: CustomTextStyles.of(context)
-                          .regular13
-                          .apply(color: CustomColors.of(context).primary),
+                      style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
                     ),
                   ],
                 ),
