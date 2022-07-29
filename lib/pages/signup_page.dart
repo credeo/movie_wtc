@@ -1,15 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/services/router_service.dart';
 import 'package:movie_wtc/widgets/build_social_media_button.dart';
-import 'package:movie_wtc/widgets/custom_button.dart';
+import 'dart:math' as math;
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+import '../widgets/custom_button.dart';
+
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,75 +29,74 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.only(left: 1.9, right: 4),
+              padding: const EdgeInsets.only(left: 1.9, right: 4.5),
               child: SizedBox(
                 height: 457.0,
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      bottom: 25.0,
-                      child: Image.asset(
-                        'assets/icons/shape_login_form.png',
-                        fit: BoxFit.cover,
+                      bottom: 28,
+                      child: Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(math.pi),
+                        child: Image.asset(
+                          'assets/icons/shape_login_form.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Align(
-                      heightFactor: 9,
+                      heightFactor: 8.96,
                       alignment: Alignment.bottomCenter,
                       child: CustomButton(
-                        title: 'Login',
+                        title: 'Sign Up',
                         onPressed: () {
                           print('hello');
                         },
                       ),
                     ),
                     Align(
-                      alignment: Alignment.topCenter,
+                      alignment: Alignment.centerLeft,
                       child: Column(
                         children: [
-                          const SizedBox(height: 48),
+                          const SizedBox(height: 58),
                           Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 56.0),
+                            alignment: Alignment.topRight,
+                            child: Container(
+                              margin: const EdgeInsets.only(right: 56.0),
                               child: Text(
-                                'Login',
+                                'Sign Up',
                                 style: CustomTextStyles.of(context).regular24,
                               ),
                             ),
                           ),
                           const SizedBox(height: 28),
                           Align(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.topRight,
                             child: Container(
                               color: CustomColors.of(context).primary,
-                              margin: const EdgeInsets.only(left: 56.0),
+                              margin: const EdgeInsets.only(right: 56.0),
                               height: 4,
-                              width: 68,
+                              width: 99,
                             ),
                           ),
-                          const SizedBox(height: 58),
+                          const SizedBox(height: 48),
+                          textFieldForLoginSignUp(
+                            context: context,
+                            imagePath: 'assets/icons/icon_profile_small.png',
+                            hintText: 'Full Name',
+                          ),
+                          const SizedBox(height: 15),
                           textFieldForLoginSignUp(
                             context: context,
                             imagePath: 'assets/icons/icon_email_small.png',
                             hintText: 'Email Address',
                           ),
-                          const SizedBox(height: 32),
+                          const SizedBox(height: 15),
                           textFieldForLoginSignUp(
                             context: context,
                             imagePath: 'assets/icons/icon_eye_crossed.png',
                             hintText: 'Password',
-                          ),
-                          const SizedBox(height: 20),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 56.0),
-                              child: Text(
-                                'Forgot Password?',
-                                style: CustomTextStyles.of(context).regular13,
-                              ),
-                            ),
                           ),
                         ],
                       ),
@@ -167,13 +166,13 @@ class LoginPage extends StatelessWidget {
                   text: 'Don’t have an account? ',
                   children: [
                     TextSpan(
-                      text: 'Sign Up',
+                      text: 'Login',
                       style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: CustomColors.of(context).primary),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
-                          context.go('/sign_up');
+                          context.go('/');
                         },
                     ),
                   ],
@@ -187,3 +186,25 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+// Container(
+//                           decoration: BoxDecoration(
+//                             gradient: LinearGradient(
+//                               tileMode: TileMode.clamp,
+//                               colors: [
+//                                 CustomColors.of(context)
+//                                     .buttonBackgroundGradientStart,
+//                                 CustomColors.of(context)
+//                                     .buttonBackgroundGradientEnd,
+//                               ],
+//                               begin: Alignment.bottomCenter,
+//                               end: Alignment.topCenter,
+//                             ),
+//                             color: Colors.red,
+//                             borderRadius: const BorderRadius.only(
+//                               bottomLeft: Radius.circular(110),
+//                               bottomRight: Radius.circular(110),
+//                               topLeft: Radius.elliptical(600, 490),
+//                               topRight: Radius.circular(110),
+//                             ),
+//                           ),
+//                         ),

@@ -30,3 +30,23 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+
+Widget textFieldForLoginSignUp({
+  required BuildContext context,
+  required String imagePath,
+  required String hintText,
+}) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 56.0),
+    child: TextField(
+      textAlignVertical: TextAlignVertical.center,
+      decoration: InputDecoration(
+        prefixIcon: Image.asset(imagePath),
+        hintText: hintText,
+        hintStyle: CustomTextStyles.of(context).regular15.apply(
+              color: CustomColors.of(context).primaryText.withOpacity(0.7),
+            ),
+      ),
+    ),
+  );
+}
