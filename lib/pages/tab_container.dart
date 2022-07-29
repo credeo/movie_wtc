@@ -15,6 +15,7 @@ class TabContainer extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        backgroundColor: CustomColors.of(context).background,
         extendBodyBehindAppBar: true,
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
