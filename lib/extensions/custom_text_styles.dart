@@ -11,6 +11,7 @@ class CustomTextStyles {
   TextStyle get medium14 => Theme.of(_context).extension<CustomTextStyleScheme>()!.medium14!;
   TextStyle get semiBold16 => Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold16!;
   TextStyle get semiBold18 => Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold18!;
+  TextStyle get semiBold40 => Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold40!;
   TextStyle get extraBold15 => Theme.of(_context).extension<CustomTextStyleScheme>()!.extraBold15!;
 }
 
@@ -23,6 +24,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   final TextStyle? medium14;
   final TextStyle? semiBold16;
   final TextStyle? semiBold18;
+  final TextStyle? semiBold40;
   final TextStyle? extraBold15;
 
   const CustomTextStyleScheme({
@@ -33,6 +35,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     required this.medium14,
     required this.semiBold16,
     required this.semiBold18,
+    required this.semiBold40,
     required this.extraBold15,
   });
 
@@ -72,6 +75,11 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           color: primaryTextColor,
           fontSize: 18,
         ),
+        semiBold40 = TextStyle(
+          fontWeight: FontWeight.w600,
+          color: primaryTextColor,
+          fontSize: 40,
+        ),
         extraBold15 = TextStyle(
           fontWeight: FontWeight.w800,
           color: primaryTextColor,
@@ -87,6 +95,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     TextStyle? medium14,
     TextStyle? semiBold16,
     TextStyle? semiBold18,
+    TextStyle? semiBold36,
     TextStyle? extraBold15,
   }) {
     return CustomTextStyleScheme(
@@ -97,6 +106,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       medium14: medium14 ?? this.medium14,
       semiBold16: semiBold16 ?? this.semiBold16,
       semiBold18: semiBold18 ?? this.semiBold18,
+      semiBold40: semiBold36 ?? this.semiBold40,
       extraBold15: extraBold15 ?? this.extraBold15,
     );
   }
@@ -114,6 +124,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       medium14: TextStyle.lerp(medium14, other.medium14, t),
       semiBold16: TextStyle.lerp(semiBold16, other.semiBold16, t),
       semiBold18: TextStyle.lerp(semiBold18, other.semiBold18, t),
+      semiBold40: TextStyle.lerp(semiBold40, other.semiBold40, t),
       extraBold15: TextStyle.lerp(extraBold15, other.extraBold15, t),
     );
   }

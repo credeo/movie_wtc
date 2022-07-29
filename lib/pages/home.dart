@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
+import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatelessWidget {
@@ -9,6 +11,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaleRatio = MediaQuery.of(context).size.height / 812.0;
     return Stack(
       children: [
         Positioned.fill(
@@ -16,9 +19,124 @@ class Home extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 32),
             children: [
               Container(
-                height: 400.0 * MediaQuery.of(context).size.height / 812.0,
+                height: 400.0 * scaleRatio,
                 width: MediaQuery.of(context).size.width,
-                color: Colors.yellow,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Image.asset(
+                        'assets/images/movie_cover_1.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      top: 0.0,
+                      left: 0.0,
+                      right: 0.0,
+                      height: 148.0 * scaleRatio,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              CustomColors.of(context).coverGradientStart,
+                              CustomColors.of(context).coverGradientEnd,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0.0,
+                      left: 0.0,
+                      right: 0.0,
+                      height: 116.0 * scaleRatio,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.topCenter,
+                            colors: [
+                              CustomColors.of(context).coverGradientStart,
+                              CustomColors.of(context).coverGradientEnd,
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0.0,
+                      left: 0.0,
+                      right: 0.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            'NASLOV',
+                            style: CustomTextStyles.of(context).semiBold40,
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'ZANR',
+                                style: CustomTextStyles.of(context).regular12,
+                              ),
+                              Container(
+                                width: 4,
+                                height: 4,
+                                margin: const EdgeInsets.symmetric(horizontal: 8),
+                                decoration: BoxDecoration(color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
+                              ),
+                              Text(
+                                'DETAILS',
+                                style: CustomTextStyles.of(context).regular12,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: CustomSecondaryButton(
+                                    iconPath: 'assets/icons/icon_checkmark.png',
+                                    title: 'My list',
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                child: CustomButtonWithIcon(
+                                  title: 'Play',
+                                  width: 100,
+                                  iconPath: 'assets/icons/icon_play_filled.png',
+                                  onPressed: () {},
+                                ),
+                              ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: CustomSecondaryButton(
+                                    iconPath: 'assets/icons/icon_info.png',
+                                    title: 'Info',
+                                    onPressed: () {},
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 8),
               Center(
