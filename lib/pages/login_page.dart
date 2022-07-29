@@ -2,13 +2,17 @@ import 'dart:math';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/providers/login_page_provider.dart';
 import 'package:movie_wtc/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
+  static const pageName = 'login';
+
   const LoginPage({super.key});
 
   @override
@@ -40,7 +44,6 @@ class LoginPage extends StatelessWidget {
                     firstChild: loginPart(context),
                     secondChild: signUpPart(context),
                   ),
-
                   const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 58.0),
@@ -192,7 +195,7 @@ class LoginPage extends StatelessWidget {
               child: CustomButton(
                 title: 'Login',
                 onPressed: () {
-                  print('hello');
+                  context.goNamed(TabContainer.pageName);
                 },
               ),
             ),

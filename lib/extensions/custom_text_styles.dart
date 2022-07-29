@@ -4,6 +4,7 @@ class CustomTextStyles {
   final BuildContext _context;
   const CustomTextStyles.of(BuildContext context) : _context = context;
 
+  TextStyle get regular12 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular12!;
   TextStyle get regular13 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
   TextStyle get regular15 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
   TextStyle get regular24 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
@@ -13,6 +14,7 @@ class CustomTextStyles {
 
 @immutable
 class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
+  final TextStyle? regular12;
   final TextStyle? regular13;
   final TextStyle? regular15;
   final TextStyle? regular24;
@@ -20,6 +22,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   final TextStyle? extraBold15;
 
   const CustomTextStyleScheme({
+    required this.regular12,
     required this.regular13,
     required this.regular15,
     required this.regular24,
@@ -28,7 +31,12 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   });
 
   CustomTextStyleScheme.fromPrimaryTextColor(Color primaryTextColor)
-      : regular13 = TextStyle(
+      : regular12 = TextStyle(
+          fontWeight: FontWeight.w400,
+          color: primaryTextColor,
+          fontSize: 12,
+        ),
+        regular13 = TextStyle(
           fontWeight: FontWeight.w400,
           color: primaryTextColor,
           fontSize: 13,
@@ -57,12 +65,14 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   @override
   CustomTextStyleScheme copyWith({
     TextStyle? regular13,
+    TextStyle? regular12,
     TextStyle? regular15,
     TextStyle? regular24,
     TextStyle? semiBold16,
     TextStyle? extraBold15,
   }) {
     return CustomTextStyleScheme(
+      regular12: regular12 ?? this.regular12,
       regular13: regular13 ?? this.regular13,
       regular15: regular15 ?? this.regular15,
       regular24: regular24 ?? this.regular24,
@@ -77,6 +87,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       return this;
     }
     return CustomTextStyleScheme(
+      regular12: TextStyle.lerp(regular12, other.regular12, t),
       regular13: TextStyle.lerp(regular13, other.regular13, t),
       regular15: TextStyle.lerp(regular15, other.regular15, t),
       regular24: TextStyle.lerp(regular24, other.regular24, t),
