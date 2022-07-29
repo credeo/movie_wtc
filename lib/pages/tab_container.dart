@@ -15,29 +15,15 @@ class TabContainer extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        body: const TabBarView(
+        extendBodyBehindAppBar: true,
+        body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: [
             Home(),
             ComingSoon(),
             Downloads(),
           ],
         ),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   items: const [
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.home),
-        //       label: 'Home',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.home),
-        //       label: 'Coming Soon',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.home),
-        //       label: 'Downloads',
-        //     ),
-        //   ],
-        // ),
         bottomNavigationBar: SafeArea(
           child: TabBar(
             indicator: UnderlineTabIndicator(
