@@ -25,34 +25,49 @@ class TabContainer extends StatelessWidget {
             Downloads(),
           ],
         ),
-        bottomNavigationBar: SafeArea(
-          child: TabBar(
-            indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(color: CustomColors.of(context).primary, width: 3.0),
-              insets: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 71.0),
-            ),
-            unselectedLabelColor: CustomColors.of(context).inactive,
-            labelColor: CustomColors.of(context).primary,
-            labelStyle: CustomTextStyles.of(context).regular12,
-            tabs: const [
-              Tab(
-                iconMargin: EdgeInsets.only(bottom: 4),
-                icon: ImageIcon(
-                  AssetImage('assets/icons/icon_home.png'),
+        bottomNavigationBar: DecoratedBox(
+          decoration: BoxDecoration(
+
+            gradient: LinearGradient(
+                begin:Alignment.topCenter,
+                end:Alignment.bottomCenter,
+                colors: [
+                  CustomColors.of(context).tabbarGradientStart,
+                  CustomColors.of(context).tabbarGradientEnd,
+
+                ],
+
+            )
+          ),
+          child: SafeArea(
+            child: TabBar(
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(color: CustomColors.of(context).primary, width: 3.0),
+                insets: const EdgeInsets.fromLTRB(50.0, 0.0, 50.0, 71.0),
+              ),
+              unselectedLabelColor: CustomColors.of(context).inactive,
+              labelColor: CustomColors.of(context).primary,
+              labelStyle: CustomTextStyles.of(context).regular12,
+              tabs: const [
+                Tab(
+                  iconMargin: EdgeInsets.only(bottom: 4),
+                  icon: ImageIcon(
+                    AssetImage('assets/icons/icon_home.png'),
+                  ),
+                  text: 'Home' ,
                 ),
-                text: 'Home',
-              ),
-              Tab(
-                iconMargin: EdgeInsets.only(bottom: 4),
-                icon: ImageIcon(AssetImage('assets/icons/icon_coming_soon.png')),
-                text: 'Coming soon',
-              ),
-              Tab(
-                iconMargin: EdgeInsets.only(bottom: 4),
-                icon: ImageIcon(AssetImage('assets/icons/icon_downloads.png')),
-                text: 'Downloads',
-              ),
-            ],
+                Tab(
+                  iconMargin: EdgeInsets.only(bottom: 4),
+                  icon: ImageIcon(AssetImage('assets/icons/icon_coming_soon.png')),
+                  text: 'Coming soon',
+                ),
+                Tab(
+                  iconMargin: EdgeInsets.only(bottom: 4),
+                  icon: ImageIcon(AssetImage('assets/icons/icon_downloads.png')),
+                  text: 'Downloads',
+                ),
+              ],
+            ),
           ),
         ),
       ),

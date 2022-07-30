@@ -1,3 +1,19 @@
 {
-  "title": "Demo App"
+  "title": "Demo App",
+  "login": "Login",
+  "signup": "Sign Up",
+  "or": "OR",
+  "no_account": "Don’t have an account? ",
+  "has_account": "Already have an account? ",
+  "email": "Email Address",
+  "password": "Password",
+  "full_name": "Full Name",
+  "forgot_password": "Forgot Password?",
+
+  "my_list_button": " My list",
+  "info_button": "Info",
+  "my_list": "My List",
+  "play": "Play",
+  "categories": "Categories",
+  "see_more": "See More"
 }

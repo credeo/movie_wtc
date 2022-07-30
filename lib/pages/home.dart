@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -106,7 +107,7 @@ class Home extends StatelessWidget {
                                   alignment: Alignment.centerRight,
                                   child: CustomSecondaryButton(
                                     iconPath: 'assets/icons/icon_checkmark.png',
-                                    title: 'My list',
+                                    title: 'my_list_button'.tr(),
                                     onPressed: () {},
                                   ),
                                 ),
@@ -114,7 +115,7 @@ class Home extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                                 child: CustomButtonWithIcon(
-                                  title: 'Play',
+                                  title: 'play'.tr(),
                                   width: 100,
                                   iconPath: 'assets/icons/icon_play_filled.png',
                                   onPressed: () {},
@@ -125,7 +126,7 @@ class Home extends StatelessWidget {
                                   alignment: Alignment.centerLeft,
                                   child: CustomSecondaryButton(
                                     iconPath: 'assets/icons/icon_info.png',
-                                    title: 'Info',
+                                    title: 'info_button'.tr(),
                                     onPressed: () {},
                                   ),
                                 ),
@@ -180,7 +181,7 @@ class Home extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, bottom: 12, top: 12),
                 child: Text(
-                  'Categories',
+                  'categories'.tr(),
                   style: CustomTextStyles.of(context).semiBold18,
                 ),
               ),
@@ -188,7 +189,7 @@ class Home extends StatelessWidget {
               CupertinoButton(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
-                  'See More',
+                  'see_more'.tr(),
                   style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
@@ -240,7 +241,7 @@ class Home extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 20.0, bottom: 12, top: 12),
                 child: Text(
-                  'My List',
+                  'my_list'.tr(),
                   style: CustomTextStyles.of(context).semiBold18,
                 ),
               ),
@@ -248,7 +249,7 @@ class Home extends StatelessWidget {
               CupertinoButton(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
-                  'See More',
+                  'see_more'.tr(),
                   style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
