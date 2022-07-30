@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -61,7 +62,7 @@ class LoginPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 18.0),
                             child: Text(
-                              'OR',
+                              'or'.tr(),
                               style: CustomTextStyles.of(context).extraBold15,
                             ),
                           ),
@@ -106,10 +107,10 @@ class LoginPage extends StatelessWidget {
                           loginPageProvider.state == LoginState.login ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                       firstChild: Text.rich(
                         TextSpan(
-                          text: 'Don’t have an account? ',
+                          text: 'no_account'.tr(),
                           children: [
                             TextSpan(
-                              text: 'Sign Up',
+                              text: 'signup'.tr(),
                               style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -122,10 +123,10 @@ class LoginPage extends StatelessWidget {
                       ),
                       secondChild: Text.rich(
                         TextSpan(
-                          text: 'Already have an account? ',
+                          text: 'has_account'.tr(),
                           children: [
                             TextSpan(
-                              text: 'Login',
+                              text: 'login'.tr(),
                               style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
@@ -193,7 +194,7 @@ class LoginPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomButton(
-                title: 'Login',
+                title: 'login'.tr(),
                 onPressed: () {
                   context.goNamed(TabContainer.pageName);
                 },
@@ -209,7 +210,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 56.0),
                       child: Text(
-                        'Login',
+                        'login'.tr(),
                         style: CustomTextStyles.of(context).regular24,
                       ),
                     ),
@@ -231,7 +232,7 @@ class LoginPage extends StatelessWidget {
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
-                        hintText: 'Email Address',
+                        hintText: 'email'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context).primaryText.withOpacity(0.7),
                             ),
@@ -245,7 +246,7 @@ class LoginPage extends StatelessWidget {
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
-                        hintText: 'Password',
+                        hintText: 'password'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context).primaryText.withOpacity(0.7),
                             ),
@@ -258,7 +259,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Text(
-                        'Forgot Password?',
+                        'forgot_password'.tr(),
                         style: CustomTextStyles.of(context).regular13,
                       ),
                     ),
@@ -293,7 +294,7 @@ class LoginPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomButton(
-                title: 'Sign Up',
+                title: 'signup'.tr(),
                 onPressed: () {
                   print('hello');
                 },
@@ -309,7 +310,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Text(
-                        'Sign Up',
+                        'signup'.tr(),
                         style: CustomTextStyles.of(context).regular24,
                       ),
                     ),
@@ -331,7 +332,7 @@ class LoginPage extends StatelessWidget {
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         prefixIcon: Image.asset('assets/icons/icon_profile_small.png'),
-                        hintText: 'Full Name',
+                        hintText: 'full_name'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context).primaryText.withOpacity(0.7),
                             ),
@@ -345,7 +346,7 @@ class LoginPage extends StatelessWidget {
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
-                        hintText: 'Email Address',
+                        hintText: 'email'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context).primaryText.withOpacity(0.7),
                             ),
@@ -359,7 +360,7 @@ class LoginPage extends StatelessWidget {
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
                         prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
-                        hintText: 'Password',
+                        hintText: 'password'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context).primaryText.withOpacity(0.7),
                             ),
