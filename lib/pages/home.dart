@@ -19,125 +19,12 @@ class Home extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.only(bottom: 32),
             children: [
-              Container(
-                height: 400.0 * scaleRatio,
-                width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        'assets/images/movie_cover_1.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      top: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      height: 148.0 * scaleRatio,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              CustomColors.of(context).coverGradientStart,
-                              CustomColors.of(context).coverGradientEnd,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      height: 116.0 * scaleRatio,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              CustomColors.of(context).coverGradientStart,
-                              CustomColors.of(context).coverGradientEnd,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'NASLOV',
-                            style: CustomTextStyles.of(context).semiBold40,
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ZANR',
-                                style: CustomTextStyles.of(context).regular12,
-                              ),
-                              Container(
-                                width: 4,
-                                height: 4,
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
-                              ),
-                              Text(
-                                'DETAILS',
-                                style: CustomTextStyles.of(context).regular12,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: CustomSecondaryButton(
-                                    iconPath: 'assets/icons/icon_checkmark.png',
-                                    title: 'my_list_button'.tr(),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                                child: CustomButtonWithIcon(
-                                  title: 'play'.tr(),
-                                  width: 100,
-                                  iconPath: 'assets/icons/icon_play_filled.png',
-                                  onPressed: () {},
-                                ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: CustomSecondaryButton(
-                                    iconPath: 'assets/icons/icon_info.png',
-                                    title: 'info_button'.tr(),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height:440,
+                child: PageView(children: [coverWidget(context:context,imagePath:'assets/images/movie_cover_1.jpg',genre:'Zanr1',title:"Film1",details:"Detalji1",scaleRatio:scaleRatio),
+                  coverWidget(context:context,imagePath:'assets/images/movie_cover_1.jpg',genre:'Zanr2',title:"Film2",details:"Detalji2",scaleRatio:scaleRatio),
+                  coverWidget(context:context,imagePath:'assets/images/movie_cover_1.jpg',genre:'Zanr3',title:"Film3",details:"Detalji3",scaleRatio:scaleRatio),
+                ],),
               ),
               const SizedBox(height: 8),
               Center(
@@ -303,4 +190,130 @@ class Home extends StatelessWidget {
       ],
     );
   }
+
+  Widget coverWidget(
+      {required String details,required String imagePath,required String genre,required double scaleRatio,required String title, required BuildContext context}
+      ){
+    return Container(
+      height: 400.0 * scaleRatio,
+      width: MediaQuery.of(context).size.width,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            top: 0.0,
+            left: 0.0,
+            right: 0.0,
+            height: 148.0 * scaleRatio,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    CustomColors.of(context).coverGradientStart,
+                    CustomColors.of(context).coverGradientEnd,
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            height: 116.0 * scaleRatio,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    CustomColors.of(context).coverGradientStart,
+                    CustomColors.of(context).coverGradientEnd,
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0.0,
+            left: 0.0,
+            right: 0.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: CustomTextStyles.of(context).semiBold40,
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      genre,
+                      style: CustomTextStyles.of(context).regular12,
+                    ),
+                    Container(
+                      width: 4,
+                      height: 4,
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      decoration: BoxDecoration(color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
+                    ),
+                    Text(
+                      details,
+                      style: CustomTextStyles.of(context).regular12,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: CustomSecondaryButton(
+                          iconPath: 'assets/icons/icon_checkmark.png',
+                          title: 'my_list_button'.tr(),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: CustomButtonWithIcon(
+                        title: 'play'.tr(),
+                        width: 100,
+                        iconPath: 'assets/icons/icon_play_filled.png',
+                        onPressed: () {},
+                      ),
+                    ),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: CustomSecondaryButton(
+                          iconPath: 'assets/icons/icon_info.png',
+                          title: 'info_button'.tr(),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
+
