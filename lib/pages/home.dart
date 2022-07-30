@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,56 +7,78 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
+  Home({super.key});
+  PageController _controller=PageController();
   @override
   Widget build(BuildContext context) {
     final scaleRatio = MediaQuery.of(context).size.height / 812.0;
-    return Stack (
+    return Stack(
       children: [
+        Positioned.fill(
+                child: ListView(
+                  padding: EdgeInsets.only(bottom: 32),
+                  children: [
+                    SizedBox(
+                      height: 440,
+                      child: PageView(
+                        controller: _controller,
+                        children: [
+                          coverWidget(
+                              context: context,
+                              imagePath: 'assets/images/movie_cover_1.jpg',
+                              genre: 'Zanr1',
+                              title: "Film1",
+                              details: "Detalji1",
+                              scaleRatio: scaleRatio),
+                          coverWidget(
+                              context: context,
+                              imagePath: 'assets/images/movie_cover_1.jpg',
+                              genre: 'Zanr2',
+                              title: "Film2",
+                              details: "Detalji2",
+                              scaleRatio: scaleRatio),
+                          coverWidget(
+                              context: context,
+                              imagePath: 'assets/images/movie_cover_1.jpg',
+                              genre: 'Zanr3',
+                              title: "Film3",
+                              details: "Detalji3",
+                              scaleRatio: scaleRatio),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Center(
+                      child: SmoothPageIndicator(
+                          controller: _controller, // PageController
+                          count: 3,
+                          effect: SlideEffect(
+                            spacing: 12,
+                            dotHeight: 6,
+                            dotWidth: 6,
+                            activeDotColor: CustomColors
+                                .of(context)
+                                .primary,
+                            dotColor: CustomColors
+                                .of(context)
+                                .inactive,
+                          ),
+                          onDotClicked: (index) {
 
-       Positioned.fill(
-          child: ListView(
-            padding: EdgeInsets.only(bottom: 32),
-            children: [
-              SizedBox(
-                height:440,
-                child: PageView(
-                  children: [coverWidget(context:context,imagePath:'assets/images/movie_cover_1.jpg',genre:'Zanr1',title:"Film1",details:"Detalji1",scaleRatio:scaleRatio),
-                  coverWidget(context:context,imagePath:'assets/images/movie_cover_1.jpg',genre:'Zanr2',title:"Film2",details:"Detalji2",scaleRatio:scaleRatio),
-                  coverWidget(context:context,imagePath:'assets/images/movie_cover_1.jpg',genre:'Zanr3',title:"Film3",details:"Detalji3",scaleRatio:scaleRatio),
-                ],),
-              ),
-              const SizedBox(height: 8),
-              Center(
-                child: SmoothPageIndicator(
-                    controller: PageController(), // PageController
-                    count: 3,
-                    effect: SlideEffect(
-                      spacing: 12,
-                      dotHeight: 6,
-                      dotWidth: 6,
-                      activeDotColor: CustomColors.of(context).primary,
-                      dotColor: CustomColors.of(context).inactive,
-                    ), // your preferred effect
-                    onDotClicked: (index) {}),
-              ),
-              const SizedBox(height: 12),
-              buildCategoriesSection(context),
-              const SizedBox(height: 12),
-              buildMyListSection(context),
-            ],
-          ),
-        ),
-
-
-
-      ],
-    );
-
+                          },
+                    )),
+                    const SizedBox(height: 12),
+                    buildCategoriesSection(context),
+                    const SizedBox(height: 12),
+                    buildMyListSection(context),
+                  ],)
+                ),
+    ]
+          );
 
   }
 
@@ -74,10 +98,13 @@ class Home extends StatelessWidget {
               ),
               const Spacer(),
               CupertinoButton(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
                   'see_more'.tr(),
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
                   print('clicked see more');
@@ -134,10 +161,13 @@ class Home extends StatelessWidget {
               ),
               const Spacer(),
               CupertinoButton(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
                   'see_more'.tr(),
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
                   print('clicked see more');
@@ -192,8 +222,12 @@ class Home extends StatelessWidget {
   }
 
   Widget coverWidget(
-      {required String details,required String imagePath,required String genre,required double scaleRatio,required String title, required BuildContext context}
-      ){
+      {required String details,
+      required String imagePath,
+      required String genre,
+      required double scaleRatio,
+      required String title,
+      required BuildContext context}) {
     return Container(
       height: 400.0 * scaleRatio,
       width: MediaQuery.of(context).size.width,
@@ -265,7 +299,9 @@ class Home extends StatelessWidget {
                       width: 4,
                       height: 4,
                       margin: const EdgeInsets.symmetric(horizontal: 8),
-                      decoration: BoxDecoration(color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
+                      decoration: BoxDecoration(
+                          color: CustomColors.of(context).primaryText,
+                          shape: BoxShape.circle),
                     ),
                     Text(
                       details,
@@ -316,4 +352,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-

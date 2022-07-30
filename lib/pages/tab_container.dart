@@ -15,7 +15,7 @@ class TabContainer extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar:AppBar(
+        appBar:AppBar(  // na osnovu stranice dohvatati appbar
           backgroundColor: Colors.transparent,
           title: Row(
             children: [
