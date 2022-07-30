@@ -15,6 +15,18 @@ class TabContainer extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        appBar:AppBar(
+          backgroundColor: Colors.transparent,
+          title: Row(
+            children: [
+              SizedBox(width:62,child: Image.asset("assets/icons/icon_app_big.png",fit: BoxFit.fitWidth,)),
+              Spacer(),
+              SizedBox(width:18,child: GestureDetector(child: Image.asset("assets/icons/icon_search.png",fit: BoxFit.fitWidth),onTap:(){print("Search");},),),
+              SizedBox(width: 20,),
+              SizedBox(width:24,child: GestureDetector(child: Image.asset("assets/icons/icon_profile.png",fit: BoxFit.fitWidth),onTap:(){print("Profile");},),),
+            ],
+          ),
+        ) ,
         backgroundColor: CustomColors.of(context).background,
         extendBodyBehindAppBar: true,
         body: TabBarView(

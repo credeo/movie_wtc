@@ -13,10 +13,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaleRatio = MediaQuery.of(context).size.height / 812.0;
-    return Stack(
+    return Stack (
       children: [
 
-        Positioned.fill(
+       Positioned.fill(
           child: ListView(
             padding: EdgeInsets.only(bottom: 32),
             children: [
@@ -49,27 +49,13 @@ class Home extends StatelessWidget {
             ],
           ),
         ),
-        AppBar(
-          backgroundColor: Colors.transparent,
-          title: Row(
-            children: [
-              SizedBox(width:62,child: Image.asset("assets/icons/icon_app_big.png",fit: BoxFit.fitWidth,)),
-              Spacer(),
-              SizedBox(width:18,child: GestureDetector(child: Image.asset("assets/icons/icon_search.png",fit: BoxFit.fitWidth),onTap:(){print("Search");},),),
-              SizedBox(width: 20,),
-              SizedBox(width:24,child: GestureDetector(child: Image.asset("assets/icons/icon_profile.png",fit: BoxFit.fitWidth),onTap:(){print("Profile");},),),
-            ],
-          ),
-        ) ,
 
-        // Align(
-        //   alignment: Alignment.topCenter,
-        //   child: AppBar(
-        //     title: Text('TITLE'),
-        //   ),
-        // ),
+
+
       ],
     );
+
+
   }
 
   Widget buildCategoriesSection(BuildContext context) {
