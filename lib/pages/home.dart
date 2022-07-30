@@ -5,77 +5,84 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/providers/home_page_controller.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class Home extends StatelessWidget {
-  Home({super.key});
-  PageController _controller=PageController();
+  const Home({super.key});
   @override
   Widget build(BuildContext context) {
     final scaleRatio = MediaQuery.of(context).size.height / 812.0;
     return Stack(
       children: [
         Positioned.fill(
-                child: ListView(
-                  padding: EdgeInsets.only(bottom: 32),
-                  children: [
-                    SizedBox(
-                      height: 440,
-                      child: PageView(
-                        controller: _controller,
-                        children: [
-                          coverWidget(
-                              context: context,
-                              imagePath: 'assets/images/movie_cover_1.jpg',
-                              genre: 'Zanr1',
-                              title: "Film1",
-                              details: "Detalji1",
-                              scaleRatio: scaleRatio),
-                          coverWidget(
-                              context: context,
-                              imagePath: 'assets/images/movie_cover_1.jpg',
-                              genre: 'Zanr2',
-                              title: "Film2",
-                              details: "Detalji2",
-                              scaleRatio: scaleRatio),
-                          coverWidget(
-                              context: context,
-                              imagePath: 'assets/images/movie_cover_1.jpg',
-                              genre: 'Zanr3',
-                              title: "Film3",
-                              details: "Detalji3",
-                              scaleRatio: scaleRatio),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Center(
-                      child: SmoothPageIndicator(
-                          controller: _controller, // PageController
-                          count: 3,
-                          effect: SlideEffect(
-                            spacing: 12,
-                            dotHeight: 6,
-                            dotWidth: 6,
-                            activeDotColor: CustomColors
-                                .of(context)
-                                .primary,
-                            dotColor: CustomColors
-                                .of(context)
-                                .inactive,
+                child: ChangeNotifierProvider(
+                create: (context)=>HomePageProvider(),
+                  child: Consumer<HomePageProvider>(
+                    builder: (context,homePageProvider,child){
+                    return ListView(
+                      padding: EdgeInsets.only(bottom: 32),
+                      children: [
+                        SizedBox(
+                          height: 440,
+                          child: PageView(
+                            controller: homePageProvider.controller,
+                            onPageChanged:(index){homePageProvider.index=index;},
+                            children: [
+                              coverWidget(
+                                  context: context,
+                                  imagePath: 'assets/images/movie_cover_1.jpg',
+                                  genre: 'Zanr1',
+                                  title: "Film1",
+                                  details: "Detalji1",
+                                  scaleRatio: scaleRatio),
+                              coverWidget(
+                                  context: context,
+                                  imagePath: 'assets/images/movie_cover_1.jpg',
+                                  genre: 'Zanr2',
+                                  title: "Film2",
+                                  details: "Detalji2",
+                                  scaleRatio: scaleRatio),
+                              coverWidget(
+                                  context: context,
+                                  imagePath: 'assets/images/movie_cover_1.jpg',
+                                  genre: 'Zanr3',
+                                  title: "Film3",
+                                  details: "Detalji3",
+                                  scaleRatio: scaleRatio),
+                            ],
                           ),
-                          onDotClicked: (index) {
+                        ),
+                        const SizedBox(height: 8),
+                        Center(
+                          child: SmoothPageIndicator(
+                              controller: homePageProvider.controller, // PageController
+                              count: 3,
+                              effect: SlideEffect(
+                                spacing: 12,
+                                dotHeight: 6,
+                                dotWidth: 6,
+                                activeDotColor: CustomColors
+                                    .of(context)
+                                    .primary,
+                                dotColor: CustomColors
+                                    .of(context)
+                                    .inactive,
+                              ),
+                              onDotClicked: (index) {
 
-                          },
-                    )),
-                    const SizedBox(height: 12),
-                    buildCategoriesSection(context),
-                    const SizedBox(height: 12),
-                    buildMyListSection(context),
-                  ],)
+                              },
+                        )),
+                        const SizedBox(height: 12),
+                        buildCategoriesSection(context),
+                        const SizedBox(height: 12),
+                        buildMyListSection(context),
+                      ],);}
+                  ),
+                )
                 ),
     ]
           );
