@@ -21,11 +21,9 @@ class TabContainer extends StatelessWidget {
             children: [
               SizedBox(width:62,child: Image.asset("assets/icons/icon_app_big.png",fit: BoxFit.fitWidth,)),
               Spacer(),
-              SizedBox(width:18,child: Image.asset("assets/icons/icon_search.png",fit: BoxFit.fitWidth),),
+              SizedBox(width:18,child: GestureDetector(child: Image.asset("assets/icons/icon_search.png",fit: BoxFit.fitWidth),onTap:(){print("Search");},),),
               SizedBox(width: 20,),
-              SizedBox(width:24,child: Image.asset("assets/icons/icon_profile.png",fit: BoxFit.fitWidth),),
-
-
+              SizedBox(width:24,child: GestureDetector(child: Image.asset("assets/icons/icon_profile.png",fit: BoxFit.fitWidth),onTap:(){print("Profile");},),),
             ],
           ),
         ) ,
