@@ -69,7 +69,9 @@ class Home extends StatelessWidget {
                   activeDotColor: CustomColors.of(context).primary,
                   dotColor: CustomColors.of(context).inactive,
                 ),
-                onDotClicked: (index) {},
+                onDotClicked: (index) {
+                  homePageProvider.controller.animateToPage(index,duration: const Duration(seconds: 1),curve:ElasticOutCurve());
+                },
               )),
               const SizedBox(height: 12),
               buildCategoriesSection(context),
