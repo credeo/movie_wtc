@@ -171,6 +171,26 @@ class Home extends StatelessWidget {
     );
   }
 
+  Widget categoriesWidget({required BuildContext context,required String title,required String imagePath}){
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+    child: Column(
+      children: [
+        Container(
+          width: 64,
+          height: 64,
+          child: Image.asset(imagePath,fit: BoxFit.fitWidth,),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: CustomTextStyles.of(context).regular12,
+        ),
+      ],
+    ),
+  );;
+  }
+
   Widget buildCategoriesSection(BuildContext context) {
     return Column(
       children: [
@@ -202,29 +222,17 @@ class Home extends StatelessWidget {
         const SizedBox(height: 4),
         SizedBox(
           height: 86,
-          child: ListView.builder(
+          child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 64,
-                      height: 64,
-                      color: Colors.blue,
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Title',
-                      style: CustomTextStyles.of(context).regular12,
-                    ),
-                  ],
-                ),
-              );
-            },
+            children: [categoriesWidget(context: context, title: "Comedy", imagePath: "assets/images/categories/icon_comedy.png"),
+              categoriesWidget(context: context, title: "Horror", imagePath: "assets/images/categories/icon_horror.png"),
+              categoriesWidget(context: context, title: "Romance", imagePath: "assets/images/categories/icon_romance.png"),
+              categoriesWidget(context: context, title: "Action", imagePath: "assets/images/categories/icon_action.png"),
+              categoriesWidget(context: context, title: "Mystery", imagePath: "assets/images/categories/icon_mystery.png"),
+              categoriesWidget(context: context, title: "Sci-fi", imagePath: "assets/images/categories/icon_scifi.png"),
+            ],
+
           ),
         ),
       ],

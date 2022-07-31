@@ -41,3 +41,4 @@ flutter:
     - assets/localization/en.json
     - assets/icons/
     - assets/images/
+    - assets/images/categories/
