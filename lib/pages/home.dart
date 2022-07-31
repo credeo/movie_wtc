@@ -89,22 +89,25 @@ class Home extends StatelessWidget {
 
   }
 
-  Widget categoriesWidget({required BuildContext context,required String title,required String imagePath}){
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-    child: Column(
-      children: [
-        Container(
-          width: 64,
-          height: 64,
-          child: ClipRRect(child: Image.asset(imagePath,fit: BoxFit.fitWidth,),borderRadius: BorderRadius.all(Radius.circular(12.0)),),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: CustomTextStyles.of(context).regular12,
-        ),
-      ],
+  Widget categoriesWidget({required BuildContext context,required String title,required String imagePath,required VoidCallback callback}){
+  return GestureDetector(
+    onTap:callback,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        children: [
+          Container(
+            width: 64,
+            height: 64,
+            child: ClipRRect(child: Image.asset(imagePath,fit: BoxFit.fitWidth,),borderRadius: BorderRadius.all(Radius.circular(12.0)),),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: CustomTextStyles.of(context).regular12,
+          ),
+        ],
+      ),
     ),
   );;
   }
@@ -146,12 +149,12 @@ class Home extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
-            children: [categoriesWidget(context: context, title: "Comedy", imagePath: "assets/images/categories/icon_comedy.png"),
-              categoriesWidget(context: context, title: "Horror", imagePath: "assets/images/categories/icon_horror.png"),
-              categoriesWidget(context: context, title: "Romance", imagePath: "assets/images/categories/icon_romance.png"),
-              categoriesWidget(context: context, title: "Action", imagePath: "assets/images/categories/icon_action.png"),
-              categoriesWidget(context: context, title: "Mystery", imagePath: "assets/images/categories/icon_mystery.png"),
-              categoriesWidget(context: context, title: "Sci-fi", imagePath: "assets/images/categories/icon_scifi.png"),
+            children: [categoriesWidget(context: context, title: "Comedy", imagePath: "assets/images/categories/icon_comedy.png",callback: (){print("Comedy");}),
+              categoriesWidget(context: context, title: "Horror", imagePath: "assets/images/categories/icon_horror.png",callback: (){print("Horror");}),
+              categoriesWidget(context: context, title: "Romance", imagePath: "assets/images/categories/icon_romance.png",callback: (){print("Romance");}),
+              categoriesWidget(context: context, title: "Action", imagePath: "assets/images/categories/icon_action.png",callback: (){print("Action");}),
+              categoriesWidget(context: context, title: "Mystery", imagePath: "assets/images/categories/icon_mystery.png",callback: (){print("Mystery");}),
+              categoriesWidget(context: context, title: "Sci-fi", imagePath: "assets/images/categories/icon_scifi.png",callback: (){print("Sci-fi");}),
             ],
 
           ),
