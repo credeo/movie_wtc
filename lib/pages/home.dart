@@ -179,7 +179,7 @@ class Home extends StatelessWidget {
         Container(
           width: 64,
           height: 64,
-          child: Image.asset(imagePath,fit: BoxFit.fitWidth,),
+          child: ClipRRect(child: Image.asset(imagePath,fit: BoxFit.fitWidth,),borderRadius: BorderRadius.all(Radius.circular(12.0)),),
         ),
         const SizedBox(height: 8),
         Text(
@@ -239,6 +239,43 @@ class Home extends StatelessWidget {
     );
   }
 
+  myListWidget({required BuildContext context, required String title ,required String subtitle ,required String imagePath, required VoidCallback callback}){
+    return GestureDetector(
+      onTap: callback,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: SizedBox(
+          height: 220,
+          width: 136,
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  width:179,
+                  height:134,
+                  child: ClipRRect(child: Image.asset(imagePath,fit: BoxFit.fitWidth,),borderRadius: BorderRadius.all(Radius.circular(12.0)),),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: CustomTextStyles.of(context).medium14,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                subtitle,
+                style: CustomTextStyles.of(context).regular12,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+}
   Widget buildMyListSection(BuildContext context) {
     return Column(
       children: [
@@ -270,42 +307,16 @@ class Home extends StatelessWidget {
         const SizedBox(height: 4),
         SizedBox(
           height: 220,
-          child: ListView.builder(
+          child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: SizedBox(
-                  height: 220,
-                  width: 136,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          color: Colors.blue,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Title',
-                        style: CustomTextStyles.of(context).medium14,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Subtitle',
-                        style: CustomTextStyles.of(context).regular12,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
+            children: [
+              myListWidget(context: context, title: "Avatar", subtitle:"Movie about creatures with blue skin", imagePath: "assets/images/my_list/icon_avatar.png", callback:(){print("Avatar");}),
+              myListWidget(context: context, title: "Bridgeton", subtitle:"Wealth, lust, and betrayal set against the backdrop of Regency-era England, seen through the eyes of the powerful Bridgerton family.", imagePath: "assets/images/my_list/icon_bridgeton.png", callback:(){print("Bridgeton");}),
+              myListWidget(context: context, title: "The Queen's Gambit", subtitle:"TV Show based on chess move", imagePath: "assets/images/my_list/icon_queens_gambit.png", callback:(){print("Queens");}),
+              myListWidget(context: context, title: "The Good Doctor", subtitle:"TV Show about authistic doctor", imagePath: "assets/images/my_list/icon_good_doctor.png", callback:(){print("Good Doctor");}),
+            ],
+
           ),
         ),
       ],
