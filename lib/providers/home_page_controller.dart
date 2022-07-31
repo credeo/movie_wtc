@@ -12,7 +12,7 @@ class HomePageProvider extends ChangeNotifier {
   void set index(int i){
     _index=i;
     _timer!.cancel();
-    _timer=Timer.periodic(const Duration(seconds: 3), (timer) {
+    _timer=Timer.periodic(const Duration(seconds: 5), (timer) {
       _controller.animateToPage((_index+1)%3,duration: const Duration(seconds: 1),curve:ElasticOutCurve());
       notifyListeners();
     });
@@ -21,7 +21,7 @@ class HomePageProvider extends ChangeNotifier {
   PageController get controller => _controller;
 
   HomePageProvider(){
-    _timer=Timer.periodic(const Duration(seconds: 3), (timer) {
+    _timer=Timer.periodic(const Duration(seconds: 5), (timer) {
       _controller.animateToPage((_index+1)%3,duration: const Duration(seconds: 1),curve:ElasticOutCurve());
       notifyListeners();
     });
