@@ -16,100 +16,104 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaleRatio = MediaQuery.of(context).size.height / 812.0;
-    return Stack(
-      children: [
-        Positioned.fill(
-                child: ChangeNotifierProvider(
-                create: (context)=>HomePageProvider(),
-                  child: Consumer<HomePageProvider>(
-                    builder: (context,homePageProvider,child){
-                    return ListView(
-                      padding: EdgeInsets.only(bottom: 32),
-                      children: [
-                        SizedBox(
-                          height: 440,
-                          child: PageView(
-                            controller: homePageProvider.controller,
-                            onPageChanged:(index){homePageProvider.index=index;},
-                            children: [
-                              coverWidget(
-                                  context: context,
-                                  imagePath: 'assets/images/movie_cover_1.jpg',
-                                  genre: 'Zanr1',
-                                  title: "Film1",
-                                  details: "Detalji1",
-                                  scaleRatio: scaleRatio),
-                              coverWidget(
-                                  context: context,
-                                  imagePath: 'assets/images/movie_cover_1.jpg',
-                                  genre: 'Zanr2',
-                                  title: "Film2",
-                                  details: "Detalji2",
-                                  scaleRatio: scaleRatio),
-                              coverWidget(
-                                  context: context,
-                                  imagePath: 'assets/images/movie_cover_1.jpg',
-                                  genre: 'Zanr3',
-                                  title: "Film3",
-                                  details: "Detalji3",
-                                  scaleRatio: scaleRatio),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Center(
-                          child: SmoothPageIndicator(
-                              controller: homePageProvider.controller, // PageController
-                              count: 3,
-                              effect: SlideEffect(
-                                spacing: 12,
-                                dotHeight: 6,
-                                dotWidth: 6,
-                                activeDotColor: CustomColors
-                                    .of(context)
-                                    .primary,
-                                dotColor: CustomColors
-                                    .of(context)
-                                    .inactive,
-                              ),
-                              onDotClicked: (index) {
-
-                              },
-                        )),
-                        const SizedBox(height: 12),
-                        buildCategoriesSection(context),
-                        const SizedBox(height: 12),
-                        buildMyListSection(context),
-                      ],);}
-                  ),
-                )
+    return Stack(children: [
+      Positioned.fill(
+          child: ChangeNotifierProvider(
+        create: (context) => HomePageProvider(),
+        child: Consumer<HomePageProvider>(
+            builder: (context, homePageProvider, child) {
+          return ListView(
+            padding: EdgeInsets.only(bottom: 32),
+            children: [
+              SizedBox(
+                height: 440,
+                child: PageView(
+                  controller: homePageProvider.controller,
+                  onPageChanged: (index) {
+                    homePageProvider.index = index;
+                  },
+                  children: [
+                    coverWidget(
+                        context: context,
+                        imagePath: 'assets/images/movie_cover_1.jpg',
+                        genre: 'Zanr1',
+                        title: "Film1",
+                        details: "Detalji1",
+                        scaleRatio: scaleRatio),
+                    coverWidget(
+                        context: context,
+                        imagePath: 'assets/images/movie_cover_1.jpg',
+                        genre: 'Zanr2',
+                        title: "Film2",
+                        details: "Detalji2",
+                        scaleRatio: scaleRatio),
+                    coverWidget(
+                        context: context,
+                        imagePath: 'assets/images/movie_cover_1.jpg',
+                        genre: 'Zanr3',
+                        title: "Film3",
+                        details: "Detalji3",
+                        scaleRatio: scaleRatio),
+                  ],
                 ),
-    ]
+              ),
+              const SizedBox(height: 8),
+              Center(
+                  child: SmoothPageIndicator(
+                controller: homePageProvider.controller, // PageController
+                count: 3,
+                effect: SlideEffect(
+                  spacing: 12,
+                  dotHeight: 6,
+                  dotWidth: 6,
+                  activeDotColor: CustomColors.of(context).primary,
+                  dotColor: CustomColors.of(context).inactive,
+                ),
+                onDotClicked: (index) {},
+              )),
+              const SizedBox(height: 12),
+              buildCategoriesSection(context),
+              const SizedBox(height: 12),
+              buildMyListSection(context),
+            ],
           );
-
+        }),
+      )),
+    ]);
   }
 
-  Widget categoriesWidget({required BuildContext context,required String title,required String imagePath,required VoidCallback callback}){
-  return GestureDetector(
-    onTap:callback,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: [
-          Container(
-            width: 64,
-            height: 64,
-            child: ClipRRect(child: Image.asset(imagePath,fit: BoxFit.fitWidth,),borderRadius: BorderRadius.all(Radius.circular(12.0)),),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: CustomTextStyles.of(context).regular12,
-          ),
-        ],
+  Widget categoriesWidget(
+      {required BuildContext context,
+      required String title,
+      required String imagePath,
+      required VoidCallback callback}) {
+    return GestureDetector(
+      onTap: callback,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            Container(
+              width: 64,
+              height: 64,
+              child: ClipRRect(
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.fitWidth,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(12.0)),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: CustomTextStyles.of(context).regular12,
+            ),
+          ],
+        ),
       ),
-    ),
-  );;
+    );
+    ;
   }
 
   Widget buildCategoriesSection(BuildContext context) {
@@ -149,21 +153,62 @@ class Home extends StatelessWidget {
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
-            children: [categoriesWidget(context: context, title: "Comedy", imagePath: "assets/images/categories/icon_comedy.png",callback: (){print("Comedy");}),
-              categoriesWidget(context: context, title: "Horror", imagePath: "assets/images/categories/icon_horror.png",callback: (){print("Horror");}),
-              categoriesWidget(context: context, title: "Romance", imagePath: "assets/images/categories/icon_romance.png",callback: (){print("Romance");}),
-              categoriesWidget(context: context, title: "Action", imagePath: "assets/images/categories/icon_action.png",callback: (){print("Action");}),
-              categoriesWidget(context: context, title: "Mystery", imagePath: "assets/images/categories/icon_mystery.png",callback: (){print("Mystery");}),
-              categoriesWidget(context: context, title: "Sci-fi", imagePath: "assets/images/categories/icon_scifi.png",callback: (){print("Sci-fi");}),
+            children: [
+              categoriesWidget(
+                  context: context,
+                  title: "Comedy",
+                  imagePath: "assets/images/categories/icon_comedy.png",
+                  callback: () {
+                    print("Comedy");
+                  }),
+              categoriesWidget(
+                  context: context,
+                  title: "Horror",
+                  imagePath: "assets/images/categories/icon_horror.png",
+                  callback: () {
+                    print("Horror");
+                  }),
+              categoriesWidget(
+                  context: context,
+                  title: "Romance",
+                  imagePath: "assets/images/categories/icon_romance.png",
+                  callback: () {
+                    print("Romance");
+                  }),
+              categoriesWidget(
+                  context: context,
+                  title: "Action",
+                  imagePath: "assets/images/categories/icon_action.png",
+                  callback: () {
+                    print("Action");
+                  }),
+              categoriesWidget(
+                  context: context,
+                  title: "Mystery",
+                  imagePath: "assets/images/categories/icon_mystery.png",
+                  callback: () {
+                    print("Mystery");
+                  }),
+              categoriesWidget(
+                  context: context,
+                  title: "Sci-fi",
+                  imagePath: "assets/images/categories/icon_scifi.png",
+                  callback: () {
+                    print("Sci-fi");
+                  }),
             ],
-
           ),
         ),
       ],
     );
   }
 
-  myListWidget({required BuildContext context, required String title ,required String subtitle ,required String imagePath, required VoidCallback callback}){
+  myListWidget(
+      {required BuildContext context,
+      required String title,
+      required String subtitle,
+      required String imagePath,
+      required VoidCallback callback}) {
     return GestureDetector(
       onTap: callback,
       child: Padding(
@@ -175,9 +220,15 @@ class Home extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  width:179,
-                  height:134,
-                  child: ClipRRect(child: Image.asset(imagePath,fit: BoxFit.fitWidth,),borderRadius: BorderRadius.all(Radius.circular(12.0)),),
+                  width: 179,
+                  height: 134,
+                  child: ClipRRect(
+                    child: Image.asset(
+                      imagePath,
+                      fit: BoxFit.fitWidth,
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
@@ -199,7 +250,8 @@ class Home extends StatelessWidget {
         ),
       ),
     );
-}
+  }
+
   Widget buildMyListSection(BuildContext context) {
     return Column(
       children: [
@@ -238,12 +290,40 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
             children: [
-              myListWidget(context: context, title: "Avatar", subtitle:"Movie about creatures with blue skin", imagePath: "assets/images/my_list/icon_avatar.png", callback:(){print("Avatar");}),
-              myListWidget(context: context, title: "Bridgeton", subtitle:"Wealth, lust, and betrayal set against the backdrop of Regency-era England, seen through the eyes of the powerful Bridgerton family.", imagePath: "assets/images/my_list/icon_bridgeton.png", callback:(){print("Bridgeton");}),
-              myListWidget(context: context, title: "The Queen's Gambit", subtitle:"TV Show based on chess move", imagePath: "assets/images/my_list/icon_queens_gambit.png", callback:(){print("Queens");}),
-              myListWidget(context: context, title: "The Good Doctor", subtitle:"TV Show about authistic doctor", imagePath: "assets/images/my_list/icon_good_doctor.png", callback:(){print("Good Doctor");}),
+              myListWidget(
+                  context: context,
+                  title: "Avatar",
+                  subtitle: "Movie about creatures with blue skin",
+                  imagePath: "assets/images/my_list/icon_avatar.png",
+                  callback: () {
+                    print("Avatar");
+                  }),
+              myListWidget(
+                  context: context,
+                  title: "Bridgeton",
+                  subtitle:
+                      "Wealth, lust, and betrayal set against the backdrop of Regency-era England, seen through the eyes of the powerful Bridgerton family.",
+                  imagePath: "assets/images/my_list/icon_bridgeton.png",
+                  callback: () {
+                    print("Bridgeton");
+                  }),
+              myListWidget(
+                  context: context,
+                  title: "The Queen's Gambit",
+                  subtitle: "TV Show based on chess move",
+                  imagePath: "assets/images/my_list/icon_queens_gambit.png",
+                  callback: () {
+                    print("Queens");
+                  }),
+              myListWidget(
+                  context: context,
+                  title: "The Good Doctor",
+                  subtitle: "TV Show about authistic doctor",
+                  imagePath: "assets/images/my_list/icon_good_doctor.png",
+                  callback: () {
+                    print("Good Doctor");
+                  }),
             ],
-
           ),
         ),
       ],
