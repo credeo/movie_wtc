@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/widgets/custom_appbar.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -16,7 +17,7 @@ class Home extends StatelessWidget {
       children: [
         Positioned.fill(
           child: ListView(
-            padding: EdgeInsets.only(bottom: 32),
+            padding: const EdgeInsets.only(bottom: 32),
             children: [
               Container(
                 height: 400.0 * scaleRatio,
@@ -65,6 +66,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const CustomAppBar(),
                     Positioned(
                       bottom: 0.0,
                       left: 0.0,

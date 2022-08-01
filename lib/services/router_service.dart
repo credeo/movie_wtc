@@ -24,7 +24,7 @@ class RouterService {
           child: child,
         );
       },
-      initialLocation: '/',
+      initialLocation: '/home',
       routes: [
         GoRoute(
           path: '/',
