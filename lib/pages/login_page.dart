@@ -1,20 +1,15 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-<<<<<<< HEAD
-import 'package:kiwi/kiwi.dart';
-import 'package:movie_wtc/extensions/custom_colors.dart';
-import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/services/router_service.dart';
-import 'package:movie_wtc/widgets/build_social_media_button.dart';
-=======
+
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/providers/login_page_provider.dart';
->>>>>>> origin
+
 import 'package:movie_wtc/widgets/custom_button.dart';
 import 'package:provider/provider.dart';
 
@@ -29,82 +24,17 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: CustomColors.of(context).background,
       body: SafeArea(
-<<<<<<< HEAD
-        child: ListView(
-          padding: const EdgeInsets.symmetric(vertical: 48),
-          children: [
-            SizedBox(
-              height: 72,
-              child: Image.asset(
-                'assets/icons/icon_app_big.png',
-                fit: BoxFit.fitHeight,
-              ),
-            ),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.only(left: 1.9, right: 4),
-              child: SizedBox(
-                height: 457.0,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      bottom: 25.0,
-                      child: Image.asset(
-                        'assets/icons/shape_login_form.png',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Align(
-                      heightFactor: 9,
-                      alignment: Alignment.bottomCenter,
-                      child: CustomButton(
-                        title: 'Login',
-                        onPressed: () {
-                          print('hello');
-                        },
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 48),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 56.0),
-                              child: Text(
-                                'Login',
-                                style: CustomTextStyles.of(context).regular24,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 28),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Container(
-                              color: CustomColors.of(context).primary,
-                              margin: const EdgeInsets.only(left: 56.0),
-                              height: 4,
-                              width: 68,
-                            ),
-                          ),
-                          const SizedBox(height: 58),
-                          textFieldForLoginSignUp(
-                            context: context,
-                            imagePath: 'assets/icons/icon_email_small.png',
-                            hintText: 'Email Address',
-                          ),
-                          const SizedBox(height: 32),
-                          textFieldForLoginSignUp(
-                            context: context,
-                            imagePath: 'assets/icons/icon_eye_crossed.png',
-                            hintText: 'Password',
-=======
         child: ChangeNotifierProvider(
           create: (context) => LoginPageProvider(),
           child: Consumer<LoginPageProvider>(
             builder: (context, loginPageProvider, child) {
+              var state = loginPageProvider.state == LoginState.login;
+
+              final String loginText =
+                  'loginPage'.tr(gender: state ? 'login' : 'signup');
+              // final String haveAccount =
+              //     'haveAccount'.tr(gender: state ? 'dontHave' : 'have');
+
               return ListView(
                 padding: const EdgeInsets.symmetric(vertical: 48),
                 children: [
@@ -115,14 +45,13 @@ class LoginPage extends StatelessWidget {
                         fit: BoxFit.fitHeight,
                       )),
                   const SizedBox(height: 16),
-                  // if (loginPageProvider.state == LoginState.login) loginPart(context),
-                  // if (loginPageProvider.state == LoginState.signup) signUpPart(context),
                   AnimatedCrossFade(
                     duration: const Duration(milliseconds: 400),
-                    crossFadeState:
-                        loginPageProvider.state == LoginState.login ? CrossFadeState.showFirst : CrossFadeState.showSecond,
-                    firstChild: loginPart(context),
-                    secondChild: signUpPart(context),
+                    crossFadeState: loginPageProvider.state == LoginState.login
+                        ? CrossFadeState.showFirst
+                        : CrossFadeState.showSecond,
+                    firstChild: loginPart(context, loginText),
+                    secondChild: signUpPart(context, loginText),
                   ),
                   const SizedBox(height: 24),
                   Padding(
@@ -139,12 +68,12 @@ class LoginPage extends StatelessWidget {
                             color: CustomColors.of(context).primary,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 18.0),
                             child: Text(
-                              'OR',
+                              'loginPage'.tr(gender: 'or'),
                               style: CustomTextStyles.of(context).extraBold15,
                             ),
->>>>>>> origin
                           ),
                           Container(
                             height: 1,
@@ -184,14 +113,19 @@ class LoginPage extends StatelessWidget {
                     child: AnimatedCrossFade(
                       duration: const Duration(milliseconds: 400),
                       crossFadeState:
-                          loginPageProvider.state == LoginState.login ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                          loginPageProvider.state == LoginState.login
+                              ? CrossFadeState.showFirst
+                              : CrossFadeState.showSecond,
                       firstChild: Text.rich(
                         TextSpan(
-                          text: 'Don’t have an account? ',
+                          text: 'loginPage'.tr(gender: 'dontHave'),
                           children: [
                             TextSpan(
-                              text: 'Sign Up',
-                              style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
+                              text: 'loginPage'.tr(gender: 'signup'),
+                              style: CustomTextStyles.of(context)
+                                  .regular13
+                                  .apply(
+                                      color: CustomColors.of(context).primary),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   loginPageProvider.toggleState();
@@ -203,11 +137,14 @@ class LoginPage extends StatelessWidget {
                       ),
                       secondChild: Text.rich(
                         TextSpan(
-                          text: 'Already have an account? ',
+                          text: 'loginPage'.tr(gender: 'have'),
                           children: [
                             TextSpan(
-                              text: 'Login',
-                              style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).primary),
+                              text: 'loginPage'.tr(gender: 'login'),
+                              style: CustomTextStyles.of(context)
+                                  .regular13
+                                  .apply(
+                                      color: CustomColors.of(context).primary),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   loginPageProvider.toggleState();
@@ -220,42 +157,13 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ],
-<<<<<<< HEAD
-              ),
-            ),
-            const SizedBox(height: 28),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  text: 'Don’t have an account? ',
-                  children: [
-                    TextSpan(
-                      text: 'Sign Up',
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: CustomColors.of(context).primary),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          context.go('/sign_up');
-                        },
-                    ),
-                  ],
-                ),
-                style: CustomTextStyles.of(context).regular13,
-              ),
-            ),
-          ],
-=======
               );
             },
           ),
->>>>>>> origin
         ),
       ),
     );
   }
-<<<<<<< HEAD
-=======
 
   Widget buildSocialMediaButton({
     required BuildContext context,
@@ -286,7 +194,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget loginPart(BuildContext context) {
+  Widget loginPart(BuildContext context, String loginText) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SizedBox(
@@ -303,7 +211,7 @@ class LoginPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomButton(
-                title: 'Login',
+                title: loginText,
                 onPressed: () {
                   context.goNamed(TabContainer.pageName);
                 },
@@ -319,7 +227,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 56.0),
                       child: Text(
-                        'Login',
+                        loginText,
                         style: CustomTextStyles.of(context).regular24,
                       ),
                     ),
@@ -340,10 +248,13 @@ class LoginPage extends StatelessWidget {
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
-                        prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
-                        hintText: 'Email Address',
+                        prefixIcon:
+                            Image.asset('assets/icons/icon_email_small.png'),
+                        hintText: 'loginPage'.tr(gender: 'email'),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
-                              color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                              color: CustomColors.of(context)
+                                  .primaryText
+                                  .withOpacity(0.7),
                             ),
                       ),
                     ),
@@ -354,10 +265,13 @@ class LoginPage extends StatelessWidget {
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
-                        prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
-                        hintText: 'Password',
+                        prefixIcon:
+                            Image.asset('assets/icons/icon_eye_crossed.png'),
+                        hintText: 'loginPage'.tr(gender: 'password'),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
-                              color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                              color: CustomColors.of(context)
+                                  .primaryText
+                                  .withOpacity(0.7),
                             ),
                       ),
                     ),
@@ -368,7 +282,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Text(
-                        'Forgot Password?',
+                        'loginPage'.tr(gender: 'forgotPass'),
                         style: CustomTextStyles.of(context).regular13,
                       ),
                     ),
@@ -382,7 +296,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget signUpPart(BuildContext context) {
+  Widget signUpPart(BuildContext context, String loginText) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SizedBox(
@@ -403,10 +317,8 @@ class LoginPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomButton(
-                title: 'Sign Up',
-                onPressed: () {
-                  print('hello');
-                },
+                title: loginText,
+                onPressed: () {},
               ),
             ),
             Align(
@@ -419,7 +331,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Text(
-                        'Sign Up',
+                        loginText,
                         style: CustomTextStyles.of(context).regular24,
                       ),
                     ),
@@ -440,10 +352,13 @@ class LoginPage extends StatelessWidget {
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
-                        prefixIcon: Image.asset('assets/icons/icon_profile_small.png'),
-                        hintText: 'Full Name',
+                        prefixIcon:
+                            Image.asset('assets/icons/icon_profile_small.png'),
+                        hintText: 'loginPage'.tr(gender: 'fullName'),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
-                              color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                              color: CustomColors.of(context)
+                                  .primaryText
+                                  .withOpacity(0.7),
                             ),
                       ),
                     ),
@@ -454,10 +369,13 @@ class LoginPage extends StatelessWidget {
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
-                        prefixIcon: Image.asset('assets/icons/icon_email_small.png'),
-                        hintText: 'Email Address',
+                        prefixIcon:
+                            Image.asset('assets/icons/icon_email_small.png'),
+                        hintText: 'loginPage'.tr(gender: 'email'),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
-                              color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                              color: CustomColors.of(context)
+                                  .primaryText
+                                  .withOpacity(0.7),
                             ),
                       ),
                     ),
@@ -468,10 +386,13 @@ class LoginPage extends StatelessWidget {
                     child: TextField(
                       textAlignVertical: TextAlignVertical.center,
                       decoration: InputDecoration(
-                        prefixIcon: Image.asset('assets/icons/icon_eye_crossed.png'),
-                        hintText: 'Password',
+                        prefixIcon:
+                            Image.asset('assets/icons/icon_eye_crossed.png'),
+                        hintText: 'loginPage'.tr(gender: 'password'),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
-                              color: CustomColors.of(context).primaryText.withOpacity(0.7),
+                              color: CustomColors.of(context)
+                                  .primaryText
+                                  .withOpacity(0.7),
                             ),
                       ),
                     ),
@@ -484,5 +405,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
->>>>>>> origin
 }

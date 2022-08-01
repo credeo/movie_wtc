@@ -88,8 +88,11 @@ class Home extends StatelessWidget {
                               Container(
                                 width: 4,
                                 height: 4,
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                decoration: BoxDecoration(
+                                    color: CustomColors.of(context).primaryText,
+                                    shape: BoxShape.circle),
                               ),
                               Text(
                                 'DETAILS',
@@ -112,7 +115,8 @@ class Home extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24.0),
                                 child: CustomButtonWithIcon(
                                   title: 'Play',
                                   width: 100,
@@ -186,10 +190,13 @@ class Home extends StatelessWidget {
               ),
               const Spacer(),
               CupertinoButton(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
                   'See More',
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
                   print('clicked see more');
@@ -246,10 +253,13 @@ class Home extends StatelessWidget {
               ),
               const Spacer(),
               CupertinoButton(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
                   'See More',
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
                   print('clicked see more');

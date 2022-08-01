@@ -4,33 +4,28 @@ class CustomColors {
   final BuildContext _context;
   const CustomColors.of(BuildContext context) : _context = context;
 
-<<<<<<< HEAD
   Color get primary =>
       Theme.of(_context).extension<CustomColorScheme>()!.primary!;
   Color get secondary =>
       Theme.of(_context).extension<CustomColorScheme>()!.secondary!;
   Color get primaryText =>
       Theme.of(_context).extension<CustomColorScheme>()!.primaryText!;
+  Color get secondaryText =>
+      Theme.of(_context).extension<CustomColorScheme>()!.secondaryText!;
   Color get background =>
       Theme.of(_context).extension<CustomColorScheme>()!.background!;
+  Color get inactive =>
+      Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
   Color get buttonBackgroundGradientStart => Theme.of(_context)
       .extension<CustomColorScheme>()!
       .buttonBackgroundGradientStart!;
   Color get buttonBackgroundGradientEnd => Theme.of(_context)
       .extension<CustomColorScheme>()!
       .buttonBackgroundGradientEnd!;
-=======
-  Color get primary => Theme.of(_context).extension<CustomColorScheme>()!.primary!;
-  Color get secondary => Theme.of(_context).extension<CustomColorScheme>()!.secondary!;
-  Color get primaryText => Theme.of(_context).extension<CustomColorScheme>()!.primaryText!;
-  Color get secondaryText => Theme.of(_context).extension<CustomColorScheme>()!.secondaryText!;
-  Color get background => Theme.of(_context).extension<CustomColorScheme>()!.background!;
-  Color get inactive => Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
-  Color get buttonBackgroundGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientStart!;
-  Color get buttonBackgroundGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientEnd!;
-  Color get coverGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.coverGradientStart!;
-  Color get coverGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.coverGradientEnd!;
->>>>>>> origin
+  Color get coverGradientStart =>
+      Theme.of(_context).extension<CustomColorScheme>()!.coverGradientStart!;
+  Color get coverGradientEnd =>
+      Theme.of(_context).extension<CustomColorScheme>()!.coverGradientEnd!;
 }
 
 @immutable
@@ -91,18 +86,13 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       primaryText: primaryText ?? this.primaryText,
       secondaryText: secondaryText ?? this.secondaryText,
       background: background ?? this.background,
-<<<<<<< HEAD
+      inactive: inactive ?? this.inactive,
       buttonBackgroundGradientStart:
           buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
       buttonBackgroundGradientEnd:
           buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
-=======
-      inactive: inactive ?? this.inactive,
-      buttonBackgroundGradientStart: buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
-      buttonBackgroundGradientEnd: buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
       coverGradientStart: coverGradientStart ?? this.coverGradientStart,
       coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
->>>>>>> origin
     );
   }
 
@@ -117,18 +107,14 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       primaryText: Color.lerp(primaryText, other.primaryText, t),
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t),
       background: Color.lerp(background, other.background, t),
-<<<<<<< HEAD
-      buttonBackgroundGradientStart:
-          Color.lerp(background, other.buttonBackgroundGradientStart, t),
-      buttonBackgroundGradientEnd:
-          Color.lerp(background, other.buttonBackgroundGradientEnd, t),
-=======
       inactive: Color.lerp(inactive, other.inactive, t),
-      buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart, other.buttonBackgroundGradientStart, t),
-      buttonBackgroundGradientEnd: Color.lerp(buttonBackgroundGradientEnd, other.buttonBackgroundGradientEnd, t),
-      coverGradientStart: Color.lerp(coverGradientStart, other.coverGradientStart, t),
+      buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart,
+          other.buttonBackgroundGradientStart, t),
+      buttonBackgroundGradientEnd: Color.lerp(
+          buttonBackgroundGradientEnd, other.buttonBackgroundGradientEnd, t),
+      coverGradientStart:
+          Color.lerp(coverGradientStart, other.coverGradientStart, t),
       coverGradientEnd: Color.lerp(coverGradientEnd, other.coverGradientEnd, t),
->>>>>>> origin
     );
   }
 }

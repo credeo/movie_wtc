@@ -4,28 +4,24 @@ class CustomTextStyles {
   final BuildContext _context;
   const CustomTextStyles.of(BuildContext context) : _context = context;
 
-<<<<<<< HEAD
+  TextStyle get regular12 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.regular12!;
   TextStyle get regular13 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
   TextStyle get regular15 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
   TextStyle get regular24 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
+  TextStyle get medium14 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.medium14!;
   TextStyle get semiBold16 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold16!;
+  TextStyle get semiBold18 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold18!;
+  TextStyle get semiBold40 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold40!;
   TextStyle get extraBold15 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.extraBold15!;
-=======
-  TextStyle get regular12 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular12!;
-  TextStyle get regular13 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
-  TextStyle get regular15 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
-  TextStyle get regular24 => Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
-  TextStyle get medium14 => Theme.of(_context).extension<CustomTextStyleScheme>()!.medium14!;
-  TextStyle get semiBold16 => Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold16!;
-  TextStyle get semiBold18 => Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold18!;
-  TextStyle get semiBold40 => Theme.of(_context).extension<CustomTextStyleScheme>()!.semiBold40!;
-  TextStyle get extraBold15 => Theme.of(_context).extension<CustomTextStyleScheme>()!.extraBold15!;
->>>>>>> origin
 }
 
 @immutable

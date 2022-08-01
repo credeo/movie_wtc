@@ -1,3 +1,14 @@
 {
-  "title": "Demo App"
+  "title": "Demo App",
+  "loginPage": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email Address",
+    "password": "Password",
+    "forgotPass": "Forgot Password",
+    "fullName": "Full Name",
+    "or": "OR",
+    "have": "Already have an account? ",
+    "dontHave": "Don't have an account? "
+  }
 }
