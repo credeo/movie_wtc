@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/pages/login_page.dart';
+<<<<<<< HEAD
 import 'package:movie_wtc/pages/signup_page.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
 import 'package:movie_wtc/pages/login_page.dart';
+=======
+import 'package:movie_wtc/pages/tab_container.dart';
+>>>>>>> origin
 import 'package:movie_wtc/services/appearance_service.dart';
 
 class RouterService {
@@ -27,9 +30,11 @@ class RouterService {
           child: child,
         );
       },
+      initialLocation: '/home',
       routes: [
         GoRoute(
           path: '/',
+          name: LoginPage.pageName,
           builder: (context, state) => const LoginPage(),
           routes: [
             GoRoute(
@@ -37,6 +42,11 @@ class RouterService {
               builder: (context, state) => const SignUpPage(),
             ),
           ],
+        ),
+        GoRoute(
+          path: '/home',
+          name: TabContainer.pageName,
+          builder: (context, state) => const TabContainer(),
         ),
       ],
     );
