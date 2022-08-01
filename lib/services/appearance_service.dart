@@ -19,7 +19,7 @@ class AppearanceService extends ChangeNotifier {
             colorScheme.primaryText!);
 
         theme = ThemeData(
-          brightness: Brightness.dark,
+          brightness: Brightness.light,
           extensions: <ThemeExtension<dynamic>>[colorScheme, textStyleScheme],
         );
         break;

@@ -20,7 +20,7 @@ class AppProvider extends ChangeNotifier {
     await EasyLocalization.ensureInitialized();
   }
 
-  void splashFinished() {
+  void splashFinished() async {
     _isLoaded = true;
     notifyListeners();
   }

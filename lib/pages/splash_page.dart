@@ -29,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
         opacity: _opacity,
         curve: Curves.easeIn,
         onEnd: () async {
-          await Future.delayed(const Duration(seconds: 1));
+          await Future.delayed(const Duration(seconds: 2));
           widget.onAnimationEnd();
         },
         child: Image.asset('assets/icons/icon_splash.png'),
