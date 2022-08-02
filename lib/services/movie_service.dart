@@ -7,7 +7,7 @@ class MovieService {
   List<Movie> get suggestedMovies => List.unmodifiable(_suggestedMovies);
 
   Future<void> fetchSuggestedMovies() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     _suggestedMovies = [
       const Movie(
         title: 'Bridgerton',

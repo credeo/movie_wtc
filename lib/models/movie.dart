@@ -15,6 +15,11 @@ enum Genre {
     final locString = 'genre_$value'.tr();
     return locString;
   }
+
+  String getThumbnailPath() {
+    final locString = 'assets/images/categories/icon_$value.png';
+    return locString;
+  }
 }
 
 class Movie {

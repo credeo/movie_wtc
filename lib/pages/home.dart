@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
@@ -192,9 +193,8 @@ class Home extends StatelessWidget {
                     right: 0.0,
                     child: Container(
                       height: kToolbarHeight + MediaQuery.of(context).viewPadding.top,
-                      color: CustomColors.of(context)
-                          .background
-                          .withOpacity(calculateAppBarOpacity(homeProvider.scrollController.offset, coverHeight)),
+                      color: CustomColors.of(context).background.withOpacity(calculateAppBarOpacity(
+                          homeProvider.scrollController.hasClients ? homeProvider.scrollController.offset : 0.0, coverHeight)),
                       child: SafeArea(
                         child: AppBar(
                           backgroundColor: Colors.transparent,
@@ -275,12 +275,11 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
             children: [
-              categoriesWidget(context: context, title: 'Comedy', imagePath: 'assets/images/categories/icon_comedy.png'),
-              categoriesWidget(context: context, title: 'Horror', imagePath: 'assets/images/categories/icon_horror.png'),
-              categoriesWidget(context: context, title: 'Romance', imagePath: 'assets/images/categories/icon_romance.png'),
-              categoriesWidget(context: context, title: 'Action', imagePath: 'assets/images/categories/icon_action.png'),
-              categoriesWidget(context: context, title: 'Mystery', imagePath: 'assets/images/categories/icon_mystery.png'),
-              categoriesWidget(context: context, title: 'Sci-fi', imagePath: 'assets/images/categories/icon_scifi.png'),
+              ...Genre.values.map((genre) => categoriesWidget(
+                    context: context,
+                    title: genre.toLocalisedString(),
+                    imagePath: genre.getThumbnailPath(),
+                  )),
             ],
           ),
         ),
