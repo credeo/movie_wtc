@@ -201,7 +201,29 @@ class Home extends StatelessWidget {
                         child: AppBar(
                           backgroundColor: Colors.transparent,
                           elevation: 0,
-                          title: Text('TITLE'),
+                          leadingWidth: 112,
+                          leading: CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: null,
+                            child: SizedBox(
+                              height: 28,
+                              width: 64,
+                              child: Image.asset(
+                                'assets/icons/icon_app.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                          actions: [
+                            CupertinoButton(
+                              child: Image.asset('assets/icons/icon_search.png'),
+                              onPressed: () {},
+                            ),
+                            CupertinoButton(
+                              child: Image.asset('assets/icons/icon_profile.png'),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
                       ),
                     ),
