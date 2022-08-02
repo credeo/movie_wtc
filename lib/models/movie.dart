@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:easy_localization/easy_localization.dart';
 
 enum Genre {
@@ -29,6 +31,7 @@ class Movie {
   final String subtitle;
   final String details;
   final DateTime releaseDate;
+  final bool forAdults;
 
   const Movie({
     required this.title,
@@ -37,5 +40,8 @@ class Movie {
     required this.subtitle,
     required this.details,
     required this.releaseDate,
+    required this.forAdults,
   });
+
+  bool get isForAdults => forAdults;
 }
