@@ -15,28 +15,30 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaleRatio = MediaQuery.of(context).size.height / 812.0;
+    final coverHeight = 400.0 * scaleRatio;
     return ChangeNotifierProvider(
       create: (context) => HomeProvider(),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Consumer<HomeProvider>(
-              builder: (context, homeProvider, child) {
-                final Widget widget;
-                switch (homeProvider.state) {
-                  case HomeState.loading:
-                    widget = Center(
-                      child: CircularProgressIndicator(
-                        color: CustomColors.of(context).primary,
-                      ),
-                    );
-                    break;
-                  case HomeState.ready:
-                    widget = ListView(
+      child: Consumer<HomeProvider>(
+        builder: (context, homeProvider, child) {
+          final Widget widget;
+          switch (homeProvider.state) {
+            case HomeState.loading:
+              widget = Center(
+                child: CircularProgressIndicator(
+                  color: CustomColors.of(context).primary,
+                ),
+              );
+              break;
+            case HomeState.ready:
+              widget = Stack(
+                children: [
+                  Positioned.fill(
+                    child: ListView(
+                      controller: homeProvider.scrollController,
                       padding: const EdgeInsets.only(bottom: 32),
                       children: [
                         SizedBox(
-                          height: 400.0 * scaleRatio,
+                          height: coverHeight,
                           width: MediaQuery.of(context).size.width,
                           child: PageView.builder(
                             controller: homeProvider.pageController,
@@ -182,21 +184,32 @@ class Home extends StatelessWidget {
                         const SizedBox(height: 12),
                         buildMyListSection(context),
                       ],
-                    );
-                    break;
-                }
-                return widget;
-              },
-            ),
-          ),
-
-          // Align(
-          //   alignment: Alignment.topCenter,
-          //   child: AppBar(
-          //     title: Text('TITLE'),
-          //   ),
-          // ),
-        ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 0.0,
+                    left: 0.0,
+                    right: 0.0,
+                    child: Container(
+                      height: kToolbarHeight + MediaQuery.of(context).viewPadding.top,
+                      color: CustomColors.of(context)
+                          .background
+                          .withOpacity(calculateAppBarOpacity(homeProvider.scrollController.offset, coverHeight)),
+                      child: SafeArea(
+                        child: AppBar(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          title: Text('TITLE'),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+              break;
+          }
+          return widget;
+        },
       ),
     );
   }
@@ -397,5 +410,10 @@ class Home extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  double calculateAppBarOpacity(double scrollOffset, double coverHeight) {
+    final perc = (scrollOffset / coverHeight).clamp(0.0, 1.0);
+    return perc;
   }
 }
