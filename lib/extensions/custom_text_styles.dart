@@ -88,6 +88,8 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           fontWeight: FontWeight.w600,
           color: primaryTextColor,
           fontSize: 40,
+
+          //decoration: TextDecoration.overline,
         ),
         extraBold15 = TextStyle(
           fontWeight: FontWeight.w800,

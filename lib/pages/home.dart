@@ -1,14 +1,25 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/models/model_movie.dart';
 import 'package:movie_wtc/widgets/custom_appbar.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final _controller = PageController();
+
+  int currentIndex = 0;
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -22,132 +33,165 @@ class Home extends StatelessWidget {
               Container(
                 height: 400.0 * scaleRatio,
                 width: MediaQuery.of(context).size.width,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Image.asset(
-                        'assets/images/movie_cover_1.jpg',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      top: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      height: 148.0 * scaleRatio,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              CustomColors.of(context).coverGradientStart,
-                              CustomColors.of(context).coverGradientEnd,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      height: 116.0 * scaleRatio,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              CustomColors.of(context).coverGradientStart,
-                              CustomColors.of(context).coverGradientEnd,
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const CustomAppBar(),
-                    Positioned(
-                      bottom: 0.0,
-                      left: 0.0,
-                      right: 0.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                child: PageView.builder(
+                  onPageChanged: (index) {
+                    setState(() {
+                      currentIndex = index;
+                    });
+                  },
+                  controller: _controller,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    currentIndex = index;
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (isSelected == false) {
+                            isSelected = true;
+                          } else {
+                            isSelected = false;
+                          }
+                        });
+                      },
+                      child: Stack(
                         children: [
-                          Text(
-                            'NASLOV',
-                            style: CustomTextStyles.of(context).semiBold40,
+                          Positioned.fill(
+                            child: Image.asset(
+                              models[index].imgAsset,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          const SizedBox(height: 16),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'ZANR',
-                                style: CustomTextStyles.of(context).regular12,
+                          Positioned(
+                            top: 0.0,
+                            left: 0.0,
+                            right: 0.0,
+                            height: 148.0 * scaleRatio,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                    CustomColors.of(context).coverGradientStart,
+                                    CustomColors.of(context).coverGradientEnd,
+                                  ],
+                                ),
                               ),
-                              Container(
-                                width: 4,
-                                height: 4,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 8),
-                                decoration: BoxDecoration(
-                                    color: CustomColors.of(context).primaryText,
-                                    shape: BoxShape.circle),
-                              ),
-                              Text(
-                                'DETAILS',
-                                style: CustomTextStyles.of(context).regular12,
-                              ),
-                            ],
+                            ),
                           ),
-                          const SizedBox(height: 8),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerRight,
-                                  child: CustomSecondaryButton(
-                                    iconPath: 'assets/icons/icon_checkmark.png',
-                                    title: 'My list',
-                                    onPressed: () {},
-                                  ),
+                          Positioned(
+                            bottom: 0.0,
+                            left: 0.0,
+                            right: 0.0,
+                            height: 116.0 * scaleRatio,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter,
+                                  colors: [
+                                    CustomColors.of(context).coverGradientStart,
+                                    CustomColors.of(context).coverGradientEnd,
+                                  ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24.0),
-                                child: CustomButtonWithIcon(
-                                  title: 'Play',
-                                  width: 100,
-                                  iconPath: 'assets/icons/icon_play_filled.png',
-                                  onPressed: () {},
+                            ),
+                          ),
+                          const CustomAppBar(),
+                          Positioned(
+                            bottom: 0.0,
+                            left: 0.0,
+                            right: 0.0,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  models[index].title,
+                                  style:
+                                      CustomTextStyles.of(context).semiBold40,
+                                  textAlign: TextAlign.center,
                                 ),
-                              ),
-                              Expanded(
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: CustomSecondaryButton(
-                                    iconPath: 'assets/icons/icon_info.png',
-                                    title: 'Info',
-                                    onPressed: () {},
-                                  ),
+                                const SizedBox(height: 16),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      models[index].genres,
+                                      style: CustomTextStyles.of(context)
+                                          .regular12,
+                                    ),
+                                    Container(
+                                      width: 4,
+                                      height: 4,
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 8),
+                                      decoration: BoxDecoration(
+                                          color: CustomColors.of(context)
+                                              .primaryText,
+                                          shape: BoxShape.circle),
+                                    ),
+                                    Text(
+                                      models[index].details,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.fade,
+                                      style: CustomTextStyles.of(context)
+                                          .regular12,
+                                    ),
+                                  ],
                                 ),
-                              ),
-                            ],
+                                const SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.centerRight,
+                                        child: CustomSecondaryButton(
+                                          iconPath:
+                                              'assets/icons/icon_checkmark.png',
+                                          title: 'My list',
+                                          onPressed: () {},
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24.0),
+                                      child: CustomButtonWithIcon(
+                                        title: 'Play',
+                                        width: 100,
+                                        iconPath:
+                                            'assets/icons/icon_play_filled.png',
+                                        onPressed: () {},
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: CustomSecondaryButton(
+                                          iconPath:
+                                              'assets/icons/icon_info.png',
+                                          title: 'Info',
+                                          onPressed: () {},
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 8),
               Center(
                 child: SmoothPageIndicator(
-                    controller: PageController(), // PageController
+                    controller: _controller, // PageController
                     count: 3,
                     effect: SlideEffect(
                       spacing: 12,
@@ -156,7 +200,9 @@ class Home extends StatelessWidget {
                       activeDotColor: CustomColors.of(context).primary,
                       dotColor: CustomColors.of(context).inactive,
                     ), // your preferred effect
-                    onDotClicked: (index) {}),
+                    onDotClicked: (index) {
+                      _controller.jumpToPage(index);
+                    }),
               ),
               const SizedBox(height: 12),
               buildCategoriesSection(context),
@@ -213,20 +259,24 @@ class Home extends StatelessWidget {
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: models.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Column(
                   children: [
-                    Container(
-                      width: 64,
-                      height: 64,
-                      color: Colors.blue,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        models[index].imgAsset,
+                        fit: BoxFit.cover,
+                        height: 64,
+                        width: 64,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Title',
+                      models[index].genres,
                       style: CustomTextStyles.of(context).regular12,
                     ),
                   ],
@@ -272,37 +322,42 @@ class Home extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         SizedBox(
-          height: 220,
+          height: 250,
           child: ListView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: models.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: SizedBox(
-                  height: 220,
+                  height: 184,
                   width: 136,
                   child: Column(
                     children: [
-                      Expanded(
-                        child: Container(
-                          color: Colors.blue,
+                      SizedBox(
+                        height: 182,
+                        width: 140,
+                        child: Image.asset(
+                          models[index].imgAsset,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Title',
+                        models[index].title,
                         style: CustomTextStyles.of(context).medium14,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        'Subtitle',
+                        models[index].subtitle,
                         style: CustomTextStyles.of(context).regular12,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
