@@ -16,7 +16,6 @@ dependencies:
   provider: ^6.0.3
   kiwi: ^4.0.2
   smooth_page_indicator: ^1.0.0+2
-  carousel_slider: ^4.1.1
 
 dev_dependencies:
   flutter_test:
@@ -41,6 +40,6 @@ flutter:
   assets:
     - assets/localization/en.json
     - assets/icons/
-    - assets/images/
     - assets/images/categories/
+    - assets/images/movies/
     - assets/images/my_list/

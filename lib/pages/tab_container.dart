@@ -15,21 +15,9 @@ class TabContainer extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar:AppBar(  // na osnovu stranice dohvatati appbar
-          backgroundColor: Colors.transparent,
-          title: Row(
-            children: [
-              SizedBox(width:62,child: Image.asset("assets/icons/icon_app_big.png",fit: BoxFit.fitWidth,)),
-              Spacer(),
-              SizedBox(width:18,child: GestureDetector(child: Image.asset("assets/icons/icon_search.png",fit: BoxFit.fitWidth),onTap:(){print("Search");},),),
-              SizedBox(width: 20,),
-              SizedBox(width:24,child: GestureDetector(child: Image.asset("assets/icons/icon_profile.png",fit: BoxFit.fitWidth),onTap:(){print("Profile");},),),
-            ],
-          ),
-        ) ,
         backgroundColor: CustomColors.of(context).background,
         extendBodyBehindAppBar: true,
-        body: TabBarView(
+        body: const TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
             Home(),
@@ -39,18 +27,14 @@ class TabContainer extends StatelessWidget {
         ),
         bottomNavigationBar: DecoratedBox(
           decoration: BoxDecoration(
-
-            gradient: LinearGradient(
-                begin:Alignment.topCenter,
-                end:Alignment.bottomCenter,
-                colors: [
-                  CustomColors.of(context).tabbarGradientStart,
-                  CustomColors.of(context).tabbarGradientEnd,
-
-                ],
-
-            )
-          ),
+              gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              CustomColors.of(context).tabbarGradientStart,
+              CustomColors.of(context).tabbarGradientEnd,
+            ],
+          )),
           child: SafeArea(
             child: TabBar(
               indicator: UnderlineTabIndicator(
@@ -66,7 +50,7 @@ class TabContainer extends StatelessWidget {
                   icon: ImageIcon(
                     AssetImage('assets/icons/icon_home.png'),
                   ),
-                  text: 'Home' ,
+                  text: 'Home',
                 ),
                 Tab(
                   iconMargin: EdgeInsets.only(bottom: 4),
