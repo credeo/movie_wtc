@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -391,7 +389,7 @@ class Home extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         if (homeProvider.myMovieList.isEmpty)
-          Text('no movies in my list')
+          const Text('no movies in my list')
         else
           SizedBox(
             height: 220,

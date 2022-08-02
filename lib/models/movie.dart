@@ -28,6 +28,7 @@ class Movie {
   final List<Genre> genres;
   final String subtitle;
   final String details;
+  final DateTime releaseDate;
 
   const Movie({
     required this.title,
@@ -35,5 +36,6 @@ class Movie {
     required this.genres,
     required this.subtitle,
     required this.details,
+    required this.releaseDate,
   });
 }
