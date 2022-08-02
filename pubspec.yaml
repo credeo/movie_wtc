@@ -40,6 +40,6 @@ flutter:
   assets:
     - assets/localization/en.json
     - assets/icons/
-    - assets/images/
     - assets/images/categories/
+    - assets/images/movies/
     - assets/images/my_list/

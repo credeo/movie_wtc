@@ -39,6 +39,7 @@ class Home extends StatelessWidget {
                           height: 400.0 * scaleRatio,
                           width: MediaQuery.of(context).size.width,
                           child: PageView.builder(
+                            controller: homeProvider.pageController,
                             itemCount: homeProvider.suggestedMovies.length,
                             itemBuilder: (context, index) {
                               final movie = homeProvider.suggestedMovies[index];
@@ -46,7 +47,7 @@ class Home extends StatelessWidget {
                                 children: [
                                   Positioned.fill(
                                     child: Image.asset(
-                                      'assets/images/movie_cover_1.jpg',
+                                      movie.coverImage,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -94,7 +95,7 @@ class Home extends StatelessWidget {
                                       crossAxisAlignment: CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'NASLOV',
+                                          movie.title,
                                           style: CustomTextStyles.of(context).semiBold40,
                                         ),
                                         const SizedBox(height: 16),
@@ -103,7 +104,7 @@ class Home extends StatelessWidget {
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
                                             Text(
-                                              'ZANR',
+                                              movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
                                               style: CustomTextStyles.of(context).regular12,
                                             ),
                                             Container(
@@ -114,7 +115,7 @@ class Home extends StatelessWidget {
                                                   color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
                                             ),
                                             Text(
-                                              'DETAILS',
+                                              movie.details,
                                               style: CustomTextStyles.of(context).regular12,
                                             ),
                                           ],
@@ -165,16 +166,16 @@ class Home extends StatelessWidget {
                         const SizedBox(height: 8),
                         Center(
                           child: SmoothPageIndicator(
-                              controller: PageController(), // PageController
-                              count: 3,
-                              effect: SlideEffect(
-                                spacing: 12,
-                                dotHeight: 6,
-                                dotWidth: 6,
-                                activeDotColor: CustomColors.of(context).primary,
-                                dotColor: CustomColors.of(context).inactive,
-                              ), // your preferred effect
-                              onDotClicked: (index) {}),
+                            controller: homeProvider.pageController,
+                            count: homeProvider.suggestedMovies.length,
+                            effect: SlideEffect(
+                              spacing: 12,
+                              dotHeight: 6,
+                              dotWidth: 6,
+                              activeDotColor: CustomColors.of(context).primary,
+                              dotColor: CustomColors.of(context).inactive,
+                            ), // your preferred effect
+                          ),
                         ),
                         const SizedBox(height: 12),
                         buildCategoriesSection(context),
