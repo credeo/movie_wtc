@@ -19,7 +19,6 @@ class _HomeState extends State<Home> {
   final _controller = PageController();
 
   int currentIndex = 0;
-  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,147 +42,134 @@ class _HomeState extends State<Home> {
                   itemCount: 3,
                   itemBuilder: (BuildContext context, int index) {
                     currentIndex = index;
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          if (isSelected == false) {
-                            isSelected = true;
-                          } else {
-                            isSelected = false;
-                          }
-                        });
-                      },
-                      child: Stack(
-                        children: [
-                          Positioned.fill(
-                            child: Image.asset(
-                              models[index].imgAsset,
-                              fit: BoxFit.cover,
-                            ),
+                    return Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Image.asset(
+                            models[index].imgAsset,
+                            fit: BoxFit.cover,
                           ),
-                          Positioned(
-                            top: 0.0,
-                            left: 0.0,
-                            right: 0.0,
-                            height: 148.0 * scaleRatio,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    CustomColors.of(context).coverGradientStart,
-                                    CustomColors.of(context).coverGradientEnd,
-                                  ],
-                                ),
+                        ),
+                        Positioned(
+                          top: 0.0,
+                          left: 0.0,
+                          right: 0.0,
+                          height: 148.0 * scaleRatio,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                                colors: [
+                                  CustomColors.of(context).coverGradientStart,
+                                  CustomColors.of(context).coverGradientEnd,
+                                ],
                               ),
                             ),
                           ),
-                          Positioned(
-                            bottom: 0.0,
-                            left: 0.0,
-                            right: 0.0,
-                            height: 116.0 * scaleRatio,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                  colors: [
-                                    CustomColors.of(context).coverGradientStart,
-                                    CustomColors.of(context).coverGradientEnd,
-                                  ],
-                                ),
+                        ),
+                        Positioned(
+                          bottom: 0.0,
+                          left: 0.0,
+                          right: 0.0,
+                          height: 116.0 * scaleRatio,
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.topCenter,
+                                colors: [
+                                  CustomColors.of(context).coverGradientStart,
+                                  CustomColors.of(context).coverGradientEnd,
+                                ],
                               ),
                             ),
                           ),
-                          const CustomAppBar(),
-                          Positioned(
-                            bottom: 0.0,
-                            left: 0.0,
-                            right: 0.0,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  models[index].title,
-                                  style:
-                                      CustomTextStyles.of(context).semiBold40,
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 16),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      models[index].genres,
-                                      style: CustomTextStyles.of(context)
-                                          .regular12,
-                                    ),
-                                    Container(
-                                      width: 4,
-                                      height: 4,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 8),
-                                      decoration: BoxDecoration(
-                                          color: CustomColors.of(context)
-                                              .primaryText,
-                                          shape: BoxShape.circle),
-                                    ),
-                                    Text(
-                                      models[index].details,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.fade,
-                                      style: CustomTextStyles.of(context)
-                                          .regular12,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 8),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Align(
-                                        alignment: Alignment.centerRight,
-                                        child: CustomSecondaryButton(
-                                          iconPath:
-                                              'assets/icons/icon_checkmark.png',
-                                          title: 'My list',
-                                          onPressed: () {},
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 24.0),
-                                      child: CustomButtonWithIcon(
-                                        title: 'Play',
-                                        width: 100,
+                        ),
+                        const CustomAppBar(),
+                        Positioned(
+                          bottom: 0.0,
+                          left: 0.0,
+                          right: 0.0,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                models[index].title,
+                                style: CustomTextStyles.of(context).semiBold40,
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 16),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    models[index].genres,
+                                    style:
+                                        CustomTextStyles.of(context).regular12,
+                                  ),
+                                  Container(
+                                    width: 4,
+                                    height: 4,
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 8),
+                                    decoration: BoxDecoration(
+                                        color: CustomColors.of(context)
+                                            .primaryText,
+                                        shape: BoxShape.circle),
+                                  ),
+                                  Text(
+                                    models[index].details,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.fade,
+                                    style:
+                                        CustomTextStyles.of(context).regular12,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerRight,
+                                      child: CustomSecondaryButton(
                                         iconPath:
-                                            'assets/icons/icon_play_filled.png',
+                                            'assets/icons/icon_checkmark.png',
+                                        title: 'My list',
                                         onPressed: () {},
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: CustomSecondaryButton(
-                                          iconPath:
-                                              'assets/icons/icon_info.png',
-                                          title: 'Info',
-                                          onPressed: () {},
-                                        ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 24.0),
+                                    child: CustomButtonWithIcon(
+                                      title: 'Play',
+                                      width: 100,
+                                      iconPath:
+                                          'assets/icons/icon_play_filled.png',
+                                      onPressed: () {},
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: CustomSecondaryButton(
+                                        iconPath: 'assets/icons/icon_info.png',
+                                        title: 'Info',
+                                        onPressed: () {},
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     );
                   },
                 ),
