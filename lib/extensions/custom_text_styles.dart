@@ -95,7 +95,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     TextStyle? medium14,
     TextStyle? semiBold16,
     TextStyle? semiBold18,
-    TextStyle? semiBold36,
+    TextStyle? semiBold40,
     TextStyle? extraBold15,
   }) {
     return CustomTextStyleScheme(
@@ -106,7 +106,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       medium14: medium14 ?? this.medium14,
       semiBold16: semiBold16 ?? this.semiBold16,
       semiBold18: semiBold18 ?? this.semiBold18,
-      semiBold40: semiBold36 ?? this.semiBold40,
+      semiBold40: semiBold40 ?? this.semiBold40,
       extraBold15: extraBold15 ?? this.extraBold15,
     );
   }

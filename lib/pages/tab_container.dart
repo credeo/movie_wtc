@@ -17,7 +17,7 @@ class TabContainer extends StatelessWidget {
       child: Scaffold(
         backgroundColor: CustomColors.of(context).background,
         extendBodyBehindAppBar: true,
-        body: TabBarView(
+        body: const TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: [
             Home(),
@@ -27,18 +27,14 @@ class TabContainer extends StatelessWidget {
         ),
         bottomNavigationBar: DecoratedBox(
           decoration: BoxDecoration(
-
-            gradient: LinearGradient(
-                begin:Alignment.topCenter,
-                end:Alignment.bottomCenter,
-                colors: [
-                  CustomColors.of(context).tabbarGradientStart,
-                  CustomColors.of(context).tabbarGradientEnd,
-
-                ],
-
-            )
-          ),
+              gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              CustomColors.of(context).tabbarGradientStart,
+              CustomColors.of(context).tabbarGradientEnd,
+            ],
+          )),
           child: SafeArea(
             child: TabBar(
               indicator: UnderlineTabIndicator(
@@ -54,7 +50,7 @@ class TabContainer extends StatelessWidget {
                   icon: ImageIcon(
                     AssetImage('assets/icons/icon_home.png'),
                   ),
-                  text: 'Home' ,
+                  text: 'Home',
                 ),
                 Tab(
                   iconMargin: EdgeInsets.only(bottom: 4),
