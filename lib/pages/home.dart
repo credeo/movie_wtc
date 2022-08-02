@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -183,7 +185,7 @@ class Home extends StatelessWidget {
                         const SizedBox(height: 12),
                         buildCategoriesSection(context),
                         const SizedBox(height: 12),
-                        buildMyListSection(context),
+                        buildMyListSection(context: context, homeProvider: homeProvider),
                       ],
                     ),
                   ),
@@ -287,12 +289,13 @@ class Home extends StatelessWidget {
     );
   }
 
-  myListWidget(
-      {required BuildContext context,
-      required String title,
-      required String subtitle,
-      required String imagePath,
-      required VoidCallback callback}) {
+  Widget myListWidget({
+    required BuildContext context,
+    required String title,
+    required String subtitle,
+    required String imagePath,
+    required VoidCallback callback,
+  }) {
     return GestureDetector(
       onTap: callback,
       child: Padding(
@@ -310,7 +313,7 @@ class Home extends StatelessWidget {
                     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                     child: Image.asset(
                       imagePath,
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -336,7 +339,7 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildMyListSection(BuildContext context) {
+  Widget buildMyListSection({required BuildContext context, required HomeProvider homeProvider}) {
     return Column(
       children: [
         SizedBox(
@@ -365,48 +368,29 @@ class Home extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        SizedBox(
-          height: 220,
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            scrollDirection: Axis.horizontal,
-            children: [
-              myListWidget(
+        if (homeProvider.myMovieList.isEmpty)
+          Text('no movies in my list')
+        else
+          SizedBox(
+            height: 220,
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              scrollDirection: Axis.horizontal,
+              itemCount: homeProvider.myMovieList.length,
+              itemBuilder: (context, index) {
+                final movie = homeProvider.myMovieList[index];
+                return myListWidget(
                   context: context,
-                  title: 'Avatar',
-                  subtitle: 'Movie about creatures with blue skin',
-                  imagePath: 'assets/images/my_list/icon_avatar.png',
+                  title: movie.title,
+                  subtitle: movie.subtitle,
+                  imagePath: movie.coverImage,
                   callback: () {
-                    print('Avatar');
-                  }),
-              myListWidget(
-                  context: context,
-                  title: 'Bridgeton',
-                  subtitle:
-                      'Wealth, lust, and betrayal set against the backdrop of Regency-era England, seen through the eyes of the powerful Bridgerton family.',
-                  imagePath: 'assets/images/my_list/icon_bridgeton.png',
-                  callback: () {
-                    print('Bridgeton');
-                  }),
-              myListWidget(
-                  context: context,
-                  title: "The Queen's Gambit",
-                  subtitle: 'TV Show based on chess move',
-                  imagePath: 'assets/images/my_list/icon_queens_gambit.png',
-                  callback: () {
-                    print('Queens');
-                  }),
-              myListWidget(
-                  context: context,
-                  title: 'The Good Doctor',
-                  subtitle: 'TV Show about authistic doctor',
-                  imagePath: 'assets/images/my_list/icon_good_doctor.png',
-                  callback: () {
-                    print('Good Doctor');
-                  }),
-            ],
+                    print('clicked on my movie tile');
+                  },
+                );
+              },
+            ),
           ),
-        ),
       ],
     );
   }
