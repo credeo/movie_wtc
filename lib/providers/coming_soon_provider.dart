@@ -10,6 +10,7 @@ class ComingSoonProvider extends ChangeNotifier {
   HomeState _state = HomeState.loading;
 
   HomeState get state => _state;
+
   List<Movie> get comingSoonMovies => _movieService.comingSoonMovies;
 
   ComingSoonProvider() {
@@ -19,6 +20,7 @@ class ComingSoonProvider extends ChangeNotifier {
   Future<void> _getComingSoonMovies() async {
     await _movieService.fetchComingSoonMovies();
     _state = HomeState.ready;
+
     notifyListeners();
   }
 }

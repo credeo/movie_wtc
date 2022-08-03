@@ -70,6 +70,7 @@ class MovieService {
         releaseDate: DateTime.now().add(
           const Duration(days: 30),
         ),
+        ageRating: AgeRating.restricted,
       ),
       Movie(
         title: 'Thor: Love and Thunder',
@@ -81,6 +82,7 @@ class MovieService {
         releaseDate: DateTime.now().add(
           const Duration(days: 40),
         ),
+        //ageRating: AgeRating.restricted,
       ),
       Movie(
         title: 'Stranger Things',
@@ -92,6 +94,7 @@ class MovieService {
         releaseDate: DateTime.now().add(
           const Duration(days: 50),
         ),
+        //ageRating: AgeRating.restricted,
       ),
       Movie(
         title: 'The Witcher',
@@ -103,6 +106,7 @@ class MovieService {
         releaseDate: DateTime.now().add(
           const Duration(days: 60),
         ),
+        ageRating: AgeRating.restricted,
       ),
     ];
   }

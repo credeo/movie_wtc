@@ -62,10 +62,8 @@ class _HomeState extends State<Home> {
                               return Stack(
                                 children: [
                                   Positioned.fill(
-                                    child: Image.asset(
-                                      movie.coverImage,
-                                      fit: BoxFit.cover,
-                                    ),
+                                    child: Image.asset(movie.coverImage,
+                                        fit: BoxFit.cover),
                                   ),
                                   Positioned(
                                     top: 0.0,
@@ -108,7 +106,7 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   Positioned(
-                                    bottom: 0.0,
+                                    bottom: 16.0,
                                     left: 0.0,
                                     right: 0.0,
                                     child: Column(
@@ -178,7 +176,7 @@ class _HomeState extends State<Home> {
                                             Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                      horizontal: 24.0),
+                                                      horizontal: 34.0),
                                               child: CustomButtonWithIcon(
                                                 title: 'home_play'.tr(),
                                                 width: 100,

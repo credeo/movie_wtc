@@ -22,6 +22,8 @@ enum Genre {
   }
 }
 
+enum AgeRating { restricted }
+
 class Movie {
   final String title;
   final String coverImage;
@@ -29,8 +31,10 @@ class Movie {
   final String subtitle;
   final String details;
   final DateTime releaseDate;
+  final AgeRating? ageRating;
 
   const Movie({
+    this.ageRating,
     required this.title,
     required this.coverImage,
     required this.genres,

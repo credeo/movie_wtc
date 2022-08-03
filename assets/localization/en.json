@@ -21,5 +21,8 @@
   "genre_action": "Action",
   "genre_mystery": "Mystery",
   "coming_soon_title": "Coming Soon",
-  "coming_soon_genres": "Genres"
+  "coming_soon_genres": "Genres",
+  "coming_soon_more_info": " More Info",
+  "coming_soon_my_list": "My List",
+  "coming_soon_remind_me": "Remind Me"
 }
