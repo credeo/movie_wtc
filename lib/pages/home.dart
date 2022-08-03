@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
                     });
                   },
                   controller: _controller,
-                  itemCount: 3,
+                  itemCount: models.length,
                   itemBuilder: (BuildContext context, int index) {
                     currentIndex = index;
                     return Stack(
