@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 18.0),
                             child: Text(
-                              'loginPage'.tr(gender: 'or'),
+                              'or'.tr(),
                               style: CustomTextStyles.of(context).extraBold15,
                             ),
                           ),
@@ -118,10 +118,10 @@ class LoginPage extends StatelessWidget {
                               : CrossFadeState.showSecond,
                       firstChild: Text.rich(
                         TextSpan(
-                          text: 'loginPage'.tr(gender: 'dontHave'),
+                          text: 'no_account'.tr(),
                           children: [
                             TextSpan(
-                              text: 'loginPage'.tr(gender: 'signup'),
+                              text: 'signup'.tr(),
                               style: CustomTextStyles.of(context)
                                   .regular13
                                   .apply(
@@ -137,10 +137,10 @@ class LoginPage extends StatelessWidget {
                       ),
                       secondChild: Text.rich(
                         TextSpan(
-                          text: 'loginPage'.tr(gender: 'have'),
+                          text: 'has_account'.tr(),
                           children: [
                             TextSpan(
-                              text: 'loginPage'.tr(gender: 'login'),
+                              text: 'login'.tr(),
                               style: CustomTextStyles.of(context)
                                   .regular13
                                   .apply(
@@ -211,7 +211,7 @@ class LoginPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomButton(
-                title: loginText,
+                title: 'login'.tr(),
                 onPressed: () {
                   context.goNamed(TabContainer.pageName);
                 },
@@ -227,7 +227,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 56.0),
                       child: Text(
-                        loginText,
+                        'login'.tr(),
                         style: CustomTextStyles.of(context).regular24,
                       ),
                     ),
@@ -250,7 +250,7 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon:
                             Image.asset('assets/icons/icon_email_small.png'),
-                        hintText: 'loginPage'.tr(gender: 'email'),
+                        hintText: 'email'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context)
                                   .primaryText
@@ -267,7 +267,7 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon:
                             Image.asset('assets/icons/icon_eye_crossed.png'),
-                        hintText: 'loginPage'.tr(gender: 'password'),
+                        hintText: 'password'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context)
                                   .primaryText
@@ -282,7 +282,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Text(
-                        'loginPage'.tr(gender: 'forgotPass'),
+                        'forgot_password'.tr(),
                         style: CustomTextStyles.of(context).regular13,
                       ),
                     ),
@@ -317,8 +317,10 @@ class LoginPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: CustomButton(
-                title: loginText,
-                onPressed: () {},
+                title: 'signup'.tr(),
+                onPressed: () {
+                  print('hello');
+                },
               ),
             ),
             Align(
@@ -331,7 +333,7 @@ class LoginPage extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(right: 56.0),
                       child: Text(
-                        loginText,
+                        'signup'.tr(),
                         style: CustomTextStyles.of(context).regular24,
                       ),
                     ),
@@ -354,7 +356,7 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon:
                             Image.asset('assets/icons/icon_profile_small.png'),
-                        hintText: 'loginPage'.tr(gender: 'fullName'),
+                        hintText: 'full_name'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context)
                                   .primaryText
@@ -371,7 +373,7 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon:
                             Image.asset('assets/icons/icon_email_small.png'),
-                        hintText: 'loginPage'.tr(gender: 'email'),
+                        hintText: 'email'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context)
                                   .primaryText
@@ -388,7 +390,7 @@ class LoginPage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon:
                             Image.asset('assets/icons/icon_eye_crossed.png'),
-                        hintText: 'loginPage'.tr(gender: 'password'),
+                        hintText: 'password'.tr(),
                         hintStyle: CustomTextStyles.of(context).regular15.apply(
                               color: CustomColors.of(context)
                                   .primaryText

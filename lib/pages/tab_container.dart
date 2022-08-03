@@ -27,15 +27,14 @@ class TabContainer extends StatelessWidget {
         ),
         bottomNavigationBar: DecoratedBox(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                CustomColors.of(context).buttonBackgroundGradientStart,
-                CustomColors.of(context).buttonBackgroundGradientEnd,
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
+              gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              CustomColors.of(context).tabbarGradientStart,
+              CustomColors.of(context).tabbarGradientEnd,
+            ],
+          )),
           child: SafeArea(
             child: TabBar(
               indicator: UnderlineTabIndicator(

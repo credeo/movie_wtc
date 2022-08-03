@@ -26,6 +26,10 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.coverGradientStart!;
   Color get coverGradientEnd =>
       Theme.of(_context).extension<CustomColorScheme>()!.coverGradientEnd!;
+  Color get tabbarGradientStart =>
+      Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientStart!;
+  Color get tabbarGradientEnd =>
+      Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
 }
 
 @immutable
@@ -40,32 +44,36 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? buttonBackgroundGradientEnd;
   final Color? coverGradientStart;
   final Color? coverGradientEnd;
+  final Color? tabbarGradientStart;
+  final Color? tabbarGradientEnd;
 
-  const CustomColorScheme({
-    required this.primary,
-    required this.secondary,
-    required this.primaryText,
-    required this.secondaryText,
-    required this.background,
-    required this.inactive,
-    required this.buttonBackgroundGradientStart,
-    required this.buttonBackgroundGradientEnd,
-    required this.coverGradientStart,
-    required this.coverGradientEnd,
-  });
+  const CustomColorScheme(
+      {required this.primary,
+      required this.secondary,
+      required this.primaryText,
+      required this.secondaryText,
+      required this.background,
+      required this.inactive,
+      required this.buttonBackgroundGradientStart,
+      required this.buttonBackgroundGradientEnd,
+      required this.coverGradientStart,
+      required this.coverGradientEnd,
+      required this.tabbarGradientEnd,
+      required this.tabbarGradientStart});
 
-  const CustomColorScheme.light({
-    this.primary = const Color(0xff0A84FF),
-    this.secondary = const Color(0xffffffff),
-    this.primaryText = const Color(0xffffffff),
-    this.secondaryText = const Color(0xff141414),
-    this.background = const Color(0xff1C1C1E),
-    this.inactive = const Color(0xffAAAAAA),
-    this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
-    this.buttonBackgroundGradientEnd = const Color(0xff161616),
-    this.coverGradientStart = const Color(0xff141414),
-    this.coverGradientEnd = const Color(0x00141414),
-  });
+  const CustomColorScheme.light(
+      {this.primary = const Color(0xff0A84FF),
+      this.secondary = const Color(0xffffffff),
+      this.primaryText = const Color(0xffffffff),
+      this.secondaryText = const Color(0xff141414),
+      this.background = const Color(0xff1C1C1E),
+      this.inactive = const Color(0xffAAAAAA),
+      this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
+      this.buttonBackgroundGradientEnd = const Color(0xff161616),
+      this.coverGradientStart = const Color(0xff141414),
+      this.coverGradientEnd = const Color(0x00141414),
+      this.tabbarGradientStart = const Color(0xF02F2F2F),
+      this.tabbarGradientEnd = const Color(0xF0161616)});
 
   @override
   CustomColorScheme copyWith({
@@ -79,6 +87,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? buttonBackgroundGradientEnd,
     Color? coverGradientStart,
     Color? coverGradientEnd,
+    Color? tabbarGradientEnd,
+    Color? tabbarGradientStart,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -93,6 +103,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
           buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
       coverGradientStart: coverGradientStart ?? this.coverGradientStart,
       coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
+      tabbarGradientEnd: tabbarGradientEnd ?? this.tabbarGradientEnd,
+      tabbarGradientStart: tabbarGradientStart ?? this.tabbarGradientStart,
     );
   }
 
@@ -115,6 +127,10 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       coverGradientStart:
           Color.lerp(coverGradientStart, other.coverGradientStart, t),
       coverGradientEnd: Color.lerp(coverGradientEnd, other.coverGradientEnd, t),
+      tabbarGradientEnd:
+          Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
+      tabbarGradientStart:
+          Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
     );
   }
 }
