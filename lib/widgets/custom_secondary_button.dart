@@ -16,7 +16,6 @@ class CustomSecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 72,
       child: CupertinoButton(
         onPressed: onPressed,
         child: Column(
@@ -33,8 +32,10 @@ class CustomSecondaryButton extends StatelessWidget {
             Text(
               title,
               style: CustomTextStyles.of(context).regular12,
-              maxLines: 1,
+              /*  maxLines: 1,
               overflow: TextOverflow.ellipsis,
+              >1 line
+               */
             ),
           ],
         ),

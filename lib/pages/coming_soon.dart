@@ -32,7 +32,9 @@ class ComingSoon extends StatelessWidget {
                 children: [
                   const SafeArea(child: CustomAppBar()),
                   Expanded(
-                    child: renderPage(context: context, comingSoonProvider: comingSoonProvider),
+                    child: renderPage(
+                        context: context,
+                        comingSoonProvider: comingSoonProvider),
                   ),
                 ],
               );
@@ -44,7 +46,9 @@ class ComingSoon extends StatelessWidget {
     );
   }
 
-  Widget renderPage({required BuildContext context, required ComingSoonProvider comingSoonProvider}) {
+  Widget renderPage(
+      {required BuildContext context,
+      required ComingSoonProvider comingSoonProvider}) {
     return ListView.builder(
       itemCount: 1 + comingSoonProvider.comingSoonMovies.length,
       itemBuilder: (context, index) {
@@ -66,7 +70,8 @@ class ComingSoon extends StatelessWidget {
     );
   }
 
-  Widget buildComingSoonCell({required BuildContext context, required Movie movie}) {
+  Widget buildComingSoonCell(
+      {required BuildContext context, required Movie movie}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
       child: Row(
@@ -77,8 +82,9 @@ class ComingSoon extends StatelessWidget {
             children: [
               Text(
                 formatDateToShortMonth(movie.releaseDate).toUpperCase(),
-                style:
-                    CustomTextStyles.of(context).semiBold14.apply(color: CustomColors.of(context).primaryText.withOpacity(0.6)),
+                style: CustomTextStyles.of(context).semiBold14.apply(
+                    color:
+                        CustomColors.of(context).primaryText.withOpacity(0.6)),
               ),
               Text(
                 movie.releaseDate.day.toString(),
@@ -101,6 +107,26 @@ class ComingSoon extends StatelessWidget {
                           fit: BoxFit.cover,
                         ),
                       ),
+                      movie.ageRating != AgeRating.unrestricted
+                          ? Positioned(
+                              height: 28,
+                              width: 28,
+                              right: 8,
+                              top: 8,
+                              child: ClipRRect(
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5.0)),
+                                  child: Image.asset(
+                                    'assets/icons/icon_restricted.png',
+                                    fit: BoxFit.contain,
+                                  )),
+                            )
+                          : Positioned.fill(
+                              child: Image.asset(
+                                movie.coverImage,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                     ],
                   ),
                 ),
@@ -120,12 +146,16 @@ class ComingSoon extends StatelessWidget {
                     text: '${'coming_soon_genres'.tr()}: ',
                     children: [
                       TextSpan(
-                        text: movie.genres.map((e) => e.toLocalisedString()).join(', '),
+                        text: movie.genres
+                            .map((e) => e.toLocalisedString())
+                            .join(', '),
                         style: CustomTextStyles.of(context).regular12,
                       ),
                     ],
                   ),
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).inactive),
                 ),
                 const SizedBox(height: 24),
                 Row(
@@ -134,20 +164,20 @@ class ComingSoon extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: CustomSecondaryButton(
-                          title: '',
+                          title: 'coming_soon_more_info'.tr(),
                           iconPath: 'assets/icons/icon_info.png',
                         ),
                       ),
                     ),
                     CustomSecondaryButton(
-                      title: '',
+                      title: 'coming_soon_remind_me'.tr(),
                       iconPath: 'assets/icons/icon_notification.png',
                     ),
                     Expanded(
                       child: Align(
-                        alignment: Alignment.centerRight,
+                        alignment: Alignment.bottomRight,
                         child: CustomSecondaryButton(
-                          title: '',
+                          title: 'coming_soon_my_list'.tr(),
                           iconPath: 'assets/icons/icon_plus_circle.png',
                         ),
                       ),
