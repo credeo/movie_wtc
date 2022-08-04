@@ -6,6 +6,7 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/providers/downloads_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
+import 'package:movie_wtc/widgets/downloads_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
 class Downloads extends StatelessWidget {
@@ -134,7 +135,9 @@ Widget buildFirstDownloadCell(BuildContext context) {
             alignment: Alignment.centerLeft,
             padding: MaterialStateProperty.all(EdgeInsets.zero),
           ),
-          onPressed: () {},
+          onPressed: () {
+            buildBootomSheet(context);
+          },
           icon: Image.asset('assets/icons/icon_settings-check.png'),
           label: Text(
             'downloads_smart'.tr(),

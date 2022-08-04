@@ -21,7 +21,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final _controller = PageController();
+  //final _controller = PageController();
 
   int currentIndex = 0;
 
