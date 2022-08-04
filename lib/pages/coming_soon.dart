@@ -31,6 +31,7 @@ class ComingSoon extends StatelessWidget {
               widget = Column(
                 children: [
                   const SafeArea(child: CustomAppBar()),
+                  const SizedBox(height: 20),
                   Expanded(
                     child: renderPage(
                         context: context,
@@ -50,6 +51,7 @@ class ComingSoon extends StatelessWidget {
       {required BuildContext context,
       required ComingSoonProvider comingSoonProvider}) {
     return ListView.builder(
+      padding: EdgeInsets.zero,
       itemCount: 1 + comingSoonProvider.comingSoonMovies.length,
       itemBuilder: (context, index) {
         final Widget widget;

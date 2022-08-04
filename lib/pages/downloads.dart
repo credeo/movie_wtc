@@ -1,4 +1,3 @@
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +16,7 @@ class Downloads extends StatelessWidget {
     return Column(
       children: [
         const SafeArea(child: CustomAppBar()),
-        const SizedBox(height: 12),
+        const SizedBox(height: 8),
         Expanded(
           child: renderDownloadPage(context),
         ),
@@ -39,15 +38,10 @@ class Downloads extends StatelessWidget {
               if (index == 0) {
                 print(index);
                 widget = buildFirstDownloadCell(context);
-              } else if (downloadProvider.isPressed) {
-                final movies = downloadProvider.downloadMovies[index - 1];
-                widget = buildDownloadCell(context, movies, downloadProvider,
-                    downloadProvider.isPressed, index);
-                print('$index uso u index+1');
               } else {
                 final movies = downloadProvider.downloadMovies[index - 1];
-                widget = buildDownloadCell(
-                    context, movies, downloadProvider, false, index);
+                widget = buildDownloadCell(context, movies);
+                print('$index uso u index+1');
               }
               return widget;
             },
@@ -58,13 +52,11 @@ class Downloads extends StatelessWidget {
   }
 }
 
-Widget buildDownloadCell(BuildContext context, Movie movie,
-    DownloadProvider downloadProvide, bool isPressed, int index) {
+Widget buildDownloadCell(BuildContext context, Movie movie) {
   return Padding(
     padding: const EdgeInsets.only(left: 12, right: 8),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Row(
           children: [
@@ -102,16 +94,9 @@ Widget buildDownloadCell(BuildContext context, Movie movie,
           ],
         ),
         CupertinoButton(
-          // child: downloadProvide.controller.isStarted
-          //     ? Icon(Icons.circle)
-          //     :
-          child: isPressed
-              ? Icon(Icons.circle_outlined,
-                  color: CustomColors.of(context).primary)
-              : Icon(Icons.arrow_forward_ios,
-                  color: CustomColors.of(context).primaryText),
+          child: Icon(Icons.arrow_forward_ios,
+              color: CustomColors.of(context).primaryText),
           onPressed: () {
-            downloadProvide.onPressed();
             print('object');
           },
         ),
