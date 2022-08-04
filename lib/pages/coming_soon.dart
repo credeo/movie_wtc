@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
@@ -32,9 +31,7 @@ class ComingSoon extends StatelessWidget {
                 children: [
                   const SafeArea(child: CustomAppBar()),
                   Expanded(
-                    child: renderPage(
-                        context: context,
-                        comingSoonProvider: comingSoonProvider),
+                    child: renderPage(context: context, comingSoonProvider: comingSoonProvider),
                   ),
                 ],
               );
@@ -46,16 +43,15 @@ class ComingSoon extends StatelessWidget {
     );
   }
 
-  Widget renderPage(
-      {required BuildContext context,
-      required ComingSoonProvider comingSoonProvider}) {
+  Widget renderPage({required BuildContext context, required ComingSoonProvider comingSoonProvider}) {
     return ListView.builder(
       itemCount: 1 + comingSoonProvider.comingSoonMovies.length,
+      padding: const EdgeInsets.only(top: 8),
       itemBuilder: (context, index) {
         final Widget widget;
         if (index == 0) {
           widget = Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
             child: Text(
               'coming_soon_title'.tr(),
               style: CustomTextStyles.of(context).semiBold18,
@@ -70,10 +66,9 @@ class ComingSoon extends StatelessWidget {
     );
   }
 
-  Widget buildComingSoonCell(
-      {required BuildContext context, required Movie movie}) {
+  Widget buildComingSoonCell({required BuildContext context, required Movie movie}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -82,9 +77,8 @@ class ComingSoon extends StatelessWidget {
             children: [
               Text(
                 formatDateToShortMonth(movie.releaseDate).toUpperCase(),
-                style: CustomTextStyles.of(context).semiBold14.apply(
-                    color:
-                        CustomColors.of(context).primaryText.withOpacity(0.6)),
+                style:
+                    CustomTextStyles.of(context).semiBold14.apply(color: CustomColors.of(context).primaryText.withOpacity(0.6)),
               ),
               Text(
                 movie.releaseDate.day.toString(),
@@ -117,7 +111,7 @@ class ComingSoon extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                               color: CustomColors.of(context).background,
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(8.0),
                               ),
                             ),
@@ -150,18 +144,14 @@ class ComingSoon extends StatelessWidget {
                     text: '${'coming_soon_genres'.tr()}: ',
                     children: [
                       TextSpan(
-                        text: movie.genres
-                            .map((e) => e.toLocalisedString())
-                            .join(', '),
+                        text: movie.genres.map((e) => e.toLocalisedString()).join(', '),
                         style: CustomTextStyles.of(context).regular12,
                       ),
                     ],
                   ),
-                  style: CustomTextStyles.of(context)
-                      .regular12
-                      .apply(color: CustomColors.of(context).inactive),
+                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(

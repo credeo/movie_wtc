@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         CupertinoButton(
-          child: Image.asset('assets/icons/icon_notification.png'),
+          child: Image.asset('assets/icons/icon_notification_filled.png'),
           onPressed: () {},
         ),
         CupertinoButton(

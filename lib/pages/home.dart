@@ -130,10 +130,13 @@ class Home extends StatelessWidget {
                                             Expanded(
                                               child: Align(
                                                 alignment: Alignment.centerRight,
-                                                child: CustomSecondaryButton(
-                                                  iconPath: 'assets/icons/icon_checkmark.png',
-                                                  title: 'home_my_list_button'.tr(),
-                                                  onPressed: () {},
+                                                child: SizedBox(
+                                                  width: 72,
+                                                  child: CustomSecondaryButton(
+                                                    iconPath: 'assets/icons/icon_checkmark.png',
+                                                    title: 'home_my_list_button'.tr(),
+                                                    onPressed: () {},
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -149,10 +152,13 @@ class Home extends StatelessWidget {
                                             Expanded(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
-                                                child: CustomSecondaryButton(
-                                                  iconPath: 'assets/icons/icon_info.png',
-                                                  title: 'home_info_button'.tr(),
-                                                  onPressed: () {},
+                                                child: SizedBox(
+                                                  width: 72,
+                                                  child: CustomSecondaryButton(
+                                                    iconPath: 'assets/icons/icon_info.png',
+                                                    title: 'home_info_button'.tr(),
+                                                    onPressed: () {},
+                                                  ),
                                                 ),
                                               ),
                                             ),

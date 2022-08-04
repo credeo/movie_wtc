@@ -15,29 +15,26 @@ class CustomSecondaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100,
-      child: CupertinoButton(
-        onPressed: onPressed,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-              width: 20,
-              child: Image.asset(
-                iconPath,
-                fit: BoxFit.contain,
-              ),
+    return CupertinoButton(
+      onPressed: onPressed,
+      child: Column(
+        children: [
+          SizedBox(
+            height: 20,
+            width: 20,
+            child: Image.asset(
+              iconPath,
+              fit: BoxFit.contain,
             ),
-            const SizedBox(height: 4),
-            Text(
-              title,
-              style: CustomTextStyles.of(context).regular12,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            title,
+            style: CustomTextStyles.of(context).regular12,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
       ),
     );
   }
