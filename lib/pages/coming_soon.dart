@@ -104,9 +104,13 @@ class ComingSoon extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned.fill(
-                        child: Image.asset(
-                          movie.coverImage,
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8.0)),
+                          child: Image.asset(
+                            movie.coverImage,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       movie.ageRating != null
@@ -124,9 +128,13 @@ class ComingSoon extends StatelessWidget {
                                   )),
                             )
                           : Positioned.fill(
-                              child: Image.asset(
-                                movie.coverImage,
-                                fit: BoxFit.cover,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(8.0)),
+                                child: Image.asset(
+                                  movie.coverImage,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                     ],
