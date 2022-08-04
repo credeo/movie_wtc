@@ -3,15 +3,20 @@ import 'package:flutter/material.dart';
 class CustomTextStyles {
   final BuildContext _context;
   const CustomTextStyles.of(BuildContext context) : _context = context;
-
+  TextStyle get regular10 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.regular10!;
   TextStyle get regular12 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular12!;
   TextStyle get regular13 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
   TextStyle get regular15 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
+  TextStyle get regular18 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.regular18!;
   TextStyle get regular24 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
+  TextStyle get medium12 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.medium12!;
   TextStyle get medium14 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.medium14!;
   TextStyle get semiBold14 =>
@@ -32,10 +37,13 @@ class CustomTextStyles {
 
 @immutable
 class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
+  final TextStyle? regular10;
   final TextStyle? regular12;
   final TextStyle? regular13;
   final TextStyle? regular15;
+  final TextStyle? regular18;
   final TextStyle? regular24;
+  final TextStyle? medium12;
   final TextStyle? medium14;
   final TextStyle? semiBold14;
   final TextStyle? semiBold16;
@@ -46,10 +54,13 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   final TextStyle? extraBold15;
 
   const CustomTextStyleScheme({
+    required this.regular10,
     required this.regular12,
     required this.regular13,
     required this.regular15,
+    required this.regular18,
     required this.regular24,
+    required this.medium12,
     required this.medium14,
     required this.semiBold14,
     required this.semiBold16,
@@ -61,7 +72,12 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   });
 
   CustomTextStyleScheme.fromPrimaryTextColor(Color primaryTextColor)
-      : regular12 = TextStyle(
+      : regular10 = TextStyle(
+          fontWeight: FontWeight.w400,
+          color: primaryTextColor,
+          fontSize: 10,
+        ),
+        regular12 = TextStyle(
           fontWeight: FontWeight.w400,
           color: primaryTextColor,
           fontSize: 12,
@@ -76,10 +92,20 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           color: primaryTextColor,
           fontSize: 15,
         ),
+        regular18 = TextStyle(
+          fontWeight: FontWeight.w400,
+          color: primaryTextColor,
+          fontSize: 18,
+        ),
         regular24 = TextStyle(
           fontWeight: FontWeight.w400,
           color: primaryTextColor,
           fontSize: 24,
+        ),
+        medium12 = TextStyle(
+          fontWeight: FontWeight.w500,
+          color: primaryTextColor,
+          fontSize: 12,
         ),
         medium14 = TextStyle(
           fontWeight: FontWeight.w500,
@@ -126,10 +152,12 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
 
   @override
   CustomTextStyleScheme copyWith({
-    TextStyle? regular13,
+    TextStyle? regular10,
     TextStyle? regular12,
+    TextStyle? regular13,
     TextStyle? regular15,
     TextStyle? regular24,
+    TextStyle? medium12,
     TextStyle? medium14,
     TextStyle? semiBold14,
     TextStyle? semiBold16,
@@ -140,10 +168,13 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     TextStyle? extraBold15,
   }) {
     return CustomTextStyleScheme(
+      regular10: regular10 ?? this.regular10,
       regular12: regular12 ?? this.regular12,
       regular13: regular13 ?? this.regular13,
       regular15: regular15 ?? this.regular15,
+      regular18: regular18 ?? this.regular18,
       regular24: regular24 ?? this.regular24,
+      medium12: medium12 ?? this.medium12,
       medium14: medium14 ?? this.medium14,
       semiBold14: semiBold14 ?? this.semiBold14,
       semiBold16: semiBold16 ?? this.semiBold16,
@@ -162,10 +193,13 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       return this;
     }
     return CustomTextStyleScheme(
+      regular10: TextStyle.lerp(regular10, other.regular10, t),
       regular12: TextStyle.lerp(regular12, other.regular12, t),
       regular13: TextStyle.lerp(regular13, other.regular13, t),
       regular15: TextStyle.lerp(regular15, other.regular15, t),
+      regular18: TextStyle.lerp(regular24, other.regular18, t),
       regular24: TextStyle.lerp(regular24, other.regular24, t),
+      medium12: TextStyle.lerp(medium12, other.medium12, t),
       medium14: TextStyle.lerp(medium14, other.medium14, t),
       semiBold14: TextStyle.lerp(semiBold14, other.semiBold14, t),
       semiBold16: TextStyle.lerp(semiBold16, other.semiBold16, t),

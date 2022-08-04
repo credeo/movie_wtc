@@ -16,6 +16,7 @@ dependencies:
   provider: ^6.0.3
   kiwi: ^4.0.2
   smooth_page_indicator: ^1.0.0+2
+  circular_countdown_timer: ^0.2.2
 
 
 dev_dependencies:

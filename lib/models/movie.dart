@@ -32,8 +32,10 @@ class Movie {
   final String details;
   final DateTime releaseDate;
   final AgeRating? ageRating;
+  final int duration;
+  final int downloadSize;
 
-  const Movie({
+  Movie({
     this.ageRating,
     required this.title,
     required this.coverImage,
@@ -41,5 +43,7 @@ class Movie {
     required this.subtitle,
     required this.details,
     required this.releaseDate,
+    required this.duration,
+    required this.downloadSize,
   });
 }
