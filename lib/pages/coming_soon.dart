@@ -119,7 +119,7 @@ class ComingSoon extends StatelessWidget {
                             height: 28,
                             child: Center(
                               child: Text(
-                                "18+",
+                                '18+',
                                 style: CustomTextStyles.of(context).regular12,
                               ),
                             ),
