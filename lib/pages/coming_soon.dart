@@ -104,7 +104,7 @@ class ComingSoon extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (movie.isForAdults == true)
+                      if (movie.rated >= 18)
                         Positioned(
                           top: 8,
                           right: 8,

@@ -95,8 +95,8 @@ class Downloads extends StatelessWidget {
             ),
           );
         } else {
-          final movie = downloadsProvider.downloadedMovies[index - 2];
-          widget = DownloadMovieCell(movie: movie);
+          final downloadMovie = downloadsProvider.downloadedMovies[index - 2];
+          widget = DownloadMovieCell(movie: downloadMovie.movie);
         }
         return widget;
       },
