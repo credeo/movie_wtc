@@ -1,11 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/providers/downloads_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
+import 'package:movie_wtc/widgets/download_movie_cell.dart';
 import 'package:movie_wtc/widgets/downloads_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +15,12 @@ class Downloads extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SafeArea(child: CustomAppBar()),
+        const SafeArea(
+            child: CustomAppBar(
+          backButton: null,
+          leftIcon: LeftIcon.appLogo,
+          rightIcon: RightIcon.notification,
+        )),
         const SizedBox(height: 8),
         Expanded(
           child: renderDownloadPage(context),
@@ -40,8 +44,9 @@ class Downloads extends StatelessWidget {
                 print(index);
                 widget = buildFirstDownloadCell(context);
               } else {
-                final movies = downloadProvider.downloadMovies[index - 1];
-                widget = buildDownloadCell(context, movies);
+                final movies = downloadProvider.downloadMovies;
+
+                widget = DownloadBuildCell(movie: movies[index - 1]);
                 print('$index uso u index+1');
               }
               return widget;
@@ -51,59 +56,6 @@ class Downloads extends StatelessWidget {
       ),
     );
   }
-}
-
-Widget buildDownloadCell(BuildContext context, Movie movie) {
-  return Padding(
-    padding: const EdgeInsets.only(left: 12, right: 8),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Row(
-          children: [
-            Container(
-              height: 60,
-              width: 100,
-              margin: const EdgeInsets.all(8.0),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(4),
-                ),
-                child: Image.asset(
-                  movie.coverImage,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  movie.title,
-                  style: CustomTextStyles.of(context).medium12,
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '${movie.details} | ${movie.duration.toString()}min | ${movie.downloadSize.toString()}mb',
-                  style: CustomTextStyles.of(context)
-                      .regular10
-                      .apply(color: CustomColors.of(context).inactive),
-                ),
-              ],
-            ),
-          ],
-        ),
-        CupertinoButton(
-          child: Icon(Icons.arrow_forward_ios,
-              color: CustomColors.of(context).primaryText),
-          onPressed: () {
-            print('object');
-          },
-        ),
-      ],
-    ),
-  );
 }
 
 Widget buildFirstDownloadCell(BuildContext context) {

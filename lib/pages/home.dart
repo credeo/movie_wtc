@@ -6,8 +6,9 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/detail_page.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
-
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:provider/provider.dart';
@@ -193,7 +194,10 @@ class _HomeState extends State<Home> {
                                                       'assets/icons/icon_info.png',
                                                   title:
                                                       'home_info_button'.tr(),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    context.goNamed(
+                                                        DetailPage.pageName);
+                                                  },
                                                 ),
                                               ),
                                             ),
