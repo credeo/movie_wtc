@@ -31,5 +31,10 @@
   "downloads_next_ep_title": "Download Next Episode",
   "downloads_next_ep_text": "As you watch an episode of a series you’ve downloaded, we’ll get the next episode for you and delete what you’ve finished. Downloading only happens on Wi-Fi.",
   "downloads_for_you_title": "Downloads for You",
-  "downloads_for_you_text": "We’ll download a selection of movies and shows so you always have something to watch. Downloading only happens on Wi-Fi"
+  "downloads_for_you_text": "We’ll download a selection of movies and shows so you always have something to watch. Downloading only happens on Wi-Fi",
+  "detail_download": "Download",
+  "detail_genres": "Genres",
+  "detail_my_list": "My List",
+  "detail_rated": "Rated",
+  "detail_share": "Share"
 }

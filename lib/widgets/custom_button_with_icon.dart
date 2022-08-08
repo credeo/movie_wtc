@@ -7,13 +7,17 @@ class CustomButtonWithIcon extends StatelessWidget {
   final String iconPath;
   final double? width;
   final VoidCallback? onPressed;
+  //final Color? backgroundColor;
+  bool isBlack = false;
 
-  const CustomButtonWithIcon({
+  CustomButtonWithIcon({
     super.key,
     required this.title,
     required this.iconPath,
     this.width,
     this.onPressed,
+    //equired this.backgroundColor,
+    required this.isBlack,
   });
 
   @override
@@ -23,7 +27,9 @@ class CustomButtonWithIcon extends StatelessWidget {
       width: width ?? 152,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: CustomColors.of(context).secondary,
+          backgroundColor: isBlack
+              ? CustomColors.of(context).secondaryText
+              : CustomColors.of(context).secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -44,7 +50,10 @@ class CustomButtonWithIcon extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               title,
-              style: CustomTextStyles.of(context).semiBold16.apply(color: CustomColors.of(context).secondaryText),
+              style: CustomTextStyles.of(context).semiBold14.apply(
+                  color: isBlack
+                      ? CustomColors.of(context).secondary
+                      : CustomColors.of(context).secondaryText),
               textAlign: TextAlign.center,
             ),
           ],

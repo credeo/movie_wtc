@@ -184,6 +184,7 @@ class _HomeState extends State<Home> {
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
                                                 onPressed: () {},
+                                                isBlack: false,
                                               ),
                                             ),
                                             Expanded(
@@ -196,7 +197,8 @@ class _HomeState extends State<Home> {
                                                       'home_info_button'.tr(),
                                                   onPressed: () {
                                                     context.goNamed(
-                                                        DetailPage.pageName);
+                                                        DetailPage.pageName,
+                                                        extra: movie);
                                                   },
                                                 ),
                                               ),

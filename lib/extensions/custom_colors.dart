@@ -83,7 +83,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       this.coverGradientEnd = const Color(0x00141414),
       this.tabbarGradientStart = const Color(0xF02F2F2F),
       this.tabbarGradientEnd = const Color(0xF0161616),
-      this.bottomSheetBackground = const Color(0xff262626)});
+      this.bottomSheetBackground = const Color(0xf0262626)});
 
   @override
   CustomColorScheme copyWith({

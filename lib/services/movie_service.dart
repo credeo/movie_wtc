@@ -22,6 +22,8 @@ class MovieService {
         ),
         duration: 160,
         downloadSize: 500,
+        year: 2020,
+        rated: 18,
       ),
       Movie(
         title: 'Thor: Love and Thunder',
@@ -35,6 +37,8 @@ class MovieService {
         ),
         duration: 160,
         downloadSize: 500,
+        year: 2010,
+        rated: 16,
       ),
       Movie(
         title: 'Stranger Things',
@@ -48,6 +52,8 @@ class MovieService {
         ),
         duration: 160,
         downloadSize: 500,
+        year: 2018,
+        rated: 10,
       ),
       Movie(
         title: 'The Witcher',
@@ -61,6 +67,8 @@ class MovieService {
         ),
         duration: 160,
         downloadSize: 500,
+        year: 2013,
+        rated: 3,
       ),
     ];
   }

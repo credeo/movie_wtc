@@ -34,16 +34,19 @@ class Movie {
   final AgeRating? ageRating;
   final int duration;
   final int downloadSize;
+  int? rated;
+  int? year;
 
-  Movie({
-    this.ageRating,
-    required this.title,
-    required this.coverImage,
-    required this.genres,
-    required this.subtitle,
-    required this.details,
-    required this.releaseDate,
-    required this.duration,
-    required this.downloadSize,
-  });
+  Movie(
+      {this.ageRating,
+      this.rated,
+      required this.title,
+      required this.coverImage,
+      required this.genres,
+      required this.subtitle,
+      required this.details,
+      required this.releaseDate,
+      required this.duration,
+      required this.downloadSize,
+      this.year});
 }

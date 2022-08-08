@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/detail_page.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
@@ -40,7 +41,7 @@ class RouterService {
         GoRoute(
           path: '/detail-page',
           name: DetailPage.pageName,
-          builder: (context, state) => const DetailPage(),
+          builder: (context, state) => DetailPage(movie: state.extra as Movie),
         ),
       ],
     );
