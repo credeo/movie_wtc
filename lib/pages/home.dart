@@ -1,9 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/detail_page.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
@@ -175,6 +177,7 @@ class Home extends StatelessWidget {
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
                                                 onPressed: () {},
+                                                isBlack: false,
                                               ),
                                             ),
                                             Expanded(
@@ -187,7 +190,11 @@ class Home extends StatelessWidget {
                                                         'assets/icons/icon_info.png',
                                                     title:
                                                         'home_info_button'.tr(),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      context.goNamed(
+                                                          DetailPage.pageName,
+                                                          extra: movie);
+                                                    },
                                                   ),
                                                 ),
                                               ),

@@ -14,6 +14,8 @@ class CustomTextStyles {
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
   TextStyle get regular24 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
+  TextStyle get medium12 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.medium12!;
   TextStyle get medium14 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.medium14!;
   TextStyle get semiBold14 =>
