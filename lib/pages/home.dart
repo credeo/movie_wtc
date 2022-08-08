@@ -166,11 +166,26 @@ class _HomeState extends State<Home> {
                                                 alignment:
                                                     Alignment.centerRight,
                                                 child: CustomSecondaryButton(
-                                                  iconPath:
-                                                      'assets/icons/icon_checkmark.png',
+                                                  iconPath: homeProvider
+                                                          .isMovieInMyList(
+                                                              movie)
+                                                      ? 'assets/icons/icon_checkmark.png'
+                                                      : 'assets/icons/icon_plus_circle.png',
                                                   title: 'home_my_list_button'
                                                       .tr(),
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    if (homeProvider
+                                                        .isMovieInMyList(
+                                                            movie)) {
+                                                      homeProvider
+                                                          .removeMovieFromMyList(
+                                                              movie);
+                                                    } else {
+                                                      homeProvider
+                                                          .addMovieInMyList(
+                                                              movie: movie);
+                                                    }
+                                                  },
                                                 ),
                                               ),
                                             ),

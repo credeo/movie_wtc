@@ -17,6 +17,7 @@ class HomeProvider extends ChangeNotifier {
   HomeState get state => _state;
   List<Movie> get suggestedMovies => _movieService.suggestedMovies;
   List<Movie> get myMovieList => _userService.myMoviesList;
+  late Movie movie;
 
   HomeProvider() {
     scrollController.addListener(scrollControllerListener);
@@ -37,5 +38,20 @@ class HomeProvider extends ChangeNotifier {
 
   void scrollControllerListener() {
     notifyListeners();
+  }
+
+  void addMovieInMyList({required Movie movie}) {
+    _userService.addMovieInList(movie);
+    notifyListeners();
+  }
+
+  void removeMovieFromMyList(Movie movie) {
+    _userService.removeMovieFromMyList(movie);
+    notifyListeners();
+  }
+
+  bool isMovieInMyList(Movie movie) {
+    notifyListeners();
+    return _userService.isMovieHere(movie);
   }
 }
