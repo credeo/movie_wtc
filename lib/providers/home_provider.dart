@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
@@ -40,7 +41,7 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addMovieInMyList({required Movie movie}) {
+  void addMovieInMyList(Movie movie) {
     _userService.addMovieInList(movie);
     notifyListeners();
   }

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 
 enum Genre {
   romance('romance'),
@@ -49,4 +50,25 @@ class Movie {
       required this.duration,
       required this.downloadSize,
       this.year});
+  @override
+  bool operator ==(other) =>
+      other is Movie &&
+      other.title == title &&
+      other.subtitle == subtitle &&
+      other.details == details &&
+      other.releaseDate == releaseDate &&
+      other.rated == rated;
+  //other.fileSize == fileSize &&
+  //other.length == length;
+
+  @override
+  int get hashCode => hashValues(
+        title,
+        subtitle,
+        details,
+        releaseDate,
+        rated,
+        //fileSize,
+        //length,
+      );
 }

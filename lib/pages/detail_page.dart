@@ -112,13 +112,12 @@ class DetailPage extends StatelessWidget {
                                             .isMovieInMyList(movie)
                                         ? 'assets/icons/icon_checkmark.png'
                                         : 'assets/icons/icon_plus_circle.png',
-                                    onPressed: () {
-                                      detailProvider.isMovieInMyList(movie)
-                                          ? detailProvider
-                                              .removeMovieFromMyList(movie)
-                                          : detailProvider
-                                              .addMovieInMyList(movie);
-                                    },
+                                    onPressed: () =>
+                                        detailProvider.isMovieInMyList(movie)
+                                            ? detailProvider
+                                                .removeMovieFromMyList(movie)
+                                            : detailProvider
+                                                .addMovieInMyList(movie),
                                   ),
                                 ),
                               ),

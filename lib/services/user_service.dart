@@ -15,6 +15,6 @@ class UserService extends ChangeNotifier {
   }
 
   bool isMovieHere(Movie movie) {
-    return _myMoviesList.contains(_myMoviesList.map((e) => e));
+    return _myMoviesList.contains(movie);
   }
 }
