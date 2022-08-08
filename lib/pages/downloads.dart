@@ -61,7 +61,9 @@ class Downloads extends StatelessWidget {
                   CupertinoButton(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                    onPressed: () {},
+                    onPressed: () {
+                      downloadsProvider.deleteDownloadedMovies();
+                    },
                     child: SizedBox(
                       width: 24,
                       height: 24,

@@ -9,4 +9,9 @@ class DownloadsProvider extends ChangeNotifier {
 
   List<DownloadMovie> get downloadedMovies =>
       _downloadsService.downloadedMovies;
+
+  void deleteDownloadedMovies() {
+    _downloadsService.deleteDownloadedMovies();
+    notifyListeners();
+  }
 }

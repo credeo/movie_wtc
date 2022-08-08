@@ -69,4 +69,8 @@ class DownloadsService extends ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void deleteDownloadedMovies() {
+    _downloadedMovies.clear();
+  }
 }
