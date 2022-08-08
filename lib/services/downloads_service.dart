@@ -16,16 +16,32 @@ class DownloadsService extends ChangeNotifier {
     _init();
   }
 
+  int isMovieAdd(Movie movie) {
+    return _downloadedMovies.indexWhere((element) => element.movie == movie);
+  }
+
+  void addMovieForDownload(Movie movie) {
+    final index =
+        _downloadedMovies.indexWhere((element) => element.movie == movie);
+    if (index == -1) {
+      _downloadedMovies.add(DownloadMovie(
+        downloadedSize: 0.0,
+        state: DownloadMovieState.pending,
+        movie: movie,
+      ));
+    }
+  }
+
   void _init() {
     _downloadedMovies.add(DownloadMovie(
       downloadedSize: 0.0,
       state: DownloadMovieState.pending,
-      movie: Movie.test(0),
+      movie: Movie.test(2),
     ));
     _downloadedMovies.add(DownloadMovie(
       downloadedSize: 0.0,
       state: DownloadMovieState.pending,
-      movie: Movie.test(1),
+      movie: Movie.test(3),
     ));
   }
 
