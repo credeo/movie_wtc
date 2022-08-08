@@ -17,9 +17,7 @@ class DownloadMovieCellProvider extends ChangeNotifier {
 
   DownloadMovieCellProvider(this.movie) {
     _downloadMovie = _downloadsService.getDownloadMovie(movie);
-    _state = _downloadMovie == null
-        ? DownloadMovieState.pending
-        : _downloadMovie!.state;
+    _state = _downloadMovie == null ? DownloadMovieState.pending : _downloadMovie!.state;
     _downloadsService.addListener(downloadsServiceListener);
   }
 

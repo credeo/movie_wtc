@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
@@ -30,14 +29,7 @@ class ComingSoon extends StatelessWidget {
             case HomeState.ready:
               widget = Column(
                 children: [
-                  const SafeArea(
-                    child: CustomAppBar(
-                      leftIcon: LeftIcon.appLogo,
-                      rightIcon: RightIcon.notification,
-                      backButton: null,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
+                  const SafeArea(child: CustomAppBar()),
                   Expanded(
                     child: renderPage(
                         context: context,
@@ -57,13 +49,13 @@ class ComingSoon extends StatelessWidget {
       {required BuildContext context,
       required ComingSoonProvider comingSoonProvider}) {
     return ListView.builder(
-      padding: EdgeInsets.zero,
       itemCount: 1 + comingSoonProvider.comingSoonMovies.length,
+      padding: const EdgeInsets.only(top: 8),
       itemBuilder: (context, index) {
         final Widget widget;
         if (index == 0) {
           widget = Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
             child: Text(
               'coming_soon_title'.tr(),
               style: CustomTextStyles.of(context).semiBold18,
@@ -81,7 +73,7 @@ class ComingSoon extends StatelessWidget {
   Widget buildComingSoonCell(
       {required BuildContext context, required Movie movie}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -111,38 +103,34 @@ class ComingSoon extends StatelessWidget {
                     children: [
                       Positioned.fill(
                         child: ClipRRect(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(8.0)),
+                          borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
                             movie.coverImage,
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                      movie.ageRating != null
-                          ? Positioned(
-                              height: 28,
-                              width: 28,
-                              right: 8,
-                              top: 8,
-                              child: ClipRRect(
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(5.0)),
-                                  child: Image.asset(
-                                    'assets/icons/icon_restricted.png',
-                                    fit: BoxFit.contain,
-                                  )),
-                            )
-                          : Positioned.fill(
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(8.0)),
-                                child: Image.asset(
-                                  movie.coverImage,
-                                  fit: BoxFit.cover,
-                                ),
+                      if (movie.rated >= 18)
+                        Positioned(
+                          top: 8,
+                          right: 8,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: CustomColors.of(context).background,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(8.0),
                               ),
                             ),
+                            width: 28,
+                            height: 28,
+                            child: Center(
+                              child: Text(
+                                '18+',
+                                style: CustomTextStyles.of(context).regular12,
+                              ),
+                            ),
+                          ),
+                        ),
                     ],
                   ),
                 ),
@@ -173,27 +161,27 @@ class ComingSoon extends StatelessWidget {
                       .regular12
                       .apply(color: CustomColors.of(context).inactive),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 16),
                 Row(
                   children: [
                     Expanded(
                       child: Align(
-                        alignment: Alignment.bottomLeft,
+                        alignment: Alignment.centerLeft,
                         child: CustomSecondaryButton(
-                          title: 'coming_soon_more_info'.tr(),
+                          title: 'coming_soon_info'.tr(),
                           iconPath: 'assets/icons/icon_info.png',
                         ),
                       ),
                     ),
                     CustomSecondaryButton(
-                      title: 'coming_soon_remind_me'.tr(),
-                      iconPath: 'assets/icons/icon_notification_outlined.png',
+                      title: 'coming_soon_remind'.tr(),
+                      iconPath: 'assets/icons/icon_notification.png',
                     ),
                     Expanded(
                       child: Align(
-                        alignment: Alignment.bottomRight,
+                        alignment: Alignment.centerRight,
                         child: CustomSecondaryButton(
-                          title: 'coming_soon_my_list'.tr(),
+                          title: 'coming_soon_my_list_button'.tr(),
                           iconPath: 'assets/icons/icon_plus_circle.png',
                         ),
                       ),

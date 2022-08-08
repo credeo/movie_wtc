@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/models/movie.dart';
-import 'package:movie_wtc/pages/detail_page.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
@@ -38,16 +37,6 @@ class RouterService {
           path: '/home',
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
-        ),
-        GoRoute(
-          path: '/detail-page',
-          name: DetailPage.pageName,
-          builder: (context, state) => DetailPage(movie: state.extra as Movie),
-        ),
-        GoRoute(
-          path: '/my-list',
-          name: MyListPage.pageName,
-          builder: (context, state) => const MyListPage(),
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomTextStyles {
   final BuildContext _context;
   const CustomTextStyles.of(BuildContext context) : _context = context;
+
   TextStyle get regular10 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular10!;
   TextStyle get regular12 =>
@@ -11,12 +12,8 @@ class CustomTextStyles {
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
   TextStyle get regular15 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
-  TextStyle get regular18 =>
-      Theme.of(_context).extension<CustomTextStyleScheme>()!.regular18!;
   TextStyle get regular24 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular24!;
-  TextStyle get medium12 =>
-      Theme.of(_context).extension<CustomTextStyleScheme>()!.medium12!;
   TextStyle get medium14 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.medium14!;
   TextStyle get semiBold14 =>

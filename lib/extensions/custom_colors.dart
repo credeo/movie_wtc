@@ -43,8 +43,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? primaryText;
   final Color? secondaryText;
   final Color? background;
-  final Color? inactive;
   final Color? secondaryBackground;
+  final Color? inactive;
   final Color? buttonBackgroundGradientStart;
   final Color? buttonBackgroundGradientEnd;
   final Color? coverGradientStart;
@@ -92,6 +92,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? primaryText,
     Color? secondaryText,
     Color? background,
+    Color? secondaryBackground,
     Color? inactive,
     Color? buttonBackgroundGradientStart,
     Color? buttonBackgroundGradientEnd,
@@ -107,8 +108,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       primaryText: primaryText ?? this.primaryText,
       secondaryText: secondaryText ?? this.secondaryText,
       background: background ?? this.background,
+      secondaryBackground: secondaryBackground ?? this.secondaryBackground,
       inactive: inactive ?? this.inactive,
-      secondaryBackground: inactive ?? this.inactive,
       buttonBackgroundGradientStart:
           buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
       buttonBackgroundGradientEnd:
@@ -133,8 +134,9 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       primaryText: Color.lerp(primaryText, other.primaryText, t),
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t),
       background: Color.lerp(background, other.background, t),
+      secondaryBackground:
+          Color.lerp(secondaryBackground, other.secondaryBackground, t),
       inactive: Color.lerp(inactive, other.inactive, t),
-      secondaryBackground: Color.lerp(inactive, other.inactive, t),
       buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart,
           other.buttonBackgroundGradientStart, t),
       buttonBackgroundGradientEnd: Color.lerp(

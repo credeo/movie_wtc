@@ -1,36 +1,21 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-
 import 'package:movie_wtc/models/movie.dart';
-import 'package:movie_wtc/pages/detail_page.dart';
-import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
-import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   const Home({super.key});
-
-  @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  //final _controller = PageController();
-
-  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     final scaleRatio = MediaQuery.of(context).size.height / 812.0;
-
     final coverHeight = 400.0 * scaleRatio;
     return ChangeNotifierProvider(
       create: (context) => HomeProvider(),
@@ -64,8 +49,10 @@ class _HomeState extends State<Home> {
                               return Stack(
                                 children: [
                                   Positioned.fill(
-                                    child: Image.asset(movie.coverImage,
-                                        fit: BoxFit.cover),
+                                    child: Image.asset(
+                                      movie.coverImage,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                   Positioned(
                                     top: 0.0,
@@ -108,7 +95,7 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   Positioned(
-                                    bottom: 16.0,
+                                    bottom: 0.0,
                                     left: 0.0,
                                     right: 0.0,
                                     child: Column(
@@ -166,56 +153,42 @@ class _HomeState extends State<Home> {
                                               child: Align(
                                                 alignment:
                                                     Alignment.centerRight,
-                                                child: CustomSecondaryButton(
-                                                  iconPath: homeProvider
-                                                          .isMovieInMyList(
-                                                              movie)
-                                                      ? 'assets/icons/icon_checkmark.png'
-                                                      : 'assets/icons/icon_plus_circle.png',
-                                                  title: 'home_my_list_button'
-                                                      .tr(),
-                                                  onPressed: () {
-                                                    if (homeProvider
-                                                        .isMovieInMyList(
-                                                            movie)) {
-                                                      homeProvider
-                                                          .removeMovieFromMyList(
-                                                              movie);
-                                                    } else {
-                                                      homeProvider
-                                                          .addMovieInMyList(
-                                                              movie);
-                                                    }
-                                                  },
+                                                child: SizedBox(
+                                                  width: 72,
+                                                  child: CustomSecondaryButton(
+                                                    iconPath:
+                                                        'assets/icons/icon_checkmark.png',
+                                                    title: 'home_my_list_button'
+                                                        .tr(),
+                                                    onPressed: () {},
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.symmetric(
-                                                      horizontal: 34.0),
+                                                      horizontal: 24.0),
                                               child: CustomButtonWithIcon(
                                                 title: 'home_play'.tr(),
                                                 width: 100,
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
                                                 onPressed: () {},
-                                                isBlack: false,
                                               ),
                                             ),
                                             Expanded(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
-                                                child: CustomSecondaryButton(
-                                                  iconPath:
-                                                      'assets/icons/icon_info.png',
-                                                  title:
-                                                      'home_info_button'.tr(),
-                                                  onPressed: () {
-                                                    context.goNamed(
-                                                        DetailPage.pageName,
-                                                        extra: movie);
-                                                  },
+                                                child: SizedBox(
+                                                  width: 72,
+                                                  child: CustomSecondaryButton(
+                                                    iconPath:
+                                                        'assets/icons/icon_info.png',
+                                                    title:
+                                                        'home_info_button'.tr(),
+                                                    onPressed: () {},
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -463,7 +436,6 @@ class _HomeState extends State<Home> {
                 ),
                 onPressed: () {
                   print('clicked see more');
-                  context.goNamed(MyListPage.pageName);
                 },
               ),
             ],
