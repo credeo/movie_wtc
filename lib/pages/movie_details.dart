@@ -10,6 +10,7 @@ import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:movie_wtc/widgets/tab_bar_detail.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MovieDetails extends StatelessWidget {
   static const pageName = 'movie_details';
@@ -147,6 +148,11 @@ class MovieDetails extends StatelessWidget {
                                   title: 'detail_share'.tr(),
                                   iconPath: 'assets/icons/icon_share.png',
                                   padding: 12,
+                                  onPressed: () {
+                                    Share.share(
+                                      'detail_share_text'.tr(namedArgs: {'movie': movieDetailsProvider.movie.title}),
+                                    );
+                                  },
                                 ),
                               ),
                             ),

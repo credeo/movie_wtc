@@ -41,6 +41,7 @@
   "detail_cast": "Cast & Director",
   "detail_episodes": "Episodes",
   "detail_more": "More Like This",
+  "detail_share_text": "Hey! Checkout this great movie: {movie}",
   "snackbar_download_new": "{movie} moved to downloads!",
   "snackbar_download_exist": "{movie} is already in downloads!"
 }
