@@ -116,11 +116,23 @@ class MovieDetails extends StatelessWidget {
                             Expanded(
                               child: Align(
                                 alignment: Alignment.center,
-                                child: CustomSecondaryButton(
-                                  title: 'detail_my_list'.tr(),
-                                  iconPath: 'assets/icons/icon_checkmark.png',
-                                  padding: 12,
-                                ),
+                                child: movieDetailsProvider.isMovieInMyList()
+                                    ? CustomSecondaryButton(
+                                        title: 'detail_my_list'.tr(),
+                                        iconPath: 'assets/icons/icon_checkmark.png',
+                                        padding: 12,
+                                        onPressed: () {
+                                          movieDetailsProvider.removeMovieFromMyList();
+                                        },
+                                      )
+                                    : CustomSecondaryButton(
+                                        title: 'detail_my_list'.tr(),
+                                        iconPath: 'assets/icons/icon_plus_circle.png',
+                                        padding: 12,
+                                        onPressed: () {
+                                          movieDetailsProvider.addMovieToMyList();
+                                        },
+                                      ),
                               ),
                             ),
                             CustomSecondaryButton(

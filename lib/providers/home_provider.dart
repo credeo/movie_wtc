@@ -13,6 +13,7 @@ class HomeProvider extends ChangeNotifier {
   final _userService = KiwiContainer().resolve<UserService>();
 
   HomeState _state = HomeState.loading;
+  bool _isDisposed = false;
 
   HomeState get state => _state;
   List<Movie> get suggestedMovies => _movieService.suggestedMovies;
@@ -24,6 +25,7 @@ class HomeProvider extends ChangeNotifier {
   }
   @override
   void dispose() {
+    _isDisposed = true;
     pageController.dispose();
     scrollController.dispose();
     super.dispose();
@@ -32,6 +34,20 @@ class HomeProvider extends ChangeNotifier {
   void _init() async {
     await _movieService.fetchSuggestedMovies();
     _state = HomeState.ready;
+    if (!_isDisposed) notifyListeners();
+  }
+
+  bool isMovieInMyList(Movie movie) {
+    return _userService.isMovieInMyList(movie);
+  }
+
+  void addMovieToMyList(Movie movie) {
+    _userService.addToMyList(movie);
+    notifyListeners();
+  }
+
+  void removeMovieFromMyList(Movie movie) {
+    _userService.removeFromMyList(movie);
     notifyListeners();
   }
 

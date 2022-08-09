@@ -139,11 +139,21 @@ class Home extends StatelessWidget {
                                                 alignment: Alignment.centerRight,
                                                 child: SizedBox(
                                                   width: 72,
-                                                  child: CustomSecondaryButton(
-                                                    iconPath: 'assets/icons/icon_checkmark.png',
-                                                    title: 'home_my_list_button'.tr(),
-                                                    onPressed: () {},
-                                                  ),
+                                                  child: homeProvider.isMovieInMyList(movie)
+                                                      ? CustomSecondaryButton(
+                                                          iconPath: 'assets/icons/icon_checkmark.png',
+                                                          title: 'home_my_list_button'.tr(),
+                                                          onPressed: () {
+                                                            homeProvider.removeMovieFromMyList(movie);
+                                                          },
+                                                        )
+                                                      : CustomSecondaryButton(
+                                                          iconPath: 'assets/icons/icon_plus_circle.png',
+                                                          title: 'home_my_list_button'.tr(),
+                                                          onPressed: () {
+                                                            homeProvider.addMovieToMyList(movie);
+                                                          },
+                                                        ),
                                                 ),
                                               ),
                                             ),

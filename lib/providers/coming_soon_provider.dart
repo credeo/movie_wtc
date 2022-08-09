@@ -8,6 +8,7 @@ enum HomeState { loading, ready }
 class ComingSoonProvider extends ChangeNotifier {
   final _movieService = KiwiContainer().resolve<MovieService>();
   HomeState _state = HomeState.loading;
+  bool _isDisposed = false;
 
   HomeState get state => _state;
   List<Movie> get comingSoonMovies => _movieService.comingSoonMovies;
@@ -16,9 +17,15 @@ class ComingSoonProvider extends ChangeNotifier {
     _getComingSoonMovies();
   }
 
+  @override
+  void dispose() {
+    _isDisposed = true;
+    super.dispose();
+  }
+
   Future<void> _getComingSoonMovies() async {
     await _movieService.fetchComingSoonMovies();
     _state = HomeState.ready;
-    notifyListeners();
+    if (!_isDisposed) notifyListeners();
   }
 }

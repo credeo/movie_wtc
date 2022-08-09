@@ -19,18 +19,18 @@ class MovieDetailsProvider extends ChangeNotifier {
     movie = _movieService.getMovieWithId(movieId)!;
   }
 
-  void addMovieInMyList(Movie movie) {
-    // _userService.addMovieInList(movie);
+  void addMovieToMyList() {
+    _userService.addToMyList(movie);
     notifyListeners();
   }
 
-  void removeMovieFromMyList(Movie movie) {
-    // _userService.removeMovieFromMyList(movie);
+  void removeMovieFromMyList() {
+    _userService.removeFromMyList(movie);
     notifyListeners();
   }
 
-  bool isMovieInMyList(Movie movie) {
-    return false;
+  bool isMovieInMyList() {
+    return _userService.isMovieInMyList(movie);
   }
 
   DownloadMovieState? downloadMovie() {
