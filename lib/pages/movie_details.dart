@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/helpers/snackbar_helper.dart';
+import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/providers/movie_details_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -62,7 +64,9 @@ class MovieDetails extends StatelessWidget {
                           title: 'home_play'.tr(),
                           width: MediaQuery.of(context).size.width - 32.0,
                           iconPath: 'assets/icons/icon_play_filled.png',
-                          onPressed: () {},
+                          onPressed: () {
+                            context.goNamed(MoviePlayer.pageName, params: {'id': movieId});
+                          },
                         ),
                         const SizedBox(height: 12),
                         CustomButtonWithIcon.secondary(

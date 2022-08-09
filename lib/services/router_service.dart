@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/login_page.dart';
+import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
 
@@ -40,6 +41,15 @@ class RouterService {
               path: ':id',
               name: MovieDetails.pageName,
               builder: (context, state) => MovieDetails(movieId: state.params['id']!),
+              routes: [
+                GoRoute(
+                  path: 'movie_player',
+                  name: MoviePlayer.pageName,
+                  builder: (context, state) {
+                    return MoviePlayer(movieId: state.params['id']!);
+                  },
+                ),
+              ],
             ),
           ],
         ),
