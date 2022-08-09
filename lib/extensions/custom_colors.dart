@@ -14,10 +14,12 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.secondaryText!;
   Color get background =>
       Theme.of(_context).extension<CustomColorScheme>()!.background!;
-  Color get inactive =>
-      Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
   Color get secondaryBackground =>
       Theme.of(_context).extension<CustomColorScheme>()!.secondaryBackground!;
+  Color get tertiaryBackground =>
+      Theme.of(_context).extension<CustomColorScheme>()!.tertiaryBackground!;
+  Color get inactive =>
+      Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
   Color get buttonBackgroundGradientStart => Theme.of(_context)
       .extension<CustomColorScheme>()!
       .buttonBackgroundGradientStart!;
@@ -32,8 +34,6 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientStart!;
   Color get tabbarGradientEnd =>
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
-  Color get bottomSheetBackground =>
-      Theme.of(_context).extension<CustomColorScheme>()!.bottomSheetBackground!;
 }
 
 @immutable
@@ -44,6 +44,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? secondaryText;
   final Color? background;
   final Color? secondaryBackground;
+  final Color? tertiaryBackground;
   final Color? inactive;
   final Color? buttonBackgroundGradientStart;
   final Color? buttonBackgroundGradientEnd;
@@ -51,23 +52,23 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? coverGradientEnd;
   final Color? tabbarGradientStart;
   final Color? tabbarGradientEnd;
-  final Color? bottomSheetBackground;
 
-  const CustomColorScheme(
-      {required this.primary,
-      required this.secondary,
-      required this.primaryText,
-      required this.secondaryText,
-      required this.background,
-      required this.inactive,
-      required this.secondaryBackground,
-      required this.buttonBackgroundGradientStart,
-      required this.buttonBackgroundGradientEnd,
-      required this.coverGradientStart,
-      required this.coverGradientEnd,
-      required this.tabbarGradientEnd,
-      required this.tabbarGradientStart,
-      required this.bottomSheetBackground});
+  const CustomColorScheme({
+    required this.primary,
+    required this.secondary,
+    required this.primaryText,
+    required this.secondaryText,
+    required this.background,
+    required this.secondaryBackground,
+    required this.tertiaryBackground,
+    required this.inactive,
+    required this.buttonBackgroundGradientStart,
+    required this.buttonBackgroundGradientEnd,
+    required this.coverGradientStart,
+    required this.coverGradientEnd,
+    required this.tabbarGradientEnd,
+    required this.tabbarGradientStart,
+  });
 
   const CustomColorScheme.light(
       {this.primary = const Color(0xff0A84FF),
@@ -75,15 +76,15 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       this.primaryText = const Color(0xffffffff),
       this.secondaryText = const Color(0xff141414),
       this.background = const Color(0xff1C1C1E),
+      this.secondaryBackground = const Color(0xff262626),
+      this.tertiaryBackground = const Color(0xff141414),
       this.inactive = const Color(0xffAAAAAA),
-      this.secondaryBackground = const Color(0x00141414),
       this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
       this.buttonBackgroundGradientEnd = const Color(0xff161616),
       this.coverGradientStart = const Color(0xff141414),
       this.coverGradientEnd = const Color(0x00141414),
       this.tabbarGradientStart = const Color(0xF02F2F2F),
-      this.tabbarGradientEnd = const Color(0xF0161616),
-      this.bottomSheetBackground = const Color(0xf0262626)});
+      this.tabbarGradientEnd = const Color(0xF0161616)});
 
   @override
   CustomColorScheme copyWith({
@@ -93,6 +94,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? secondaryText,
     Color? background,
     Color? secondaryBackground,
+    Color? tertiaryBackground,
     Color? inactive,
     Color? buttonBackgroundGradientStart,
     Color? buttonBackgroundGradientEnd,
@@ -100,7 +102,6 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? coverGradientEnd,
     Color? tabbarGradientEnd,
     Color? tabbarGradientStart,
-    Color? bottomSheetBackground,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -109,6 +110,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       secondaryText: secondaryText ?? this.secondaryText,
       background: background ?? this.background,
       secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+      tertiaryBackground: tertiaryBackground ?? this.tertiaryBackground,
       inactive: inactive ?? this.inactive,
       buttonBackgroundGradientStart:
           buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
@@ -118,8 +120,6 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
       tabbarGradientEnd: tabbarGradientEnd ?? this.tabbarGradientEnd,
       tabbarGradientStart: tabbarGradientStart ?? this.tabbarGradientStart,
-      bottomSheetBackground:
-          bottomSheetBackground ?? this.bottomSheetBackground,
     );
   }
 
@@ -136,6 +136,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       background: Color.lerp(background, other.background, t),
       secondaryBackground:
           Color.lerp(secondaryBackground, other.secondaryBackground, t),
+      tertiaryBackground:
+          Color.lerp(tertiaryBackground, other.tertiaryBackground, t),
       inactive: Color.lerp(inactive, other.inactive, t),
       buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart,
           other.buttonBackgroundGradientStart, t),
@@ -148,8 +150,6 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
           Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
-      bottomSheetBackground:
-          Color.lerp(bottomSheetBackground, other.bottomSheetBackground, t),
     );
   }
 }

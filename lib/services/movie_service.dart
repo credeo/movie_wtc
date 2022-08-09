@@ -1,4 +1,5 @@
 import 'package:movie_wtc/models/movie.dart';
+import 'package:collection/collection.dart';
 
 class MovieService {
   List<Movie> _suggestedMovies = [];
@@ -25,5 +26,11 @@ class MovieService {
       Movie.test(2),
       Movie.test(3),
     ];
+  }
+
+  Movie? getMovieWithId(String id) {
+    var movie = _suggestedMovies.firstWhereOrNull((element) => element.id == id);
+    movie ??= _comingSoonMovies.firstWhereOrNull((element) => element.id == id);
+    return movie;
   }
 }

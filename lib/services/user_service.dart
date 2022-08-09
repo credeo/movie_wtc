@@ -6,15 +6,17 @@ class UserService extends ChangeNotifier {
 
   List<Movie> get myMoviesList => List.unmodifiable(_myMoviesList);
 
-  void addMovieInList(Movie movie) {
+  void addToMyList(Movie movie) {
     _myMoviesList.add(movie);
+    notifyListeners();
   }
 
-  void removeMovieFromMyList(Movie movie) {
+  void removeFromMyList(Movie movie) {
     _myMoviesList.remove(movie);
+    notifyListeners();
   }
 
-  bool isMovieHere(Movie movie) {
+  bool isMovieInMyList(Movie movie) {
     return _myMoviesList.contains(movie);
   }
 }

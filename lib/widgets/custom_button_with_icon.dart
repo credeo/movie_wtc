@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 
+enum _CustomButtonType { primary, secondary }
+
 class CustomButtonWithIcon extends StatelessWidget {
+  final _CustomButtonType _type;
   final String title;
   final String iconPath;
   final double? width;
   final VoidCallback? onPressed;
-  final bool isBlack;
 
   const CustomButtonWithIcon({
     super.key,
@@ -15,8 +17,15 @@ class CustomButtonWithIcon extends StatelessWidget {
     required this.iconPath,
     this.width,
     this.onPressed,
-    required this.isBlack,
-  });
+  }) : _type = _CustomButtonType.primary;
+
+  const CustomButtonWithIcon.secondary({
+    super.key,
+    required this.title,
+    required this.iconPath,
+    this.width,
+    this.onPressed,
+  }) : _type = _CustomButtonType.secondary;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +34,9 @@ class CustomButtonWithIcon extends StatelessWidget {
       width: width ?? 152,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: isBlack
-              ? CustomColors.of(context).secondaryText
-              : CustomColors.of(context).secondary,
+          backgroundColor: _type == _CustomButtonType.primary
+              ? CustomColors.of(context).secondary
+              : CustomColors.of(context).secondaryBackground,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
@@ -43,15 +52,18 @@ class CustomButtonWithIcon extends StatelessWidget {
               child: Image.asset(
                 iconPath,
                 fit: BoxFit.contain,
+                color: _type == _CustomButtonType.primary
+                    ? null
+                    : CustomColors.of(context).primaryText,
               ),
             ),
             const SizedBox(width: 8),
             Text(
               title,
-              style: CustomTextStyles.of(context).semiBold14.apply(
-                  color: isBlack
-                      ? CustomColors.of(context).secondary
-                      : CustomColors.of(context).secondaryText),
+              style: CustomTextStyles.of(context).semiBold16.apply(
+                  color: _type == _CustomButtonType.primary
+                      ? CustomColors.of(context).secondaryText
+                      : CustomColors.of(context).primaryText),
               textAlign: TextAlign.center,
             ),
           ],

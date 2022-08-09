@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
@@ -14,11 +13,11 @@ class HomeProvider extends ChangeNotifier {
   final _userService = KiwiContainer().resolve<UserService>();
 
   HomeState _state = HomeState.loading;
+  bool _isDisposed = false;
 
   HomeState get state => _state;
   List<Movie> get suggestedMovies => _movieService.suggestedMovies;
   List<Movie> get myMovieList => _userService.myMoviesList;
-  late Movie movie;
 
   HomeProvider() {
     scrollController.addListener(scrollControllerListener);
@@ -26,6 +25,7 @@ class HomeProvider extends ChangeNotifier {
   }
   @override
   void dispose() {
+    _isDisposed = true;
     pageController.dispose();
     scrollController.dispose();
     super.dispose();
@@ -34,25 +34,24 @@ class HomeProvider extends ChangeNotifier {
   void _init() async {
     await _movieService.fetchSuggestedMovies();
     _state = HomeState.ready;
+    if (!_isDisposed) notifyListeners();
+  }
+
+  bool isMovieInMyList(Movie movie) {
+    return _userService.isMovieInMyList(movie);
+  }
+
+  void addMovieToMyList(Movie movie) {
+    _userService.addToMyList(movie);
+    notifyListeners();
+  }
+
+  void removeMovieFromMyList(Movie movie) {
+    _userService.removeFromMyList(movie);
     notifyListeners();
   }
 
   void scrollControllerListener() {
     notifyListeners();
-  }
-
-  void addMovieInMyList(Movie movie) {
-    _userService.addMovieInList(movie);
-    notifyListeners();
-  }
-
-  void removeMovieFromMyList(Movie movie) {
-    _userService.removeMovieFromMyList(movie);
-    notifyListeners();
-  }
-
-  bool isMovieInMyList(Movie movie) {
-    notifyListeners();
-    return _userService.isMovieHere(movie);
   }
 }

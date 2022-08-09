@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/providers/coming_soon_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
@@ -29,13 +31,7 @@ class ComingSoon extends StatelessWidget {
             case HomeState.ready:
               widget = Column(
                 children: [
-                  const SafeArea(
-                    child: CustomAppBar(
-                      backButton: null,
-                      leftIcon: LeftIcon.appLogo,
-                      rightIcon: RightIcon.search,
-                    ),
-                  ),
+                  const SafeArea(child: CustomAppBar()),
                   Expanded(
                     child: renderPage(
                         context: context,
@@ -69,15 +65,21 @@ class ComingSoon extends StatelessWidget {
           );
         } else {
           final movie = comingSoonProvider.comingSoonMovies[index - 1];
-          widget = buildComingSoonCell(context: context, movie: movie);
+          widget = buildComingSoonCell(
+              context: context,
+              movie: movie,
+              comingSoonProvider: comingSoonProvider);
         }
         return widget;
       },
     );
   }
 
-  Widget buildComingSoonCell(
-      {required BuildContext context, required Movie movie}) {
+  Widget buildComingSoonCell({
+    required BuildContext context,
+    required Movie movie,
+    required ComingSoonProvider comingSoonProvider,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
       child: Row(
@@ -176,6 +178,10 @@ class ComingSoon extends StatelessWidget {
                         child: CustomSecondaryButton(
                           title: 'coming_soon_info'.tr(),
                           iconPath: 'assets/icons/icon_info.png',
+                          onPressed: () {
+                            context.goNamed(MovieDetails.pageName,
+                                params: {'id': movie.id});
+                          },
                         ),
                       ),
                     ),
@@ -186,10 +192,22 @@ class ComingSoon extends StatelessWidget {
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: CustomSecondaryButton(
-                          title: 'coming_soon_my_list_button'.tr(),
-                          iconPath: 'assets/icons/icon_plus_circle.png',
-                        ),
+                        child: comingSoonProvider.isMovieInMyList(movie)
+                            ? CustomSecondaryButton(
+                                iconPath: 'assets/icons/icon_checkmark.png',
+                                title: 'coming_soon_my_list_button'.tr(),
+                                onPressed: () {
+                                  comingSoonProvider
+                                      .removeMovieFromMyList(movie);
+                                },
+                              )
+                            : CustomSecondaryButton(
+                                iconPath: 'assets/icons/icon_plus_circle.png',
+                                title: 'coming_soon_my_list_button'.tr(),
+                                onPressed: () {
+                                  comingSoonProvider.addMovieToMyList(movie);
+                                },
+                              ),
                       ),
                     ),
                   ],

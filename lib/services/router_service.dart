@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
-import 'package:movie_wtc/models/movie.dart';
-import 'package:movie_wtc/pages/detail_page.dart';
+import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/login_page.dart';
-import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
 
@@ -38,11 +37,23 @@ class RouterService {
           path: '/home',
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
-        ),
-        GoRoute(
-          path: '/detail-page',
-          name: DetailPage.pageName,
-          builder: (context, state) => DetailPage(movie: state.extra as Movie),
+          routes: [
+            GoRoute(
+              path: ':id',
+              name: MovieDetails.pageName,
+              builder: (context, state) =>
+                  MovieDetails(movieId: state.params['id']!),
+              routes: [
+                GoRoute(
+                  path: 'movie_player',
+                  name: MoviePlayer.pageName,
+                  builder: (context, state) {
+                    return MoviePlayer(movieId: state.params['id']!);
+                  },
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     );

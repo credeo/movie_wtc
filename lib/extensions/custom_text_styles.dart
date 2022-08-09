@@ -40,7 +40,6 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   final TextStyle? regular12;
   final TextStyle? regular13;
   final TextStyle? regular15;
-  final TextStyle? regular18;
   final TextStyle? regular24;
   final TextStyle? medium12;
   final TextStyle? medium14;
@@ -57,7 +56,6 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     required this.regular12,
     required this.regular13,
     required this.regular15,
-    required this.regular18,
     required this.regular24,
     required this.medium12,
     required this.medium14,
@@ -90,11 +88,6 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           fontWeight: FontWeight.w400,
           color: primaryTextColor,
           fontSize: 15,
-        ),
-        regular18 = TextStyle(
-          fontWeight: FontWeight.w400,
-          color: primaryTextColor,
-          fontSize: 18,
         ),
         regular24 = TextStyle(
           fontWeight: FontWeight.w400,
@@ -140,8 +133,6 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           fontWeight: FontWeight.w600,
           color: primaryTextColor,
           fontSize: 40,
-
-          //decoration: TextDecoration.overline,
         ),
         extraBold15 = TextStyle(
           fontWeight: FontWeight.w800,
@@ -171,7 +162,6 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       regular12: regular12 ?? this.regular12,
       regular13: regular13 ?? this.regular13,
       regular15: regular15 ?? this.regular15,
-      regular18: regular18 ?? this.regular18,
       regular24: regular24 ?? this.regular24,
       medium12: medium12 ?? this.medium12,
       medium14: medium14 ?? this.medium14,
@@ -196,7 +186,6 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       regular12: TextStyle.lerp(regular12, other.regular12, t),
       regular13: TextStyle.lerp(regular13, other.regular13, t),
       regular15: TextStyle.lerp(regular15, other.regular15, t),
-      regular18: TextStyle.lerp(regular24, other.regular18, t),
       regular24: TextStyle.lerp(regular24, other.regular24, t),
       medium12: TextStyle.lerp(medium12, other.medium12, t),
       medium14: TextStyle.lerp(medium14, other.medium14, t),

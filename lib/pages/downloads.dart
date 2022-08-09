@@ -20,13 +20,7 @@ class Downloads extends StatelessWidget {
         builder: (context, downloadsProvider, child) {
           return Column(
             children: [
-              const SafeArea(
-                child: CustomAppBar(
-                  backButton: null,
-                  leftIcon: LeftIcon.appLogo,
-                  rightIcon: RightIcon.notification,
-                ),
-              ),
+              const SafeArea(child: CustomAppBar()),
               Expanded(
                   child: renderPage(
                       context: context, downloadsProvider: downloadsProvider))
@@ -62,7 +56,7 @@ class Downloads extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                     onPressed: () {
-                      downloadsProvider.deleteDownloadedMovies();
+                      downloadsProvider.clearDownloads();
                     },
                     child: SizedBox(
                       width: 24,

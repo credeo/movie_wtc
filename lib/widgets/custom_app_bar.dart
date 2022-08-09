@@ -1,56 +1,70 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 enum LeftIcon { backArrow, appLogo }
 
 enum RightIcon { notification, search }
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final bool hasBackButton;
+  final bool hasSearchButton;
+  final bool hasNotificationButton;
+  final Color? backgroundColor;
+
   const CustomAppBar({
     super.key,
-    required this.leftIcon,
-    required this.rightIcon,
-    required this.backButton,
+    this.hasBackButton = false,
+    this.hasSearchButton = false,
+    this.hasNotificationButton = false,
+    this.backgroundColor,
   });
-  final LeftIcon leftIcon;
-  final RightIcon rightIcon;
 
-  final VoidCallback? backButton;
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       elevation: 0,
-      leadingWidth: 112,
-      leading: CupertinoButton(
-        padding: EdgeInsets.zero,
-        onPressed: backButton,
-        child: leftIcon == LeftIcon.appLogo
-            ? SizedBox(
+      leadingWidth: hasBackButton ? 72 : 112,
+      automaticallyImplyLeading: false,
+      leading: hasBackButton
+          ? CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                context.pop();
+              },
+              child: SizedBox(
+                height: 24,
+                width: 24,
+                child: Image.asset(
+                  'assets/icons/icon_arrow_back.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
+          : CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: null,
+              child: SizedBox(
                 height: 28,
                 width: 64,
                 child: Image.asset(
                   'assets/icons/icon_app.png',
                   fit: BoxFit.contain,
                 ),
-              )
-            : Container(
-                margin: const EdgeInsets.only(right: 50),
-                height: 16,
-                width: 19,
-                child: Image.asset(
-                  'assets/icons/icon_back_arrow.png',
-                  fit: BoxFit.contain,
-                ),
               ),
-      ),
+            ),
       actions: [
-        CupertinoButton(
-          child: rightIcon == RightIcon.notification
-              ? Image.asset('assets/icons/icon_notification.png')
-              : Image.asset('assets/icons/icon_search.png'),
-          onPressed: () {},
-        ),
+        if (hasSearchButton)
+          CupertinoButton(
+            child: Image.asset('assets/icons/icon_search.png'),
+            onPressed: () {},
+          ),
+        if (hasNotificationButton)
+          CupertinoButton(
+            child: Image.asset('assets/icons/icon_notification_filled.png'),
+            onPressed: () {},
+          ),
         CupertinoButton(
           child: Image.asset('assets/icons/icon_profile.png'),
           onPressed: () {},
