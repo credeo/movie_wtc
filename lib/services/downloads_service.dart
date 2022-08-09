@@ -50,6 +50,11 @@ class DownloadsService extends ChangeNotifier {
     return _downloadedMovies.firstWhereOrNull((element) => element.movie == movie);
   }
 
+  void clearDownloads() {
+    _downloadedMovies.clear();
+    notifyListeners();
+  }
+
   void _downloadMovie(DownloadMovie downloadMovie) {
     print('started to download movie with title: ${downloadMovie.movie.title}');
     downloadMovie.state = DownloadMovieState.downloading;

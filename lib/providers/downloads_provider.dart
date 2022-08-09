@@ -8,4 +8,9 @@ class DownloadsProvider extends ChangeNotifier {
   final _downloadsService = KiwiContainer().resolve<DownloadsService>();
 
   List<DownloadMovie> get downloadedMovies => _downloadsService.downloadedMovies;
+
+  void clearDownloads() {
+    _downloadsService.clearDownloads();
+    notifyListeners();
+  }
 }

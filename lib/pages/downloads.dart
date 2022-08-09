@@ -50,7 +50,9 @@ class Downloads extends StatelessWidget {
                   const Spacer(),
                   CupertinoButton(
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                    onPressed: () {},
+                    onPressed: () {
+                      downloadsProvider.clearDownloads();
+                    },
                     child: SizedBox(
                       width: 24,
                       height: 24,

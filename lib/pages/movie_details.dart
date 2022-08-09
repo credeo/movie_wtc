@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/helpers/snackbar_helper.dart';
 import 'package:movie_wtc/providers/movie_details_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -67,7 +68,24 @@ class MovieDetails extends StatelessWidget {
                           title: '${'detail_download'.tr()} ${movieDetailsProvider.movie.title}',
                           width: MediaQuery.of(context).size.width - 32.0,
                           iconPath: 'assets/icons/icon_download.png',
-                          onPressed: () {},
+                          onPressed: () {
+                            final movieState = movieDetailsProvider.downloadMovie();
+                            if (movieState == null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackbarHelper.buildInfoSnackbar(
+                                  context: context,
+                                  text: 'snackbar_download_new'.tr(namedArgs: {'movie': movieDetailsProvider.movie.title}),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackbarHelper.buildInfoSnackbar(
+                                  context: context,
+                                  text: 'snackbar_download_exist'.tr(namedArgs: {'movie': movieDetailsProvider.movie.title}),
+                                ),
+                              );
+                            }
+                          },
                         ),
                         const SizedBox(height: 20),
                         Text(

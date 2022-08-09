@@ -40,5 +40,7 @@
   "detail_trailers": "Trailers & More",
   "detail_cast": "Cast & Director",
   "detail_episodes": "Episodes",
-  "detail_more": "More Like This"
+  "detail_more": "More Like This",
+  "snackbar_download_new": "{movie} moved to downloads!",
+  "snackbar_download_exist": "{movie} is already in downloads!"
 }
