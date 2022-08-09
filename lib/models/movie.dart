@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
 
 enum Genre {
   romance('romance'),
@@ -24,6 +23,7 @@ enum Genre {
 }
 
 class Movie {
+  final String id;
   final String title;
   final String coverImage;
   final List<Genre> genres;
@@ -35,6 +35,7 @@ class Movie {
   final double length;
 
   const Movie({
+    required this.id,
     required this.title,
     required this.coverImage,
     required this.genres,
@@ -47,31 +48,16 @@ class Movie {
   });
 
   @override
-  bool operator ==(other) =>
-      other is Movie &&
-      other.title == title &&
-      other.subtitle == subtitle &&
-      other.details == details &&
-      other.releaseDate == releaseDate &&
-      other.rated == rated &&
-      other.fileSize == fileSize &&
-      other.length == length;
+  bool operator ==(other) => other is Movie && other.id == id;
 
   @override
-  int get hashCode => hashValues(
-        title,
-        subtitle,
-        details,
-        releaseDate,
-        rated,
-        fileSize,
-        length,
-      );
+  int get hashCode => id.hashCode;
 
   factory Movie.test(int seed) {
     switch (seed) {
       case 1:
         return Movie(
+          id: 'id1',
           title: 'Thor: Love and Thunder',
           coverImage: 'assets/images/movies/thor.jpg',
           genres: [Genre.comedy],
@@ -87,6 +73,7 @@ class Movie {
         );
       case 2:
         return Movie(
+          id: 'id2',
           title: 'Stranger Things',
           coverImage: 'assets/images/movies/stranger_things.jpg',
           genres: [Genre.comedy],
@@ -102,6 +89,7 @@ class Movie {
         );
       case 3:
         return Movie(
+          id: 'id3',
           title: 'The Witcher',
           coverImage: 'assets/images/movies/the_witcher.jpg',
           genres: [Genre.comedy],
@@ -117,6 +105,7 @@ class Movie {
         );
       default:
         return Movie(
+          id: 'id4',
           title: 'Bridgerton',
           coverImage: 'assets/images/movies/bridgerton.png',
           genres: [Genre.romance, Genre.mystery],

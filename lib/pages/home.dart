@@ -1,12 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
+import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -102,27 +105,31 @@ class Home extends StatelessWidget {
                                           style: CustomTextStyles.of(context).semiBold40,
                                         ),
                                         const SizedBox(height: 16),
-                                        Row(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
-                                              style: CustomTextStyles.of(context).regular12,
-                                            ),
-                                            Container(
-                                              width: 4,
-                                              height: 4,
-                                              margin: const EdgeInsets.symmetric(horizontal: 8),
-                                              decoration: BoxDecoration(
-                                                  color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
-                                            ),
-                                            Text(
-                                              movie.details,
-                                              style: CustomTextStyles.of(context).regular12,
-                                            ),
-                                          ],
+                                        MovieDetailsRow(
+                                          leftText: movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
+                                          rightText: movie.details,
                                         ),
+                                        // Row(
+                                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                                        //   mainAxisAlignment: MainAxisAlignment.center,
+                                        //   children: [
+                                        //     Text(
+                                        //       movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
+                                        //       style: CustomTextStyles.of(context).regular12,
+                                        //     ),
+                                        //     Container(
+                                        //       width: 4,
+                                        //       height: 4,
+                                        //       margin: const EdgeInsets.symmetric(horizontal: 8),
+                                        //       decoration: BoxDecoration(
+                                        //           color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
+                                        //     ),
+                                        //     Text(
+                                        //       movie.details,
+                                        //       style: CustomTextStyles.of(context).regular12,
+                                        //     ),
+                                        //   ],
+                                        // ),
                                         const SizedBox(height: 8),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -157,7 +164,9 @@ class Home extends StatelessWidget {
                                                   child: CustomSecondaryButton(
                                                     iconPath: 'assets/icons/icon_info.png',
                                                     title: 'home_info_button'.tr(),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+                                                    },
                                                   ),
                                                 ),
                                               ),

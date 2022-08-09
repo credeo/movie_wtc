@@ -10,6 +10,7 @@ class CustomColors {
   Color get secondaryText => Theme.of(_context).extension<CustomColorScheme>()!.secondaryText!;
   Color get background => Theme.of(_context).extension<CustomColorScheme>()!.background!;
   Color get secondaryBackground => Theme.of(_context).extension<CustomColorScheme>()!.secondaryBackground!;
+  Color get tertiaryBackground => Theme.of(_context).extension<CustomColorScheme>()!.tertiaryBackground!;
   Color get inactive => Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
   Color get buttonBackgroundGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientStart!;
   Color get buttonBackgroundGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientEnd!;
@@ -27,6 +28,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? secondaryText;
   final Color? background;
   final Color? secondaryBackground;
+  final Color? tertiaryBackground;
   final Color? inactive;
   final Color? buttonBackgroundGradientStart;
   final Color? buttonBackgroundGradientEnd;
@@ -35,20 +37,22 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? tabbarGradientStart;
   final Color? tabbarGradientEnd;
 
-  const CustomColorScheme(
-      {required this.primary,
-      required this.secondary,
-      required this.primaryText,
-      required this.secondaryText,
-      required this.background,
-      required this.secondaryBackground,
-      required this.inactive,
-      required this.buttonBackgroundGradientStart,
-      required this.buttonBackgroundGradientEnd,
-      required this.coverGradientStart,
-      required this.coverGradientEnd,
-      required this.tabbarGradientEnd,
-      required this.tabbarGradientStart});
+  const CustomColorScheme({
+    required this.primary,
+    required this.secondary,
+    required this.primaryText,
+    required this.secondaryText,
+    required this.background,
+    required this.secondaryBackground,
+    required this.tertiaryBackground,
+    required this.inactive,
+    required this.buttonBackgroundGradientStart,
+    required this.buttonBackgroundGradientEnd,
+    required this.coverGradientStart,
+    required this.coverGradientEnd,
+    required this.tabbarGradientEnd,
+    required this.tabbarGradientStart,
+  });
 
   const CustomColorScheme.light(
       {this.primary = const Color(0xff0A84FF),
@@ -57,6 +61,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       this.secondaryText = const Color(0xff141414),
       this.background = const Color(0xff1C1C1E),
       this.secondaryBackground = const Color(0xff262626),
+      this.tertiaryBackground = const Color(0xff141414),
       this.inactive = const Color(0xffAAAAAA),
       this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
       this.buttonBackgroundGradientEnd = const Color(0xff161616),
@@ -73,6 +78,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? secondaryText,
     Color? background,
     Color? secondaryBackground,
+    Color? tertiaryBackground,
     Color? inactive,
     Color? buttonBackgroundGradientStart,
     Color? buttonBackgroundGradientEnd,
@@ -88,6 +94,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       secondaryText: secondaryText ?? this.secondaryText,
       background: background ?? this.background,
       secondaryBackground: secondaryBackground ?? this.secondaryBackground,
+      tertiaryBackground: tertiaryBackground ?? this.tertiaryBackground,
       inactive: inactive ?? this.inactive,
       buttonBackgroundGradientStart: buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
       buttonBackgroundGradientEnd: buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
@@ -110,6 +117,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t),
       background: Color.lerp(background, other.background, t),
       secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t),
+      tertiaryBackground: Color.lerp(tertiaryBackground, other.tertiaryBackground, t),
       inactive: Color.lerp(inactive, other.inactive, t),
       buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart, other.buttonBackgroundGradientStart, t),
       buttonBackgroundGradientEnd: Color.lerp(buttonBackgroundGradientEnd, other.buttonBackgroundGradientEnd, t),

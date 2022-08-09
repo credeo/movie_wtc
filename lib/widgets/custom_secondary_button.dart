@@ -5,11 +5,13 @@ class CustomSecondaryButton extends StatelessWidget {
   final String title;
   final String iconPath;
   final VoidCallback? onPressed;
+  final double? padding;
 
   const CustomSecondaryButton({
     super.key,
     required this.title,
     required this.iconPath,
+    this.padding,
     this.onPressed,
   });
 
@@ -27,7 +29,7 @@ class CustomSecondaryButton extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: padding ?? 4),
           Text(
             title,
             style: CustomTextStyles.of(context).regular12,
