@@ -31,9 +31,14 @@ class ComingSoon extends StatelessWidget {
             case HomeState.ready:
               widget = Column(
                 children: [
-                  const SafeArea(child: CustomAppBar()),
+                  const SafeArea(
+                      child: CustomAppBar(
+                    hasNotificationButton: true,
+                  )),
                   Expanded(
-                    child: renderPage(context: context, comingSoonProvider: comingSoonProvider),
+                    child: renderPage(
+                        context: context,
+                        comingSoonProvider: comingSoonProvider),
                   ),
                 ],
               );
@@ -45,7 +50,9 @@ class ComingSoon extends StatelessWidget {
     );
   }
 
-  Widget renderPage({required BuildContext context, required ComingSoonProvider comingSoonProvider}) {
+  Widget renderPage(
+      {required BuildContext context,
+      required ComingSoonProvider comingSoonProvider}) {
     return ListView.builder(
       itemCount: 1 + comingSoonProvider.comingSoonMovies.length,
       padding: const EdgeInsets.only(top: 8),
@@ -61,7 +68,10 @@ class ComingSoon extends StatelessWidget {
           );
         } else {
           final movie = comingSoonProvider.comingSoonMovies[index - 1];
-          widget = buildComingSoonCell(context: context, movie: movie, comingSoonProvider: comingSoonProvider);
+          widget = buildComingSoonCell(
+              context: context,
+              movie: movie,
+              comingSoonProvider: comingSoonProvider);
         }
         return widget;
       },
@@ -83,8 +93,9 @@ class ComingSoon extends StatelessWidget {
             children: [
               Text(
                 formatDateToShortMonth(movie.releaseDate).toUpperCase(),
-                style:
-                    CustomTextStyles.of(context).semiBold14.apply(color: CustomColors.of(context).primaryText.withOpacity(0.6)),
+                style: CustomTextStyles.of(context).semiBold14.apply(
+                    color:
+                        CustomColors.of(context).primaryText.withOpacity(0.6)),
               ),
               Text(
                 movie.releaseDate.day.toString(),
@@ -150,12 +161,16 @@ class ComingSoon extends StatelessWidget {
                     text: '${'coming_soon_genres'.tr()}: ',
                     children: [
                       TextSpan(
-                        text: movie.genres.map((e) => e.toLocalisedString()).join(', '),
+                        text: movie.genres
+                            .map((e) => e.toLocalisedString())
+                            .join(', '),
                         style: CustomTextStyles.of(context).regular12,
                       ),
                     ],
                   ),
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).inactive),
                 ),
                 const SizedBox(height: 16),
                 Row(
@@ -167,7 +182,8 @@ class ComingSoon extends StatelessWidget {
                           title: 'coming_soon_info'.tr(),
                           iconPath: 'assets/icons/icon_info.png',
                           onPressed: () {
-                            context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+                            context.goNamed(MovieDetails.pageName,
+                                params: {'id': movie.id});
                           },
                         ),
                       ),
@@ -184,7 +200,8 @@ class ComingSoon extends StatelessWidget {
                                 iconPath: 'assets/icons/icon_checkmark.png',
                                 title: 'coming_soon_my_list_button'.tr(),
                                 onPressed: () {
-                                  comingSoonProvider.removeMovieFromMyList(movie);
+                                  comingSoonProvider
+                                      .removeMovieFromMyList(movie);
                                 },
                               )
                             : CustomSecondaryButton(
