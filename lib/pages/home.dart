@@ -6,6 +6,7 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
+import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
@@ -118,27 +119,6 @@ class Home extends StatelessWidget {
                                               .toString(),
                                           rightText: movie.details,
                                         ),
-                                        // Row(
-                                        //   crossAxisAlignment: CrossAxisAlignment.center,
-                                        //   mainAxisAlignment: MainAxisAlignment.center,
-                                        //   children: [
-                                        //     Text(
-                                        //       movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
-                                        //       style: CustomTextStyles.of(context).regular12,
-                                        //     ),
-                                        //     Container(
-                                        //       width: 4,
-                                        //       height: 4,
-                                        //       margin: const EdgeInsets.symmetric(horizontal: 8),
-                                        //       decoration: BoxDecoration(
-                                        //           color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
-                                        //     ),
-                                        //     Text(
-                                        //       movie.details,
-                                        //       style: CustomTextStyles.of(context).regular12,
-                                        //     ),
-                                        //   ],
-                                        // ),
                                         const SizedBox(height: 8),
                                         Row(
                                           mainAxisAlignment:
@@ -189,7 +169,11 @@ class Home extends StatelessWidget {
                                                 width: 100,
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  context.goNamed(
+                                                      MoviePlayer.pageName,
+                                                      params: {'id': movie.id});
+                                                },
                                               ),
                                             ),
                                             Expanded(

@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leading: hasBackButton
           ? CupertinoButton(
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.only(top: 15),
               onPressed: () {
                 context.pop();
               },
@@ -43,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : CupertinoButton(
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.only(top: 15),
               onPressed: null,
               child: SizedBox(
                 height: 28,
@@ -57,15 +57,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (hasSearchButton)
           CupertinoButton(
+            padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_search.png'),
             onPressed: () {},
           ),
         if (hasNotificationButton)
           CupertinoButton(
+            padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_notification_filled.png'),
             onPressed: () {},
           ),
         CupertinoButton(
+          padding: const EdgeInsets.only(top: 15),
           child: Image.asset('assets/icons/icon_profile.png'),
           onPressed: () {},
         ),

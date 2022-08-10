@@ -1,6 +1,8 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/providers/movie_player_provider.dart';
+import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class MoviePlayer extends StatelessWidget {
@@ -16,7 +18,14 @@ class MoviePlayer extends StatelessWidget {
       create: (context) => MoviePlayerProvider(movieId),
       child: Consumer<MoviePlayerProvider>(
         builder: (context, moviePlayerProvider, child) {
-          return SafeArea(child: FlickVideoPlayer(flickManager: moviePlayerProvider.flickManager));
+          return Scaffold(
+              backgroundColor: CustomColors.of(context).tertiaryBackground,
+              appBar: const CustomAppBar(
+                hasBackButton: true,
+              ),
+              body: SafeArea(
+                  child: FlickVideoPlayer(
+                      flickManager: moviePlayerProvider.flickManager)));
         },
       ),
     );

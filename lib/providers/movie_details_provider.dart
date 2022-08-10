@@ -33,6 +33,7 @@ class MovieDetailsProvider extends ChangeNotifier {
     return _userService.isMovieInMyList(movie);
   }
 
+//////////
   DownloadMovieState? downloadMovie() {
     final downloadMovie = _downloadsService.getDownloadMovie(movie);
     if (downloadMovie == null) {
