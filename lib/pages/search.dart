@@ -136,54 +136,60 @@ class SearchPage extends StatelessWidget {
   }
 
   Widget getSearchCell(BuildContext context, Movie movie) {
-    return Container(
-      height: 60,
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: SizedBox(
-              width: 100,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
-                child: Image.asset(
-                  movie.coverImage,
-                  fit: BoxFit.cover,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+      },
+      child: Container(
+        height: 60,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: SizedBox(
+                width: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(4),
+                  child: Image.asset(
+                    movie.coverImage,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  movie.title,
-                  style: CustomTextStyles.of(context).medium12,
-                ),
-                //generateTitle(context, downloadMovieCellProvider.downloadMovie),
-                const SizedBox(height: 6),
-                Text(
-                  movie.genres.map((e) => e.toLocalisedString()).join(', '),
-                  style: CustomTextStyles.of(context)
-                      .regular10
-                      .apply(color: CustomColors.of(context).inactive),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  '${movie.releaseDate.year} | ${movie.rated}+ | ${movie.length.toStringAsFixed(0)}min',
-                  style: CustomTextStyles.of(context)
-                      .regular10
-                      .apply(color: CustomColors.of(context).inactive),
-                ),
-              ],
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    movie.title,
+                    style: CustomTextStyles.of(context).medium12,
+                  ),
+                  //generateTitle(context, downloadMovieCellProvider.downloadMovie),
+                  const SizedBox(height: 6),
+                  Text(
+                    movie.genres.map((e) => e.toLocalisedString()).join(', '),
+                    style: CustomTextStyles.of(context)
+                        .regular10
+                        .apply(color: CustomColors.of(context).inactive),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '${movie.releaseDate.year} | ${movie.rated}+ | ${movie.length.toStringAsFixed(0)}min',
+                    style: CustomTextStyles.of(context)
+                        .regular10
+                        .apply(color: CustomColors.of(context).inactive),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Image.asset('assets/icons/icon_arrow_right.png'),
-        ],
+            Image.asset('assets/icons/icon_arrow_right.png'),
+          ],
+        ),
       ),
     );
   }
