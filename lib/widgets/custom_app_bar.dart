@@ -57,7 +57,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           CupertinoButton(
             child: Image.asset('assets/icons/icon_search.png'),
             onPressed: () {
-              context.go(SearchPage.pageName);
+              context.goNamed(SearchPage.pageName);
             },
           ),
         if (hasNotificationButton)

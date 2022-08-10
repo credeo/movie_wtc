@@ -42,9 +42,11 @@ class MovieDetails extends StatelessWidget {
                   SizedBox(
                       height: 185,
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset(movieDetailsProvider.movie.coverImage, fit: BoxFit.cover)),
+                      child: Image.asset(movieDetailsProvider.movie.coverImage,
+                          fit: BoxFit.cover)),
                   Padding(
-                    padding: const EdgeInsets.only(left: 16.0, top: 24, right: 16),
+                    padding:
+                        const EdgeInsets.only(left: 16.0, top: 24, right: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -54,8 +56,10 @@ class MovieDetails extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         MovieDetailsRow(
-                          leftText: movieDetailsProvider.movie.releaseDate.year.toString(),
-                          rightText: '${movieDetailsProvider.movie.rated.toString()}+',
+                          leftText: movieDetailsProvider.movie.releaseDate.year
+                              .toString(),
+                          rightText:
+                              '${movieDetailsProvider.movie.rated.toString()}+',
                           tintColor: CustomColors.of(context).inactive,
                           mainAxisAlignment: MainAxisAlignment.start,
                         ),
@@ -65,28 +69,36 @@ class MovieDetails extends StatelessWidget {
                           width: MediaQuery.of(context).size.width - 32.0,
                           iconPath: 'assets/icons/icon_play_filled.png',
                           onPressed: () {
-                            context.goNamed(MoviePlayer.pageName, params: {'id': movieId});
+                            context.goNamed(MoviePlayer.pageName,
+                                params: {'id': movieId});
                           },
                         ),
                         const SizedBox(height: 12),
                         CustomButtonWithIcon.secondary(
-                          title: '${'detail_download'.tr()} ${movieDetailsProvider.movie.title}',
+                          title:
+                              '${'detail_download'.tr()} ${movieDetailsProvider.movie.title}',
                           width: MediaQuery.of(context).size.width - 32.0,
                           iconPath: 'assets/icons/icon_download.png',
                           onPressed: () {
-                            final movieState = movieDetailsProvider.downloadMovie();
+                            final movieState =
+                                movieDetailsProvider.downloadMovie();
                             if (movieState == null) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackbarHelper.buildInfoSnackbar(
                                   context: context,
-                                  text: 'snackbar_download_new'.tr(namedArgs: {'movie': movieDetailsProvider.movie.title}),
+                                  text: 'snackbar_download_new'.tr(namedArgs: {
+                                    'movie': movieDetailsProvider.movie.title
+                                  }),
                                 ),
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackbarHelper.buildInfoSnackbar(
                                   context: context,
-                                  text: 'snackbar_download_exist'.tr(namedArgs: {'movie': movieDetailsProvider.movie.title}),
+                                  text: 'snackbar_download_exist'
+                                      .tr(namedArgs: {
+                                    'movie': movieDetailsProvider.movie.title
+                                  }),
                                 ),
                               );
                             }
@@ -106,10 +118,13 @@ class MovieDetails extends StatelessWidget {
                         Text.rich(
                           TextSpan(
                             text: '${'detail_genres'.tr()}: ',
-                            style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+                            style: CustomTextStyles.of(context).regular12.apply(
+                                color: CustomColors.of(context).inactive),
                             children: [
                               TextSpan(
-                                text: movieDetailsProvider.movie.genres.map((e) => e.toLocalisedString()).join(', '),
+                                text: movieDetailsProvider.movie.genres
+                                    .map((e) => e.toLocalisedString())
+                                    .join(', '),
                                 style: CustomTextStyles.of(context).regular12,
                               ),
                             ],
@@ -124,18 +139,22 @@ class MovieDetails extends StatelessWidget {
                                 child: movieDetailsProvider.isMovieInMyList()
                                     ? CustomSecondaryButton(
                                         title: 'detail_my_list'.tr(),
-                                        iconPath: 'assets/icons/icon_checkmark.png',
+                                        iconPath:
+                                            'assets/icons/icon_checkmark.png',
                                         padding: 12,
                                         onPressed: () {
-                                          movieDetailsProvider.removeMovieFromMyList();
+                                          movieDetailsProvider
+                                              .removeMovieFromMyList();
                                         },
                                       )
                                     : CustomSecondaryButton(
                                         title: 'detail_my_list'.tr(),
-                                        iconPath: 'assets/icons/icon_plus_circle.png',
+                                        iconPath:
+                                            'assets/icons/icon_plus_circle.png',
                                         padding: 12,
                                         onPressed: () {
-                                          movieDetailsProvider.addMovieToMyList();
+                                          movieDetailsProvider
+                                              .addMovieToMyList();
                                         },
                                       ),
                               ),
@@ -154,7 +173,10 @@ class MovieDetails extends StatelessWidget {
                                   padding: 12,
                                   onPressed: () {
                                     Share.share(
-                                      'detail_share_text'.tr(namedArgs: {'movie': movieDetailsProvider.movie.title}),
+                                      'detail_share_text'.tr(namedArgs: {
+                                        'movie':
+                                            movieDetailsProvider.movie.title
+                                      }),
                                     );
                                   },
                                 ),

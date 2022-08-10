@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -75,8 +79,17 @@ class SearchPage extends StatelessWidget {
           suffixIcon: SizedBox(
             height: 16,
             width: 16,
-            child: Image.asset(
-              'assets/icons/icon_slider.png',
+            child: GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return getBottomSheet(context, searchProvider);
+                    });
+              },
+              child: Image.asset(
+                'assets/icons/icon_slider.png',
+              ),
             ),
           ),
           prefixIcon: Padding(
@@ -200,6 +213,96 @@ class SearchPage extends StatelessWidget {
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+
+  Widget getBottomSheet(BuildContext context, SearchProvider searchProvider) {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 1.9, tileMode: TileMode.decal),
+      child: SizedBox(
+        height: 363,
+        child: Column(
+          children: [
+            Container(
+              height: 60,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  'Search Filters',
+                  style: CustomTextStyles.of(context).semiBold18,
+                ),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: Image.asset('assets/icons/icon_close.png'),
+                ),
+              ),
+            ),
+            Divider(
+              height: 1,
+              color: CustomColors.of(context).tabbarGradientStart,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // DropdownButton(
+                  //   items: searchProvider.categories,
+                  //   onChanged: (index) {},
+                  // ),
+                  //SizedBox(height: 8),
+                  SizedBox(
+                    width: 269,
+                    child: Text(
+                      'downloads_next_ep_text'.tr(),
+                      style: CustomTextStyles.of(context).regular12,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 13),
+            Divider(
+              height: 1,
+              color: CustomColors.of(context).tabbarGradientStart,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'downloads_for_you_title'.tr(),
+                        style: CustomTextStyles.of(context).semiBold16,
+                      ),
+                      CupertinoSwitch(
+                        value: false,
+                        onChanged: (bool newValue) {},
+                      ),
+                    ],
+                  ),
+                  //SizedBox(height: 8),
+                  SizedBox(
+                    width: 269,
+                    child: Text(
+                      'downloads_for_you_text'.tr(),
+                      style: CustomTextStyles.of(context).regular12,
+                      maxLines: 5,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

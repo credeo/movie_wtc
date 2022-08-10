@@ -6,6 +6,7 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
+import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -190,7 +191,10 @@ class Home extends StatelessWidget {
                                                 width: 100,
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  context.goNamed(
+                                                      MoviePlayer.pageName);
+                                                },
                                               ),
                                             ),
                                             Expanded(
@@ -281,6 +285,7 @@ class Home extends StatelessWidget {
                               child:
                                   Image.asset('assets/icons/icon_search.png'),
                               onPressed: () {
+                                print(ModalRoute.of(context)?.settings.name);
                                 context.goNamed(SearchPage.pageName);
                               },
                             ),
