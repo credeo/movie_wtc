@@ -244,9 +244,9 @@ class SearchPage extends StatelessWidget {
                 ),
               ),
             ),
-            const Divider(
+            Divider(
               height: 1,
-              color: Colors.red,
+              color: CustomColors.of(context).searchDivider,
             ),
             const SizedBox(height: 13),
             getDropButtonRowString(
@@ -300,7 +300,7 @@ class SearchPage extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   hint: Text(
                     'Any',
-                    style: CustomTextStyles.of(context).regular15.apply(
+                    style: CustomTextStyles.of(context).regular16.apply(
                           color: CustomColors.of(context).primary,
                         ),
                   ),
@@ -308,7 +308,7 @@ class SearchPage extends StatelessWidget {
                   value: title == 'Category'
                       ? searchProvider.category
                       : searchProvider.duration,
-                  style: CustomTextStyles.of(context).regular15.apply(
+                  style: CustomTextStyles.of(context).regular16.apply(
                         color: CustomColors.of(context).primary,
                       ),
                   icon: const Text(''),
@@ -361,7 +361,7 @@ class SearchPage extends StatelessWidget {
                     contentPadding: const EdgeInsets.only(left: 10),
                     hintText: 'Any',
                     hintStyle: CustomTextStyles.of(context)
-                        .regular15
+                        .regular16
                         .apply(color: CustomColors.of(context).primary)),
               ),
             )

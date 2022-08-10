@@ -36,6 +36,8 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
   Color get searchBackground =>
       Theme.of(_context).extension<CustomColorScheme>()!.searchBackground!;
+  Color get searchDivider =>
+      Theme.of(_context).extension<CustomColorScheme>()!.searchDivider!;
 }
 
 @immutable
@@ -55,6 +57,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? tabbarGradientStart;
   final Color? tabbarGradientEnd;
   final Color? searchBackground;
+  final Color? searchDivider;
 
   const CustomColorScheme({
     required this.primary,
@@ -72,6 +75,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.tabbarGradientEnd,
     required this.tabbarGradientStart,
     required this.searchBackground,
+    required this.searchDivider,
   });
 
   const CustomColorScheme.light(
@@ -89,6 +93,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       this.coverGradientEnd = const Color(0x00141414),
       this.tabbarGradientStart = const Color(0xF02F2F2F),
       this.searchBackground = const Color(0x18767680),
+      this.searchDivider = const Color(0xFF2C2C2C),
       this.tabbarGradientEnd = const Color(0xF0161616)});
 
   @override
@@ -108,6 +113,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? tabbarGradientEnd,
     Color? tabbarGradientStart,
     Color? searchBackground,
+    Color? searchDivider,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -127,6 +133,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       tabbarGradientEnd: tabbarGradientEnd ?? this.tabbarGradientEnd,
       tabbarGradientStart: tabbarGradientStart ?? this.tabbarGradientStart,
       searchBackground: searchBackground ?? this.searchBackground,
+      searchDivider: searchDivider ?? this.searchDivider,
     );
   }
 
@@ -156,6 +163,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       tabbarGradientEnd:
           Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
       searchBackground: Color.lerp(searchBackground, other.searchBackground, t),
+      searchDivider: Color.lerp(searchDivider, other.searchDivider, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
     );
