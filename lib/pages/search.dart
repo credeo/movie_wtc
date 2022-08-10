@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,7 +12,7 @@ import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class SearchPage extends StatelessWidget {
-  static const pageName = '/search';
+  static const pageName = 'search';
 
   const SearchPage({Key? key}) : super(key: key);
 
@@ -30,19 +29,20 @@ class SearchPage extends StatelessWidget {
           builder: (context, searchProvider, child) {
             return Container(
               //padding: EdgeInsets.symmetric(horizontal: 16),
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   getTextField(context, searchProvider),
                   Padding(
-                    padding: EdgeInsets.only(top: 16, bottom: 12),
+                    padding: const EdgeInsets.only(top: 16, bottom: 12),
                     child: Text(
                       'Top Searches',
                       style: CustomTextStyles.of(context).semiBold18,
                     ),
                   ),
-                  searchProvider.controller.text == ''
+                  searchProvider.controller.text == '' &&
+                          searchProvider.searched.isEmpty
                       ? getTopSearches(context, searchProvider)
                       : getSearchGrid(context, searchProvider)
                 ],
@@ -60,18 +60,18 @@ class SearchPage extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color(0x18767680),
+          fillColor: CustomColors.of(context).searchBackground,
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
+            borderSide: BorderSide(
               width: 0,
-              color: Color(0x18767680),
+              color: CustomColors.of(context).searchBackground,
             ),
             borderRadius: BorderRadius.circular(10),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
+            borderSide: BorderSide(
               width: 0,
-              color: Color(0x18767680),
+              color: CustomColors.of(context).searchBackground,
             ),
             borderRadius: BorderRadius.circular(10),
           ),
@@ -83,6 +83,10 @@ class SearchPage extends StatelessWidget {
               onTap: () {
                 showModalBottomSheet(
                     context: context,
+                    backgroundColor: CustomColors.of(context).background,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                     builder: (context) {
                       return getBottomSheet(context, searchProvider);
                     });
@@ -102,7 +106,7 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
-          prefixIconColor: Color(0xFFEBEBF5).withOpacity(0.6),
+          prefixIconColor: const Color(0xFFEBEBF5).withOpacity(0.6),
           hintText: 'Search for a show, movie, genre,...',
           prefixIconConstraints: const BoxConstraints(
             maxWidth: 35,
@@ -200,7 +204,7 @@ class SearchPage extends StatelessWidget {
                   'id': searchProvider.searched.elementAt(index).id
                 });
               },
-              child: Container(
+              child: SizedBox(
                 height: 138,
                 width: 108,
                 child: ClipRRect(
@@ -240,68 +244,127 @@ class SearchPage extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(
+            const Divider(
               height: 1,
-              color: CustomColors.of(context).tabbarGradientStart,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // DropdownButton(
-                  //   items: searchProvider.categories,
-                  //   onChanged: (index) {},
-                  // ),
-                  //SizedBox(height: 8),
-                  SizedBox(
-                    width: 269,
-                    child: Text(
-                      'downloads_next_ep_text'.tr(),
-                      style: CustomTextStyles.of(context).regular12,
-                      maxLines: 5,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
+              color: Colors.red,
             ),
             const SizedBox(height: 13),
-            Divider(
-              height: 1,
-              color: CustomColors.of(context).tabbarGradientStart,
+            getDropButtonRowString(
+              context,
+              searchProvider,
+              'Category',
+              searchProvider.categories,
             ),
+            getDropButtonRowString(
+              context,
+              searchProvider,
+              'Duration',
+              searchProvider.durations,
+            ),
+            getDropButtonRowInt(
+              context,
+              searchProvider,
+              'Production year',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getDropButtonRowString(
+      BuildContext context,
+      SearchProvider searchProvider,
+      String title,
+      List<DropdownMenuItem<String>> list) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: CustomColors.of(context).searchBackground),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'downloads_for_you_title'.tr(),
-                        style: CustomTextStyles.of(context).semiBold16,
-                      ),
-                      CupertinoSwitch(
-                        value: false,
-                        onChanged: (bool newValue) {},
-                      ),
-                    ],
-                  ),
-                  //SizedBox(height: 8),
-                  SizedBox(
-                    width: 269,
-                    child: Text(
-                      'downloads_for_you_text'.tr(),
-                      style: CustomTextStyles.of(context).regular12,
-                      maxLines: 5,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+              padding: const EdgeInsets.only(left: 14),
+              child: Text(
+                title.toUpperCase(),
+                style: CustomTextStyles.of(context).semiBold16,
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.only(right: 14.0),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton(
+                  alignment: Alignment.centerRight,
+                  hint: Text(
+                    'Any',
+                    style: CustomTextStyles.of(context).regular15.apply(
+                          color: CustomColors.of(context).primary,
+                        ),
+                  ),
+                  items: list,
+                  value: title == 'Category'
+                      ? searchProvider.category
+                      : searchProvider.duration,
+                  style: CustomTextStyles.of(context).regular15.apply(
+                        color: CustomColors.of(context).primary,
+                      ),
+                  icon: const Text(''),
+                  onChanged: (index) {
+                    if (title == 'Category') {
+                      searchProvider.setCategory(index as String);
+                    } else {
+                      searchProvider.setDuration(index as String);
+                    }
+                    searchProvider.searchBottomSheet();
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget getDropButtonRowInt(
+      BuildContext context, SearchProvider searchProvider, String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: CustomColors.of(context).searchBackground),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 14),
+              child: Text(
+                title.toUpperCase(),
+                style: CustomTextStyles.of(context).semiBold16,
+              ),
+            ),
+            SizedBox(
+              width: 50,
+              child: TextField(
+                onChanged: (text) {
+                  searchProvider.searchBottomSheet();
+                },
+                controller: searchProvider.productionController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    border:
+                        const OutlineInputBorder(borderSide: BorderSide.none),
+                    contentPadding: const EdgeInsets.only(left: 10),
+                    hintText: 'Any',
+                    hintStyle: CustomTextStyles.of(context)
+                        .regular15
+                        .apply(color: CustomColors.of(context).primary)),
+              ),
+            )
           ],
         ),
       ),
