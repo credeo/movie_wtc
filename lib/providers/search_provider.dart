@@ -6,6 +6,7 @@ import 'package:movie_wtc/services/movie_service.dart';
 class SearchProvider extends ChangeNotifier {
   final List<Movie> _movies = KiwiContainer().resolve<MovieService>().suggestedMovies;
   List<Movie> _searched = [];
+  String _query = '';
   String _category = '';
   String _duration = '';
   String _productionYear = '';
@@ -15,11 +16,11 @@ class SearchProvider extends ChangeNotifier {
   String get productionYear => _productionYear;
   List<Movie> get movies => List.unmodifiable(_movies);
   List<Movie> get searched => List.unmodifiable(_searched);
-  bool get isSearchActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty;
+  bool get isSearchActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty || _query.isNotEmpty;
 
   void search(String query) {
-    _searched = _movies.where((element) => element.title.toLowerCase().contains(query.toLowerCase())).toList();
-    notifyListeners();
+    _query = query;
+    applyFilters();
   }
 
   void applyFilters({String? category, String? duration, String? productionYear}) {
@@ -28,7 +29,11 @@ class SearchProvider extends ChangeNotifier {
     _productionYear = productionYear ?? _productionYear;
 
     if (_category.isEmpty && _duration.isEmpty && _productionYear.isEmpty) {
-      _searched = [];
+      if (_query.isEmpty) {
+        _searched = [];
+      } else {
+        _searched = _movies.where((element) => element.title.toLowerCase().contains(_query.toLowerCase())).toList();
+      }
       notifyListeners();
       return;
     }
@@ -68,6 +73,10 @@ class SearchProvider extends ChangeNotifier {
     }
 
     _searched = list;
+    if (_query.isNotEmpty) {
+      _searched = _searched.where((element) => element.title.toLowerCase().contains(_query.toLowerCase())).toList();
+    }
+
     notifyListeners();
   }
 }
