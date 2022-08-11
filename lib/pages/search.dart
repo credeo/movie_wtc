@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -38,8 +39,8 @@ class SearchPage extends StatelessWidget {
                     child: Text(
                       searchProvider.controller.text == '' &&
                               searchProvider.searched.isEmpty
-                          ? 'Top Searches'
-                          : 'Movies & TV Shows',
+                          ? 'search_top_searches'.tr()
+                          : 'search_movies_and_shows'.tr(),
                       style: CustomTextStyles.of(context).semiBold18,
                     ),
                   ),
@@ -108,8 +109,8 @@ class SearchPage extends StatelessWidget {
               ),
             ),
           ),
-          prefixIconColor: const Color(0xFFEBEBF5).withOpacity(0.6),
-          hintText: 'Search for a show, movie, genre,...',
+          prefixIconColor: CustomColors.of(context).hintText,
+          hintText: 'search_hint_text'.tr(),
           hintStyle: CustomTextStyles.of(context)
               .regular17
               .apply(color: CustomColors.of(context).hintText),
@@ -246,7 +247,7 @@ class SearchPage extends StatelessWidget {
               child: ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(
-                  'Search Filters',
+                  'search_filters'.tr(),
                   style: CustomTextStyles.of(context).semiBold18,
                 ),
                 trailing: IconButton(
