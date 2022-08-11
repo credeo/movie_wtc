@@ -15,47 +15,47 @@ class SearchProvider extends ChangeNotifier {
 
   final List<DropdownMenuItem<String>> _categories = [
     const DropdownMenuItem(
-      child: Text('Any'),
       value: 'Any',
+      child: Text('Any'),
     ),
     const DropdownMenuItem(
-      child: Text('Romance'),
       value: 'Romance',
+      child: Text('Romance'),
     ),
     const DropdownMenuItem(
-      child: Text('Comedy'),
       value: 'Comedy',
+      child: Text('Comedy'),
     ),
     const DropdownMenuItem(
-      child: Text('Horror'),
       value: 'Horror',
+      child: Text('Horror'),
     ),
     const DropdownMenuItem(
-      child: Text('Action'),
       value: 'Action',
+      child: Text('Action'),
     ),
     const DropdownMenuItem(
-      child: Text('Mystery'),
       value: 'Mystery',
+      child: Text('Mystery'),
     )
   ];
 
   final List<DropdownMenuItem<String>> _durations = [
     const DropdownMenuItem(
-      child: Text('Any'),
       value: 'Any',
+      child: Text('Any'),
     ),
     const DropdownMenuItem(
-      child: Text('<60min'),
       value: '60',
+      child: Text('<60min'),
     ),
     const DropdownMenuItem(
-      child: Text('60-120min'),
       value: '120',
+      child: Text('60-120min'),
     ),
     const DropdownMenuItem(
-      child: Text('>120min'),
       value: '121',
+      child: Text('>120min'),
     ),
   ];
 
@@ -71,6 +71,13 @@ class SearchProvider extends ChangeNotifier {
   String get duration => _duration;
 
   Iterable<Movie> get searched => List.unmodifiable(_searched);
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _productionController.dispose();
+    super.dispose();
+  }
 
   void setCategory(String a) {
     _category = a;

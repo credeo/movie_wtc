@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -111,6 +110,9 @@ class SearchPage extends StatelessWidget {
           ),
           prefixIconColor: const Color(0xFFEBEBF5).withOpacity(0.6),
           hintText: 'Search for a show, movie, genre,...',
+          hintStyle: CustomTextStyles.of(context)
+              .regular17
+              .apply(color: CustomColors.of(context).hintText),
           prefixIconConstraints: const BoxConstraints(
             maxWidth: 35,
           ),
