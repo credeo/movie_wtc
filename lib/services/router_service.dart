@@ -31,15 +31,15 @@ class RouterService {
           builder: (context, state) => const LoginPage(),
         ),
         GoRoute(
+          path: '/search',
+          name: SearchPage.pageName,
+          builder: (context, state) => const SearchPage(),
+        ),
+        GoRoute(
           path: '/home',
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
           routes: [
-            GoRoute(
-              path: 'search',
-              name: SearchPage.pageName,
-              builder: (context, state) => const SearchPage(),
-            ),
             GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,

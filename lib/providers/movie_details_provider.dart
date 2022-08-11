@@ -16,7 +16,6 @@ class MovieDetailsProvider extends ChangeNotifier {
   late final Movie movie;
 
   MovieDetailsProvider(String movieId) {
-    print(movieId);
     movie = _movieService.getMovieWithId(movieId)!;
   }
 

@@ -245,8 +245,7 @@ class Home extends StatelessWidget {
                             CupertinoButton(
                               child: Image.asset('assets/icons/icon_search.png'),
                               onPressed: () {
-                                print(ModalRoute.of(context)?.settings.name);
-                                context.goNamed(SearchPage.pageName);
+                                context.pushNamed(SearchPage.pageName);
                               },
                             ),
                             CupertinoButton(
