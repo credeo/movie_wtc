@@ -6,7 +6,8 @@ import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class MoviePlayer extends StatelessWidget {
-  static const pageName = 'movie_player';
+  static const pageNameFromHome = 'movie_player_home';
+  static const pageNameFromDetails = 'movie_player_details';
 
   final String movieId;
 
@@ -30,8 +31,7 @@ class MoviePlayer extends StatelessWidget {
                 ),
               ),
               body: SafeArea(
-                child: FlickVideoPlayer(
-                    flickManager: moviePlayerProvider.flickManager),
+                child: FlickVideoPlayer(flickManager: moviePlayerProvider.flickManager),
               ),
             ),
           );
