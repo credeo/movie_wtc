@@ -41,6 +41,12 @@ class _MovieSearchBottomSheetState extends State<MovieSearchBottomSheet> {
     _productionYearController = TextEditingController(text: widget.initialProductionYear ?? '');
   }
 
+  @override
+  void dispose() {
+    _productionYearController.dispose();
+    super.dispose();
+  }
+
   final List<DropdownMenuItem<String>> _categories = [
     const DropdownMenuItem(
       value: 'Any',
