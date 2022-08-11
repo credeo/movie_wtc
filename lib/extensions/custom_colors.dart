@@ -40,6 +40,8 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.searchDivider!;
   Color get hintText =>
       Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
+  Color get textCursor =>
+      Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
 }
 
 @immutable
@@ -61,6 +63,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? searchBackground;
   final Color? searchDivider;
   final Color? hintText;
+  final Color? textCursor;
 
   const CustomColorScheme({
     required this.primary,
@@ -80,6 +83,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.searchBackground,
     required this.searchDivider,
     required this.hintText,
+    required this.textCursor,
   });
 
   const CustomColorScheme.light({
@@ -100,6 +104,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.searchDivider = const Color(0xFF2C2C2C),
     this.tabbarGradientEnd = const Color(0xF0161616),
     this.hintText = const Color(0x3Cebebf5),
+    this.textCursor = const Color(0xffEAEAEB),
   });
 
   @override
@@ -121,6 +126,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? searchBackground,
     Color? searchDivider,
     Color? hintText,
+    Color? textCursor,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -142,6 +148,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       searchBackground: searchBackground ?? this.searchBackground,
       searchDivider: searchDivider ?? this.searchDivider,
       hintText: hintText ?? this.hintText,
+      textCursor: textCursor ?? this.textCursor,
     );
   }
 
@@ -173,6 +180,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       searchBackground: Color.lerp(searchBackground, other.searchBackground, t),
       searchDivider: Color.lerp(searchDivider, other.searchDivider, t),
       hintText: Color.lerp(hintText, other.hintText, t),
+      textCursor: Color.lerp(textCursor, other.textCursor, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
     );

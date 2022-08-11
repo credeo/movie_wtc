@@ -61,6 +61,8 @@ class SearchPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: TextField(
+        cursorHeight: 20,
+        cursorColor: CustomColors.of(context).textCursor,
         decoration: InputDecoration(
           filled: true,
           fillColor: CustomColors.of(context).searchBackground,
