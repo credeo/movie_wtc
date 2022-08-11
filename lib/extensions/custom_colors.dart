@@ -4,44 +4,24 @@ class CustomColors {
   final BuildContext _context;
   const CustomColors.of(BuildContext context) : _context = context;
 
-  Color get primary =>
-      Theme.of(_context).extension<CustomColorScheme>()!.primary!;
-  Color get secondary =>
-      Theme.of(_context).extension<CustomColorScheme>()!.secondary!;
-  Color get primaryText =>
-      Theme.of(_context).extension<CustomColorScheme>()!.primaryText!;
-  Color get secondaryText =>
-      Theme.of(_context).extension<CustomColorScheme>()!.secondaryText!;
-  Color get background =>
-      Theme.of(_context).extension<CustomColorScheme>()!.background!;
-  Color get secondaryBackground =>
-      Theme.of(_context).extension<CustomColorScheme>()!.secondaryBackground!;
-  Color get tertiaryBackground =>
-      Theme.of(_context).extension<CustomColorScheme>()!.tertiaryBackground!;
-  Color get inactive =>
-      Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
-  Color get buttonBackgroundGradientStart => Theme.of(_context)
-      .extension<CustomColorScheme>()!
-      .buttonBackgroundGradientStart!;
-  Color get buttonBackgroundGradientEnd => Theme.of(_context)
-      .extension<CustomColorScheme>()!
-      .buttonBackgroundGradientEnd!;
-  Color get coverGradientStart =>
-      Theme.of(_context).extension<CustomColorScheme>()!.coverGradientStart!;
-  Color get coverGradientEnd =>
-      Theme.of(_context).extension<CustomColorScheme>()!.coverGradientEnd!;
-  Color get tabbarGradientStart =>
-      Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientStart!;
-  Color get tabbarGradientEnd =>
-      Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
-  Color get searchBackground =>
-      Theme.of(_context).extension<CustomColorScheme>()!.searchBackground!;
-  Color get searchDivider =>
-      Theme.of(_context).extension<CustomColorScheme>()!.searchDivider!;
-  Color get hintText =>
-      Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
-  Color get textCursor =>
-      Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
+  Color get primary => Theme.of(_context).extension<CustomColorScheme>()!.primary!;
+  Color get secondary => Theme.of(_context).extension<CustomColorScheme>()!.secondary!;
+  Color get primaryText => Theme.of(_context).extension<CustomColorScheme>()!.primaryText!;
+  Color get secondaryText => Theme.of(_context).extension<CustomColorScheme>()!.secondaryText!;
+  Color get background => Theme.of(_context).extension<CustomColorScheme>()!.background!;
+  Color get secondaryBackground => Theme.of(_context).extension<CustomColorScheme>()!.secondaryBackground!;
+  Color get tertiaryBackground => Theme.of(_context).extension<CustomColorScheme>()!.tertiaryBackground!;
+  Color get inactive => Theme.of(_context).extension<CustomColorScheme>()!.inactive!;
+  Color get buttonBackgroundGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientStart!;
+  Color get buttonBackgroundGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.buttonBackgroundGradientEnd!;
+  Color get coverGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.coverGradientStart!;
+  Color get coverGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.coverGradientEnd!;
+  Color get tabbarGradientStart => Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientStart!;
+  Color get tabbarGradientEnd => Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
+  Color get searchBackground => Theme.of(_context).extension<CustomColorScheme>()!.searchBackground!;
+  Color get searchDivider => Theme.of(_context).extension<CustomColorScheme>()!.searchDivider!;
+  Color get hintText => Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
+  Color get textCursor => Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
 }
 
 @immutable
@@ -100,10 +80,10 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.coverGradientStart = const Color(0xff141414),
     this.coverGradientEnd = const Color(0x00141414),
     this.tabbarGradientStart = const Color(0xF02F2F2F),
-    this.searchBackground = const Color(0x18767680),
+    this.searchBackground = const Color(0x3D767680),
     this.searchDivider = const Color(0xFF2C2C2C),
     this.tabbarGradientEnd = const Color(0xF0161616),
-    this.hintText = const Color(0x3Cebebf5),
+    this.hintText = const Color(0x99ebebf5),
     this.textCursor = const Color(0xffEAEAEB),
   });
 
@@ -137,10 +117,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       secondaryBackground: secondaryBackground ?? this.secondaryBackground,
       tertiaryBackground: tertiaryBackground ?? this.tertiaryBackground,
       inactive: inactive ?? this.inactive,
-      buttonBackgroundGradientStart:
-          buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
-      buttonBackgroundGradientEnd:
-          buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
+      buttonBackgroundGradientStart: buttonBackgroundGradientStart ?? this.buttonBackgroundGradientStart,
+      buttonBackgroundGradientEnd: buttonBackgroundGradientEnd ?? this.buttonBackgroundGradientEnd,
       coverGradientStart: coverGradientStart ?? this.coverGradientStart,
       coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
       tabbarGradientEnd: tabbarGradientEnd ?? this.tabbarGradientEnd,
@@ -163,26 +141,19 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       primaryText: Color.lerp(primaryText, other.primaryText, t),
       secondaryText: Color.lerp(secondaryText, other.secondaryText, t),
       background: Color.lerp(background, other.background, t),
-      secondaryBackground:
-          Color.lerp(secondaryBackground, other.secondaryBackground, t),
-      tertiaryBackground:
-          Color.lerp(tertiaryBackground, other.tertiaryBackground, t),
+      secondaryBackground: Color.lerp(secondaryBackground, other.secondaryBackground, t),
+      tertiaryBackground: Color.lerp(tertiaryBackground, other.tertiaryBackground, t),
       inactive: Color.lerp(inactive, other.inactive, t),
-      buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart,
-          other.buttonBackgroundGradientStart, t),
-      buttonBackgroundGradientEnd: Color.lerp(
-          buttonBackgroundGradientEnd, other.buttonBackgroundGradientEnd, t),
-      coverGradientStart:
-          Color.lerp(coverGradientStart, other.coverGradientStart, t),
+      buttonBackgroundGradientStart: Color.lerp(buttonBackgroundGradientStart, other.buttonBackgroundGradientStart, t),
+      buttonBackgroundGradientEnd: Color.lerp(buttonBackgroundGradientEnd, other.buttonBackgroundGradientEnd, t),
+      coverGradientStart: Color.lerp(coverGradientStart, other.coverGradientStart, t),
       coverGradientEnd: Color.lerp(coverGradientEnd, other.coverGradientEnd, t),
-      tabbarGradientEnd:
-          Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
+      tabbarGradientEnd: Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
       searchBackground: Color.lerp(searchBackground, other.searchBackground, t),
       searchDivider: Color.lerp(searchDivider, other.searchDivider, t),
       hintText: Color.lerp(hintText, other.hintText, t),
       textCursor: Color.lerp(textCursor, other.textCursor, t),
-      tabbarGradientStart:
-          Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
+      tabbarGradientStart: Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
     );
   }
 }
