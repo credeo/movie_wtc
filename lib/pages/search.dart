@@ -91,6 +91,9 @@ class SearchPage extends StatelessWidget {
                       ),
                       builder: (context) {
                         return MovieSearchBottomSheet(
+                          initialCategory: searchProvider.category.isEmpty ? null : searchProvider.category,
+                          initialDuration: searchProvider.duration.isEmpty ? null : searchProvider.duration,
+                          initialProductionYear: searchProvider.productionYear.isEmpty ? null : searchProvider.productionYear,
                           onCategoryChanged: (category) {
                             searchProvider.applyFilters(category: category, duration: null, productionYear: null);
                           },

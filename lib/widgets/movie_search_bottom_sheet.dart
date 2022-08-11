@@ -6,12 +6,19 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 
 class MovieSearchBottomSheet extends StatefulWidget {
+  final String? initialCategory;
+  final String? initialDuration;
+  final String? initialProductionYear;
+
   final void Function(String)? onCategoryChanged;
   final void Function(String)? onDurationChanged;
   final void Function(String)? onProductionYearChanged;
 
   const MovieSearchBottomSheet({
     super.key,
+    this.initialCategory,
+    this.initialDuration,
+    this.initialProductionYear,
     this.onCategoryChanged,
     this.onDurationChanged,
     this.onProductionYearChanged,
@@ -22,8 +29,17 @@ class MovieSearchBottomSheet extends StatefulWidget {
 }
 
 class _MovieSearchBottomSheetState extends State<MovieSearchBottomSheet> {
-  String _category = 'Any';
-  String _duration = 'Any';
+  late TextEditingController _productionYearController;
+  late String _category;
+  late String _duration;
+
+  @override
+  void initState() {
+    super.initState();
+    _category = widget.initialCategory ?? 'Any';
+    _duration = widget.initialDuration ?? 'Any';
+    _productionYearController = TextEditingController(text: widget.initialProductionYear ?? '');
+  }
 
   final List<DropdownMenuItem<String>> _categories = [
     const DropdownMenuItem(
@@ -202,6 +218,7 @@ class _MovieSearchBottomSheetState extends State<MovieSearchBottomSheet> {
             SizedBox(
               width: 50,
               child: TextField(
+                controller: _productionYearController,
                 onChanged: onChanged,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(

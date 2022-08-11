@@ -10,6 +10,9 @@ class SearchProvider extends ChangeNotifier {
   String _duration = '';
   String _productionYear = '';
 
+  String get category => _category;
+  String get duration => _duration;
+  String get productionYear => _productionYear;
   List<Movie> get movies => List.unmodifiable(_movies);
   List<Movie> get searched => List.unmodifiable(_searched);
   bool get isSearchActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty;
