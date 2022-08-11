@@ -34,6 +34,10 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientStart!;
   Color get tabbarGradientEnd =>
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
+  Color get searchField =>
+      Theme.of(_context).extension<CustomColorScheme>()!.searchField!;
+  Color get searchBackground =>
+      Theme.of(_context).extension<CustomColorScheme>()!.searchBackground!;
 }
 
 @immutable
@@ -52,6 +56,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? coverGradientEnd;
   final Color? tabbarGradientStart;
   final Color? tabbarGradientEnd;
+  final Color? searchField;
+  final Color? searchBackground;
 
   const CustomColorScheme({
     required this.primary,
@@ -68,23 +74,28 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.coverGradientEnd,
     required this.tabbarGradientEnd,
     required this.tabbarGradientStart,
+    required this.searchField,
+    required this.searchBackground,
   });
 
-  const CustomColorScheme.light(
-      {this.primary = const Color(0xff0A84FF),
-      this.secondary = const Color(0xffffffff),
-      this.primaryText = const Color(0xffffffff),
-      this.secondaryText = const Color(0xff141414),
-      this.background = const Color(0xff1C1C1E),
-      this.secondaryBackground = const Color(0xff262626),
-      this.tertiaryBackground = const Color(0xff141414),
-      this.inactive = const Color(0xffAAAAAA),
-      this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
-      this.buttonBackgroundGradientEnd = const Color(0xff161616),
-      this.coverGradientStart = const Color(0xff141414),
-      this.coverGradientEnd = const Color(0x00141414),
-      this.tabbarGradientStart = const Color(0xF02F2F2F),
-      this.tabbarGradientEnd = const Color(0xF0161616)});
+  const CustomColorScheme.light({
+    this.primary = const Color(0xff0A84FF),
+    this.secondary = const Color(0xffffffff),
+    this.primaryText = const Color(0xffffffff),
+    this.secondaryText = const Color(0xff141414),
+    this.background = const Color(0xff1C1C1E),
+    this.secondaryBackground = const Color(0xff262626),
+    this.tertiaryBackground = const Color(0xff141414),
+    this.inactive = const Color(0xffAAAAAA),
+    this.buttonBackgroundGradientStart = const Color(0xff2F2F2F),
+    this.buttonBackgroundGradientEnd = const Color(0xff161616),
+    this.coverGradientStart = const Color(0xff141414),
+    this.coverGradientEnd = const Color(0x00141414),
+    this.tabbarGradientStart = const Color(0xF02F2F2F),
+    this.searchField = const Color(0xffEBEBF5),
+    this.tabbarGradientEnd = const Color(0xF0161616),
+    this.searchBackground = const Color(0x18767680),
+  });
 
   @override
   CustomColorScheme copyWith({
@@ -102,6 +113,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? coverGradientEnd,
     Color? tabbarGradientEnd,
     Color? tabbarGradientStart,
+    Color? searchField,
+    Color? searchBackground,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -119,7 +132,9 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       coverGradientStart: coverGradientStart ?? this.coverGradientStart,
       coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
       tabbarGradientEnd: tabbarGradientEnd ?? this.tabbarGradientEnd,
+      searchField: searchField ?? this.searchField,
       tabbarGradientStart: tabbarGradientStart ?? this.tabbarGradientStart,
+      searchBackground: searchBackground ?? this.searchBackground,
     );
   }
 
@@ -148,8 +163,10 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       coverGradientEnd: Color.lerp(coverGradientEnd, other.coverGradientEnd, t),
       tabbarGradientEnd:
           Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
+      searchField: Color.lerp(searchField, other.searchField, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
+      searchBackground: Color.lerp(searchBackground, other.searchBackground, t),
     );
   }
 }

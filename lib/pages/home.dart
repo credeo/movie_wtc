@@ -7,7 +7,9 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
+import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
+import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:movie_wtc/widgets/movie_details_row.dart';
@@ -242,35 +244,9 @@ class Home extends StatelessWidget {
                                   ? homeProvider.scrollController.offset
                                   : 0.0,
                               coverHeight)),
-                      child: SafeArea(
-                        child: AppBar(
-                          backgroundColor: Colors.transparent,
-                          elevation: 0,
-                          leadingWidth: 112,
-                          leading: CupertinoButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: null,
-                            child: SizedBox(
-                              height: 28,
-                              width: 64,
-                              child: Image.asset(
-                                'assets/icons/icon_app.png',
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                          ),
-                          actions: [
-                            CupertinoButton(
-                              child:
-                                  Image.asset('assets/icons/icon_search.png'),
-                              onPressed: () {},
-                            ),
-                            CupertinoButton(
-                              child:
-                                  Image.asset('assets/icons/icon_profile.png'),
-                              onPressed: () {},
-                            ),
-                          ],
+                      child: const SafeArea(
+                        child: CustomAppBar(
+                          hasSearchButton: true,
                         ),
                       ),
                     ),

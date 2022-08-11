@@ -31,7 +31,11 @@ class ComingSoon extends StatelessWidget {
             case HomeState.ready:
               widget = Column(
                 children: [
-                  const SafeArea(child: CustomAppBar()),
+                  const SafeArea(
+                    child: CustomAppBar(
+                      hasNotificationButton: true,
+                    ),
+                  ),
                   Expanded(
                     child: renderPage(
                         context: context,

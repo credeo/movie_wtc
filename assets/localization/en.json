@@ -43,5 +43,9 @@
   "detail_more": "More Like This",
   "detail_share_text": "Hey! Checkout this great movie: {movie}",
   "snackbar_download_new": "{movie} moved to downloads!",
-  "snackbar_download_exist": "{movie} is already in downloads!"
+  "snackbar_download_exist": "{movie} is already in downloads!",
+  "search_top_searches": "Top Searches",
+  "search_movies_and_shows": "Movies & TV Shows",
+  "search_hint_text": "Search for a show, movie, genre,...",
+  "search_filters": "Search Filters"
 }

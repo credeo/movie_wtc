@@ -20,7 +20,11 @@ class Downloads extends StatelessWidget {
         builder: (context, downloadsProvider, child) {
           return Column(
             children: [
-              const SafeArea(child: CustomAppBar()),
+              const SafeArea(
+                child: CustomAppBar(
+                  hasNotificationButton: true,
+                ),
+              ),
               Expanded(
                   child: renderPage(
                       context: context, downloadsProvider: downloadsProvider))

@@ -4,6 +4,7 @@ import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
+import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
 
@@ -38,6 +39,11 @@ class RouterService {
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
           routes: [
+            GoRoute(
+              path: 'search',
+              name: SearchPage.pageName,
+              builder: (context, state) => const SearchPage(),
+            ),
             GoRoute(
               path: ':id',
               name: MovieDetails.pageName,

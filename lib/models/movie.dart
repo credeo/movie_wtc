@@ -35,7 +35,6 @@ class Movie {
   final int rated;
   final double fileSize;
   final double length;
-  final int year;
 
   const Movie({
     required this.id,
@@ -48,7 +47,6 @@ class Movie {
     required this.rated,
     required this.fileSize,
     required this.length,
-    required this.year,
   });
 
   @override
@@ -74,7 +72,6 @@ class Movie {
           rated: 0,
           fileSize: 101857600,
           length: 92,
-          year: 2020,
         );
       case 2:
         return Movie(
@@ -91,7 +88,6 @@ class Movie {
           rated: 18,
           fileSize: 124857600,
           length: 156,
-          year: 2021,
         );
       case 3:
         return Movie(
@@ -108,7 +104,6 @@ class Movie {
           rated: 18,
           fileSize: 99857600,
           length: 124,
-          year: 2010,
         );
       default:
         return Movie(
@@ -125,7 +120,6 @@ class Movie {
           rated: 0,
           fileSize: 104857600,
           length: 104,
-          year: 2013,
         );
     }
   }

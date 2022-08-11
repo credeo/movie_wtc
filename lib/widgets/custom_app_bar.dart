@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_wtc/pages/search.dart';
 
 enum LeftIcon { backArrow, appLogo }
 
@@ -29,7 +30,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leading: hasBackButton
           ? CupertinoButton(
-              padding: const EdgeInsets.only(top: 15),
+              padding: EdgeInsets.only(right: 22),
+              //padding: const EdgeInsets.only(top: 15),
               onPressed: () {
                 context.pop();
               },
@@ -43,7 +45,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
             )
           : CupertinoButton(
-              padding: const EdgeInsets.only(top: 15),
+              padding: EdgeInsets.zero,
+
+              //padding: const EdgeInsets.only(top: 15),
               onPressed: null,
               child: SizedBox(
                 height: 28,
@@ -57,18 +61,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (hasSearchButton)
           CupertinoButton(
-            padding: const EdgeInsets.only(top: 15),
+            padding: EdgeInsets.zero,
+
+            //padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_search.png'),
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed(SearchPage.pageName);
+            },
           ),
         if (hasNotificationButton)
           CupertinoButton(
-            padding: const EdgeInsets.only(top: 15),
+            padding: EdgeInsets.zero,
+
+            // padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_notification_filled.png'),
             onPressed: () {},
           ),
         CupertinoButton(
-          padding: const EdgeInsets.only(top: 15),
+          padding: EdgeInsets.zero,
+
+          //padding: const EdgeInsets.only(top: 15),
           child: Image.asset('assets/icons/icon_profile.png'),
           onPressed: () {},
         ),
