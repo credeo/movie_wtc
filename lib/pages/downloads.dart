@@ -20,8 +20,13 @@ class Downloads extends StatelessWidget {
         builder: (context, downloadsProvider, child) {
           return Column(
             children: [
-              const SafeArea(child: CustomAppBar()),
-              Expanded(child: renderPage(context: context, downloadsProvider: downloadsProvider))
+              const SafeArea(
+                  child: CustomAppBar(
+                hasNotificationButton: true,
+              )),
+              Expanded(
+                  child: renderPage(
+                      context: context, downloadsProvider: downloadsProvider))
             ],
           );
         },
@@ -29,7 +34,9 @@ class Downloads extends StatelessWidget {
     );
   }
 
-  Widget renderPage({required BuildContext context, required DownloadsProvider downloadsProvider}) {
+  Widget renderPage(
+      {required BuildContext context,
+      required DownloadsProvider downloadsProvider}) {
     return ListView.builder(
       padding: const EdgeInsets.only(top: 8, bottom: 16),
       itemCount: 2 + downloadsProvider.downloadedMovies.length,
@@ -49,7 +56,8 @@ class Downloads extends StatelessWidget {
                   ),
                   const Spacer(),
                   CupertinoButton(
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                     onPressed: () {
                       downloadsProvider.clearDownloads();
                     },
@@ -70,7 +78,8 @@ class Downloads extends StatelessWidget {
           widget = Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.only(top: 8.0, left: 20, right: 20, bottom: 12),
+              padding: const EdgeInsets.only(
+                  top: 8.0, left: 20, right: 20, bottom: 12),
               child: TextButton.icon(
                 style: ButtonStyle(
                   alignment: Alignment.centerLeft,
@@ -78,7 +87,8 @@ class Downloads extends StatelessWidget {
                 ),
                 onPressed: () {
                   showModalBottomSheet(
-                    backgroundColor: CustomColors.of(context).secondaryBackground,
+                    backgroundColor:
+                        CustomColors.of(context).secondaryBackground,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),

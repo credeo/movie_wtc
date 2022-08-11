@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_wtc/pages/search.dart';
+import 'package:movie_wtc/pages/tab_container.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;
@@ -54,7 +56,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (hasSearchButton)
           CupertinoButton(
             child: Image.asset('assets/icons/icon_search.png'),
-            onPressed: () {},
+            onPressed: () {
+              context.goNamed(SearchPage.pageName);
+            },
           ),
         if (hasNotificationButton)
           CupertinoButton(
@@ -63,7 +67,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         CupertinoButton(
           child: Image.asset('assets/icons/icon_profile.png'),
-          onPressed: () {},
+          onPressed: () {
+            //OBRISATI
+            context.goNamed(TabContainer.pageName);
+          },
         ),
       ],
     );

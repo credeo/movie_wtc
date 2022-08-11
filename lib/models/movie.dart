@@ -113,7 +113,7 @@ class Movie {
               'Wealth, lust, and betrayal set against the backdrop of Regency-era England, seen through the eyes of the powerful Bridgerton family',
           details: 'TV Show',
           releaseDate: DateTime.now().add(
-            const Duration(days: 30),
+            const Duration(days: 60),
           ),
           rated: 0,
           fileSize: 104857600,
