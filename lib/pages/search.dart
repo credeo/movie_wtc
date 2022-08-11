@@ -253,7 +253,9 @@ class SearchPage extends StatelessWidget {
                   style: CustomTextStyles.of(context).semiBold18,
                 ),
                 trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.pop();
+                  },
                   icon: Image.asset('assets/icons/icon_close.png'),
                 ),
               ),
