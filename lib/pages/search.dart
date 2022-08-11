@@ -38,7 +38,7 @@ class SearchPage extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 16, bottom: 12),
                     child: Text(
                       searchProvider.controller.text == '' &&
-                              searchProvider.searched.isEmpty
+                              searchProvider.areConditionsEmpty()
                           ? 'search_top_searches'.tr()
                           : 'search_movies_and_shows'.tr(),
                       style: CustomTextStyles.of(context).semiBold18,
