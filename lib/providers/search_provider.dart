@@ -17,6 +17,7 @@ class SearchProvider extends ChangeNotifier {
   List<Movie> get movies => List.unmodifiable(_movies);
   List<Movie> get searched => List.unmodifiable(_searched);
   bool get isSearchActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty || _query.isNotEmpty;
+  bool get isFiltersActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty;
 
   void search(String query) {
     _query = query;

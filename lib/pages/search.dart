@@ -78,38 +78,59 @@ class SearchPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             contentPadding: EdgeInsets.zero,
-            suffixIcon: SizedBox(
-              height: 16,
-              width: 16,
-              child: GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-                      context: context,
-                      backgroundColor: CustomColors.of(context).background,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.0),
+            suffixIconConstraints: const BoxConstraints.tightFor(width: 40, height: 36),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                    context: context,
+                    backgroundColor: CustomColors.of(context).background,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    builder: (context) {
+                      return MovieSearchBottomSheet(
+                        initialCategory: searchProvider.category.isEmpty ? null : searchProvider.category,
+                        initialDuration: searchProvider.duration.isEmpty ? null : searchProvider.duration,
+                        initialProductionYear: searchProvider.productionYear.isEmpty ? null : searchProvider.productionYear,
+                        onCategoryChanged: (category) {
+                          searchProvider.applyFilters(category: category, duration: null, productionYear: null);
+                        },
+                        onDurationChanged: (duration) {
+                          searchProvider.applyFilters(category: null, duration: duration, productionYear: null);
+                        },
+                        onProductionYearChanged: (production) {
+                          searchProvider.applyFilters(category: null, duration: null, productionYear: production);
+                        },
+                      );
+                    });
+              },
+              child: Stack(
+                children: [
+                  Positioned(
+                    left: 0.0,
+                    right: 0.0,
+                    top: 6.0,
+                    bottom: 6.0,
+                    child: Image.asset(
+                      'assets/icons/icon_slider.png',
+                      fit: BoxFit.contain,
+                      color: CustomColors.of(context).hintText,
+                    ),
+                  ),
+                  if (searchProvider.isFiltersActive)
+                    Positioned(
+                      top: 7.0,
+                      right: 9.0,
+                      height: 7.0,
+                      width: 7.0,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: CustomColors.of(context).primary,
+                          shape: BoxShape.circle,
+                        ),
                       ),
-                      builder: (context) {
-                        return MovieSearchBottomSheet(
-                          initialCategory: searchProvider.category.isEmpty ? null : searchProvider.category,
-                          initialDuration: searchProvider.duration.isEmpty ? null : searchProvider.duration,
-                          initialProductionYear: searchProvider.productionYear.isEmpty ? null : searchProvider.productionYear,
-                          onCategoryChanged: (category) {
-                            searchProvider.applyFilters(category: category, duration: null, productionYear: null);
-                          },
-                          onDurationChanged: (duration) {
-                            searchProvider.applyFilters(category: null, duration: duration, productionYear: null);
-                          },
-                          onProductionYearChanged: (production) {
-                            searchProvider.applyFilters(category: null, duration: null, productionYear: production);
-                          },
-                        );
-                      });
-                },
-                child: Image.asset(
-                  'assets/icons/icon_slider.png',
-                  color: CustomColors.of(context).hintText,
-                ),
+                    ),
+                ],
               ),
             ),
             prefixIcon: Padding(
