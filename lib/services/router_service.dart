@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:movie_wtc/pages/categories.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
@@ -17,7 +18,8 @@ class RouterService {
   void _buildRouter() {
     _goRouter = GoRouter(
       navigatorBuilder: (context, state, child) {
-        final themeData = KiwiContainer().resolve<AppearanceService>().buildTheme();
+        final themeData =
+            KiwiContainer().resolve<AppearanceService>().buildTheme();
         return Theme(
           data: themeData,
           child: child,
@@ -41,19 +43,27 @@ class RouterService {
           builder: (context, state) => const TabContainer(),
           routes: [
             GoRoute(
+              path: 'categories',
+              name: CategoriesPage.pageName,
+              builder: (context, state) => CategoriesPage(),
+            ),
+            GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,
-              builder: (context, state) => MoviePlayer(movieId: state.extra as String),
+              builder: (context, state) =>
+                  MoviePlayer(movieId: state.extra as String),
             ),
             GoRoute(
               path: ':id',
               name: MovieDetails.pageName,
-              builder: (context, state) => MovieDetails(movieId: state.params['id']!),
+              builder: (context, state) =>
+                  MovieDetails(movieId: state.params['id']!),
               routes: [
                 GoRoute(
                   path: 'movie_player',
                   name: MoviePlayer.pageNameFromDetails,
-                  builder: (context, state) => MoviePlayer(movieId: state.params['id']!),
+                  builder: (context, state) =>
+                      MoviePlayer(movieId: state.params['id']!),
                 ),
               ],
             ),
