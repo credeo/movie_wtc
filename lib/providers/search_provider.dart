@@ -11,8 +11,8 @@ class SearchProvider extends ChangeNotifier {
   String _productionYear = '';
 
   List<Movie> get movies => List.unmodifiable(_movies);
-
   List<Movie> get searched => List.unmodifiable(_searched);
+  bool get isSearchActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty;
 
   void search(String query) {
     _searched = _movies.where((element) => element.title.toLowerCase().contains(query.toLowerCase())).toList();

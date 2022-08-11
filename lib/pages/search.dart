@@ -35,13 +35,13 @@ class SearchPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 12),
                     child: Text(
-                      searchProvider.searched.isEmpty ? 'search_top_searches'.tr() : 'search_movies_and_shows'.tr(),
+                      searchProvider.isSearchActive ? 'search_movies_and_shows'.tr() : 'search_top_searches'.tr(),
                       style: CustomTextStyles.of(context).semiBold18,
                     ),
                   ),
-                  searchProvider.searched.isEmpty
-                      ? getTopSearches(context, searchProvider)
-                      : getSearchGrid(context, searchProvider)
+                  searchProvider.isSearchActive
+                      ? getSearchGrid(context, searchProvider)
+                      : getTopSearches(context, searchProvider)
                 ],
               ),
             );
@@ -199,37 +199,50 @@ class SearchPage extends StatelessWidget {
   }
 
   Widget getSearchGrid(BuildContext context, SearchProvider searchProvider) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.only(right: 16.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
+    if (searchProvider.searched.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 32.0),
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: Text(
+            'No results to display',
+            textAlign: TextAlign.center,
+            style: CustomTextStyles.of(context).semiBold24,
           ),
-          itemCount: searchProvider.searched.length,
-          itemBuilder: (context, index) {
-            print(searchProvider.searched);
-            return GestureDetector(
-              onTap: () {
-                context.goNamed(MovieDetails.pageName, params: {'id': searchProvider.searched.elementAt(index).id});
-              },
-              child: SizedBox(
-                height: 138,
-                width: 108,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    searchProvider.searched.elementAt(index).coverImage,
-                    fit: BoxFit.cover,
+        ),
+      );
+    } else {
+      return Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            itemCount: searchProvider.searched.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  context.goNamed(MovieDetails.pageName, params: {'id': searchProvider.searched.elementAt(index).id});
+                },
+                child: SizedBox(
+                  height: 138,
+                  width: 108,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      searchProvider.searched.elementAt(index).coverImage,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
