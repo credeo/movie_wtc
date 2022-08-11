@@ -45,7 +45,7 @@ class SearchPage extends StatelessWidget {
                     ),
                   ),
                   searchProvider.controller.text == '' &&
-                          searchProvider.searched.isEmpty
+                          searchProvider.areConditionsEmpty()
                       ? getTopSearches(context, searchProvider)
                       : getSearchGrid(context, searchProvider)
                 ],

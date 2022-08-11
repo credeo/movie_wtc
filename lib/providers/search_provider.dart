@@ -96,6 +96,12 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool areConditionsEmpty() {
+    return _productionController.text == '' &&
+        duration == 'Any' &&
+        category == 'Any';
+  }
+
   void searchBottomSheet() {
     _flag = true;
 
