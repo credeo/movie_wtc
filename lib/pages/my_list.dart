@@ -26,23 +26,27 @@ class MyListPage extends StatelessWidget {
           create: ((context) => MyListProvider()),
           child: Consumer<MyListProvider>(
             builder: (context, myListProvider, child) {
-              return Container(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, bottom: 24),
+                    child: Text(
                       'My List',
                       style: CustomTextStyles.of(context).semiBold24,
                     ),
-                    const SizedBox(height: 24),
-                    Expanded(
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: GridView.builder(
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  crossAxisSpacing: 10,
-                                  mainAxisSpacing: 10),
+                            mainAxisExtent: 138,
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                          ),
                           itemCount: myListProvider.myMovieList.length,
                           itemBuilder: (BuildContext ctx, index) {
                             return ClipRRect(
@@ -62,8 +66,8 @@ class MyListPage extends StatelessWidget {
                             );
                           }),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               );
             },
           )),

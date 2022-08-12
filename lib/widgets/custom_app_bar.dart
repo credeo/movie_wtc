@@ -27,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leading: hasBackButton
           ? CupertinoButton(
-              padding: EdgeInsets.zero,
+              padding: const EdgeInsets.only(right: 14),
               onPressed: () {
                 context.pop();
               },

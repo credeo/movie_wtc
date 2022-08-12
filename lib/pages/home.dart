@@ -445,7 +445,7 @@ class Home extends StatelessWidget {
                       .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  context.goNamed(MyListPage.pageName);
+                  context.pushNamed(MyListPage.pageName);
                 },
               ),
             ],
@@ -453,7 +453,10 @@ class Home extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         if (homeProvider.myMovieList.isEmpty)
-          const Text('no movies in my list')
+          Text(
+            'no movies in my list',
+            style: CustomTextStyles.of(context).regular12,
+          )
         else
           SizedBox(
             height: 220,
@@ -470,6 +473,8 @@ class Home extends StatelessWidget {
                   imagePath: movie.coverImage,
                   callback: () {
                     print('clicked on my movie tile');
+                    context.pushNamed(MovieDetails.pageName,
+                        params: {'id': movie.id});
                   },
                 );
               },

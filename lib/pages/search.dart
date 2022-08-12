@@ -199,7 +199,7 @@ class SearchPage extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
         padding: EdgeInsets.zero,
-        itemCount: 2,
+        itemCount: 4,
         itemBuilder: (context, index) {
           return getSearchCell(context, searchProvider.movies[index]);
         },
