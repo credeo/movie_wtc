@@ -15,7 +15,6 @@ class CategoriesProvider extends ChangeNotifier {
       for (int i = 0; i < m.genres.length; i++) {
         _map.putIfAbsent(m.genres[i].value, () => []);
         _map[m.genres[i].value]!.add(m);
-        print(_map[m.genres[i].value]!.length);
       }
     }
   }

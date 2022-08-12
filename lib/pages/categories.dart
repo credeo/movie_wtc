@@ -46,7 +46,7 @@ class CategoriesPage extends StatelessWidget {
     required String categoryTitle,
     required CategoriesProvider categoriesProvider,
   }) {
-    return Container(
+    return SizedBox(
       height: 301,
       child: Column(
         children: [
@@ -116,7 +116,7 @@ class CategoriesPage extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           SizedBox(
             width: 134,
             child: Text(
@@ -125,7 +125,7 @@ class CategoriesPage extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           SizedBox(
             width: 134,
             child: Text(
