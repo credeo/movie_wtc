@@ -42,6 +42,8 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
   Color get textCursor =>
       Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
+  Color get dividerProfile =>
+      Theme.of(_context).extension<CustomColorScheme>()!.dividerProfile!;
 }
 
 @immutable
@@ -60,11 +62,11 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? coverGradientEnd;
   final Color? tabbarGradientStart;
   final Color? tabbarGradientEnd;
-
   final Color? searchBackground;
   final Color? searchDivider;
   final Color? hintText;
   final Color? textCursor;
+  final Color? dividerProfile;
 
   const CustomColorScheme({
     required this.primary,
@@ -85,6 +87,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.searchDivider,
     required this.hintText,
     required this.textCursor,
+    required this.dividerProfile,
   });
 
   const CustomColorScheme.light({
@@ -106,6 +109,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.tabbarGradientEnd = const Color(0xF0161616),
     this.hintText = const Color(0x99ebebf5),
     this.textCursor = const Color(0xffEAEAEB),
+    this.dividerProfile = const Color(0xffE5E5E5),
   });
 
   @override
@@ -128,6 +132,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? searchDivider,
     Color? hintText,
     Color? textCursor,
+    Color? dividerProfile,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -150,6 +155,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       searchDivider: searchDivider ?? this.searchDivider,
       hintText: hintText ?? this.hintText,
       textCursor: textCursor ?? this.textCursor,
+      dividerProfile: dividerProfile ?? this.dividerProfile,
     );
   }
 
@@ -184,6 +190,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       textCursor: Color.lerp(textCursor, other.textCursor, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
+      dividerProfile: Color.lerp(dividerProfile, other.dividerProfile, t),
     );
   }
 }

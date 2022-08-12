@@ -5,6 +5,7 @@ import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/profile_page.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
@@ -36,6 +37,11 @@ class RouterService {
           path: '/search',
           name: SearchPage.pageName,
           builder: (context, state) => const SearchPage(),
+        ),
+        GoRoute(
+          path: '/profile',
+          name: ProfilePage.pageName,
+          builder: (context, state) => const ProfilePage(),
         ),
         GoRoute(
           path: '/my_list',

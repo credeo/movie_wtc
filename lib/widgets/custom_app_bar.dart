@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_wtc/pages/profile_page.dart';
 import 'package:movie_wtc/pages/search.dart';
-import 'package:movie_wtc/pages/tab_container.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;
   final bool hasSearchButton;
   final bool hasNotificationButton;
   final Color? backgroundColor;
+  final bool isProfilePage;
 
   const CustomAppBar({
     super.key,
@@ -16,6 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.hasSearchButton = false,
     this.hasNotificationButton = false,
     this.backgroundColor,
+    this.isProfilePage = false,
   });
 
   @override
@@ -66,11 +68,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {},
           ),
         CupertinoButton(
+          onPressed: isProfilePage
+              ? null
+              : () {
+                  context.pushNamed(ProfilePage.pageName);
+                },
           child: Image.asset('assets/icons/icon_profile.png'),
-          onPressed: () {
-            //OBRISATI
-            context.goNamed(TabContainer.pageName);
-          },
         ),
       ],
     );
