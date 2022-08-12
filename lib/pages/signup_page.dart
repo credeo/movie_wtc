@@ -6,7 +6,7 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/widgets/build_social_media_button.dart';
 import 'dart:math' as math;
 
-import '../widgets/custom_button.dart';
+import 'package:movie_wtc/widgets/custom_button.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);

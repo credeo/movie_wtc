@@ -182,7 +182,7 @@ class ComingSoon extends StatelessWidget {
                           title: 'coming_soon_info'.tr(),
                           iconPath: 'assets/icons/icon_info.png',
                           onPressed: () {
-                            context.goNamed(MovieDetails.pageName,
+                            context.pushNamed(MovieDetails.pageName,
                                 params: {'id': movie.id});
                           },
                         ),

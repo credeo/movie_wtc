@@ -6,11 +6,26 @@ import 'package:movie_wtc/services/movie_service.dart';
 class SearchProvider extends ChangeNotifier {
   final List<Movie> _movies =
       KiwiContainer().resolve<MovieService>().suggestedMovies;
+
   List<Movie> _searched = [];
   String _query = '';
   String _category = '';
   String _duration = '';
   String _productionYear = '';
+
+  final TextEditingController _controller = TextEditingController();
+  TextEditingController get controller => _controller;
+
+  void clearText() {
+    controller.clear();
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
 
   String get category => _category;
   String get duration => _duration;

@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
-
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/providers/search_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
@@ -60,6 +59,10 @@ class SearchPage extends StatelessWidget {
       child: SizedBox(
         height: 36,
         child: TextField(
+          style: CustomTextStyles.of(context)
+              .regular17
+              .apply(color: CustomColors.of(context).textCursor),
+          controller: searchProvider.controller,
           cursorHeight: 20,
           cursorColor: CustomColors.of(context).textCursor,
           textAlignVertical: TextAlignVertical.center,
@@ -80,81 +83,95 @@ class SearchPage extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(10),
             ),
-            contentPadding: EdgeInsets.zero,
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
             suffixIconConstraints:
-                const BoxConstraints.tightFor(width: 40, height: 36),
-            suffixIcon: GestureDetector(
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    backgroundColor: CustomColors.of(context).background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    builder: (context) {
-                      return MovieSearchBottomSheet(
-                        initialCategory: searchProvider.category.isEmpty
-                            ? null
-                            : searchProvider.category,
-                        initialDuration: searchProvider.duration.isEmpty
-                            ? null
-                            : searchProvider.duration,
-                        initialProductionYear:
-                            searchProvider.productionYear.isEmpty
-                                ? null
-                                : searchProvider.productionYear,
-                        onCategoryChanged: (category) {
-                          searchProvider.applyFilters(
-                              category: category,
-                              duration: null,
-                              productionYear: null);
-                        },
-                        onDurationChanged: (duration) {
-                          searchProvider.applyFilters(
-                              category: null,
-                              duration: duration,
-                              productionYear: null);
-                        },
-                        onProductionYearChanged: (production) {
-                          searchProvider.applyFilters(
-                              category: null,
-                              duration: null,
-                              productionYear: production);
-                        },
-                      );
-                    });
-              },
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0.0,
-                    right: 0.0,
-                    top: 6.0,
-                    bottom: 6.0,
-                    child: Image.asset(
-                      'assets/icons/icon_slider.png',
-                      fit: BoxFit.contain,
-                      color: CustomColors.of(context).hintText,
-                    ),
-                  ),
-                  if (searchProvider.isFiltersActive)
-                    Positioned(
-                      top: 7.0,
-                      right: 9.0,
-                      height: 7.0,
-                      width: 7.0,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: CustomColors.of(context).primary,
-                          shape: BoxShape.circle,
-                        ),
+                const BoxConstraints.tightFor(width: 35, height: 46),
+            suffixIcon: searchProvider.controller.text.isNotEmpty
+                ? GestureDetector(
+                    onTap: searchProvider.clearText,
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Image.asset(
+                        'assets/icons/icon_close.png',
                       ),
                     ),
-                ],
-              ),
-            ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          backgroundColor: CustomColors.of(context).background,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          builder: (context) {
+                            return MovieSearchBottomSheet(
+                              initialCategory: searchProvider.category.isEmpty
+                                  ? null
+                                  : searchProvider.category,
+                              initialDuration: searchProvider.duration.isEmpty
+                                  ? null
+                                  : searchProvider.duration,
+                              initialProductionYear:
+                                  searchProvider.productionYear.isEmpty
+                                      ? null
+                                      : searchProvider.productionYear,
+                              onCategoryChanged: (category) {
+                                searchProvider.applyFilters(
+                                    category: category,
+                                    duration: null,
+                                    productionYear: null);
+                              },
+                              onDurationChanged: (duration) {
+                                searchProvider.applyFilters(
+                                    category: null,
+                                    duration: duration,
+                                    productionYear: null);
+                              },
+                              onProductionYearChanged: (production) {
+                                searchProvider.applyFilters(
+                                    category: null,
+                                    duration: null,
+                                    productionYear: production);
+                              },
+                            );
+                          });
+                    },
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0.0,
+                          right: 0.0,
+                          top: 11.0,
+                          bottom: 11.0,
+                          child: Image.asset(
+                            'assets/icons/icon_slider.png',
+                            fit: BoxFit.contain,
+                            color: CustomColors.of(context).hintText,
+                          ),
+                        ),
+                        if (searchProvider.isFiltersActive)
+                          Positioned(
+                            top: 7.0,
+                            right: 9.0,
+                            height: 7.0,
+                            width: 7.0,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: CustomColors.of(context).primary,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
             prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: 8, right: 6),
+              padding: const EdgeInsets.only(
+                left: 8,
+                right: 6,
+                bottom: 3,
+              ),
               child: SizedBox(
                 height: 16,
                 width: 16,

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/pages/search.dart';
-
 import 'package:movie_wtc/pages/tab_container.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -28,8 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       leading: hasBackButton
           ? CupertinoButton(
-              padding: EdgeInsets.only(right: 22),
-              //padding: const EdgeInsets.only(top: 15),
+              padding: EdgeInsets.zero,
               onPressed: () {
                 context.pop();
               },
@@ -44,8 +42,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : CupertinoButton(
               padding: EdgeInsets.zero,
-
-              //padding: const EdgeInsets.only(top: 15),
               onPressed: null,
               child: SizedBox(
                 height: 28,
@@ -59,9 +55,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         if (hasSearchButton)
           CupertinoButton(
-            padding: EdgeInsets.zero,
-
-            //padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_search.png'),
             onPressed: () {
               context.pushNamed(SearchPage.pageName);
@@ -69,16 +62,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         if (hasNotificationButton)
           CupertinoButton(
-            padding: EdgeInsets.zero,
-
-            // padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_notification_filled.png'),
             onPressed: () {},
           ),
         CupertinoButton(
-          padding: EdgeInsets.zero,
-
-          //padding: const EdgeInsets.only(top: 15),
           child: Image.asset('assets/icons/icon_profile.png'),
           onPressed: () {
             //OBRISATI

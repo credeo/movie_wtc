@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:movie_wtc/models/download_movie.dart';
 import 'package:movie_wtc/models/movie.dart';
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 class DownloadsService extends ChangeNotifier {

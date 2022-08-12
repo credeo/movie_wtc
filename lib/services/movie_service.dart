@@ -1,4 +1,5 @@
 import 'package:movie_wtc/models/movie.dart';
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 class MovieService {
@@ -29,7 +30,8 @@ class MovieService {
   }
 
   Movie? getMovieWithId(String id) {
-    var movie = _suggestedMovies.firstWhereOrNull((element) => element.id == id);
+    var movie =
+        _suggestedMovies.firstWhereOrNull((element) => element.id == id);
     movie ??= _comingSoonMovies.firstWhereOrNull((element) => element.id == id);
     return movie;
   }
