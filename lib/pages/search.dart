@@ -158,7 +158,10 @@ class SearchPage extends StatelessWidget {
                     onTap: () {
                       searchProvider.clearQuery();
                     },
-                    child: Image.asset('assets/icons/icon_close.png'),
+                    child: Image.asset(
+                      'assets/icons/icon_close.png',
+                      color: CustomColors.of(context).hintText,
+                    ),
                   ),
             prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 8, right: 6),
