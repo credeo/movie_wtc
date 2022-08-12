@@ -12,6 +12,9 @@ class CustomTextStyles {
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular13!;
   TextStyle get regular15 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular15!;
+
+  TextStyle get regular16 =>
+      Theme.of(_context).extension<CustomTextStyleScheme>()!.regular16!;
   TextStyle get regular17 =>
       Theme.of(_context).extension<CustomTextStyleScheme>()!.regular17!;
   TextStyle get regular24 =>
@@ -42,8 +45,9 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
   final TextStyle? regular12;
   final TextStyle? regular13;
   final TextStyle? regular15;
-  final TextStyle? regular17;
 
+  final TextStyle? regular16;
+  final TextStyle? regular17;
   final TextStyle? regular24;
   final TextStyle? medium12;
   final TextStyle? medium14;
@@ -60,6 +64,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     required this.regular12,
     required this.regular13,
     required this.regular15,
+    required this.regular16,
     required this.regular17,
     required this.regular24,
     required this.medium12,
@@ -93,6 +98,11 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
           fontWeight: FontWeight.w400,
           color: primaryTextColor,
           fontSize: 15,
+        ),
+        regular16 = TextStyle(
+          fontWeight: FontWeight.w400,
+          color: primaryTextColor,
+          fontSize: 16,
         ),
         regular17 = TextStyle(
           fontWeight: FontWeight.w400,
@@ -156,6 +166,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
     TextStyle? regular12,
     TextStyle? regular13,
     TextStyle? regular15,
+    TextStyle? regular16,
     TextStyle? regular17,
     TextStyle? regular24,
     TextStyle? medium12,
@@ -173,6 +184,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       regular12: regular12 ?? this.regular12,
       regular13: regular13 ?? this.regular13,
       regular15: regular15 ?? this.regular15,
+      regular16: regular16 ?? this.regular16,
       regular17: regular17 ?? this.regular17,
       regular24: regular24 ?? this.regular24,
       medium12: medium12 ?? this.medium12,
@@ -198,6 +210,7 @@ class CustomTextStyleScheme extends ThemeExtension<CustomTextStyleScheme> {
       regular12: TextStyle.lerp(regular12, other.regular12, t),
       regular13: TextStyle.lerp(regular13, other.regular13, t),
       regular15: TextStyle.lerp(regular15, other.regular15, t),
+      regular16: TextStyle.lerp(regular16, other.regular16, t),
       regular17: TextStyle.lerp(regular17, other.regular17, t),
       regular24: TextStyle.lerp(regular24, other.regular24, t),
       medium12: TextStyle.lerp(medium12, other.medium12, t),

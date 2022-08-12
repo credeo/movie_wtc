@@ -46,6 +46,6 @@
   "snackbar_download_exist": "{movie} is already in downloads!",
   "search_top_searches": "Top Searches",
   "search_movies_and_shows": "Movies & TV Shows",
-  "search_hint_text": "Search for a show, movie, genre,...",
-  "search_filters": "Search Filters"
+  "search_filters": "Search Filters",
+  "search_hint_text": "Search for a show, movie, genre,..."
 }

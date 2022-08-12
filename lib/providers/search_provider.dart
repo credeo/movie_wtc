@@ -4,32 +4,96 @@ import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
 
 class SearchProvider extends ChangeNotifier {
-  final TextEditingController _controller = TextEditingController();
+  final List<Movie> _movies =
+      KiwiContainer().resolve<MovieService>().suggestedMovies;
+  List<Movie> _searched = [];
+  String _query = '';
+  String _category = '';
+  String _duration = '';
+  String _productionYear = '';
 
-  TextEditingController get controller => _controller;
+  String get category => _category;
+  String get duration => _duration;
+  String get productionYear => _productionYear;
+  List<Movie> get movies => List.unmodifiable(_movies);
+  List<Movie> get searched => List.unmodifiable(_searched);
+  bool get isSearchActive =>
+      _category.isNotEmpty ||
+      _duration.isNotEmpty ||
+      _productionYear.isNotEmpty ||
+      _query.isNotEmpty;
+  bool get isFiltersActive =>
+      _category.isNotEmpty ||
+      _duration.isNotEmpty ||
+      _productionYear.isNotEmpty;
 
-  final _movieService = KiwiContainer().resolve<MovieService>();
-  Iterable<Movie> _searchMovie = [];
-
-  List<Movie> get suggestedMovies =>
-      List.unmodifiable(_movieService.suggestedMovies);
-  List<Movie> get searchMovie => List.unmodifiable(_searchMovie);
-
-  @override
-  void dispose() {
-    controller.dispose();
-
-    super.dispose();
+  void search(String query) {
+    _query = query;
+    applyFilters();
   }
 
-  void search() {
-    _searchMovie = suggestedMovies.where(
-      (element) => element.title.toLowerCase().contains(
-            controller.text.toLowerCase(),
-          ),
-    );
+  void applyFilters(
+      {String? category, String? duration, String? productionYear}) {
+    _category = category ?? _category;
+    _duration = duration ?? _duration;
+    _productionYear = productionYear ?? _productionYear;
 
-    print(controller.text);
+    if (_category.isEmpty && _duration.isEmpty && _productionYear.isEmpty) {
+      if (_query.isEmpty) {
+        _searched = [];
+      } else {
+        _searched = _movies
+            .where((element) =>
+                element.title.toLowerCase().contains(_query.toLowerCase()))
+            .toList();
+      }
+      notifyListeners();
+      return;
+    }
+
+    List<Movie> list = [];
+    if (_category.isNotEmpty) {
+      for (Movie m in _movies) {
+        for (int i = 0; i < m.genres.length; i++) {
+          if (m.genres[i].value.toLowerCase() == _category.toLowerCase()) {
+            list.add(m);
+            break;
+          }
+        }
+      }
+    } else {
+      list = List.from(_movies);
+    }
+
+    if (_duration.isNotEmpty) {
+      if (_duration == '60') {
+        list.removeWhere((element) => element.length > 60);
+      } else if (_duration == '120') {
+        list.removeWhere(
+            (element) => element.length < 60 || element.length > 120);
+      } else {
+        list.removeWhere((element) => element.length < 120);
+      }
+    }
+
+    if (_productionYear.isNotEmpty) {
+      int year = int.parse(_productionYear);
+      for (int i = 0; i < list.length; i++) {
+        if (list[i].releaseDate.year != year) {
+          list.removeAt(i);
+          i--;
+        }
+      }
+    }
+
+    _searched = list;
+    if (_query.isNotEmpty) {
+      _searched = _searched
+          .where((element) =>
+              element.title.toLowerCase().contains(_query.toLowerCase()))
+          .toList();
+    }
+
     notifyListeners();
   }
 }

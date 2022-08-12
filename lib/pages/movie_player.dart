@@ -1,12 +1,12 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_wtc/extensions/custom_colors.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/providers/movie_player_provider.dart';
-import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class MoviePlayer extends StatelessWidget {
-  static const pageName = 'movie_player';
+  static const pageNameFromHome = 'movie_player_home';
+  static const pageNameFromDetails = 'movie_player_details';
 
   final String movieId;
 
@@ -18,14 +18,23 @@ class MoviePlayer extends StatelessWidget {
       create: (context) => MoviePlayerProvider(movieId),
       child: Consumer<MoviePlayerProvider>(
         builder: (context, moviePlayerProvider, child) {
-          return Scaffold(
-              backgroundColor: CustomColors.of(context).tertiaryBackground,
-              appBar: const CustomAppBar(
-                hasBackButton: true,
+          return SafeArea(
+            child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                leading: IconButton(
+                  icon: Image.asset('assets/icons/icon_arrow_back.png'),
+                  onPressed: () {
+                    context.pop();
+                  },
+                ),
               ),
               body: SafeArea(
-                  child: FlickVideoPlayer(
-                      flickManager: moviePlayerProvider.flickManager)));
+                child: FlickVideoPlayer(
+                    flickManager: moviePlayerProvider.flickManager),
+              ),
+            ),
+          );
         },
       ),
     );

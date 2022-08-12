@@ -173,8 +173,9 @@ class Home extends StatelessWidget {
                                                     'assets/icons/icon_play_filled.png',
                                                 onPressed: () {
                                                   context.goNamed(
-                                                      MoviePlayer.pageName,
-                                                      params: {'id': movie.id});
+                                                      MoviePlayer
+                                                          .pageNameFromHome,
+                                                      extra: movie.id);
                                                 },
                                               ),
                                             ),
@@ -244,9 +245,37 @@ class Home extends StatelessWidget {
                                   ? homeProvider.scrollController.offset
                                   : 0.0,
                               coverHeight)),
-                      child: const SafeArea(
-                        child: CustomAppBar(
-                          hasSearchButton: true,
+                      child: SafeArea(
+                        child: AppBar(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0,
+                          leadingWidth: 112,
+                          leading: CupertinoButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: null,
+                            child: SizedBox(
+                              height: 28,
+                              width: 64,
+                              child: Image.asset(
+                                'assets/icons/icon_app.png',
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                          actions: [
+                            CupertinoButton(
+                              child:
+                                  Image.asset('assets/icons/icon_search.png'),
+                              onPressed: () {
+                                context.pushNamed(SearchPage.pageName);
+                              },
+                            ),
+                            CupertinoButton(
+                              child:
+                                  Image.asset('assets/icons/icon_profile.png'),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
                       ),
                     ),

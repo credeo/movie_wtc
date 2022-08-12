@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/pages/search.dart';
 
-enum LeftIcon { backArrow, appLogo }
-
-enum RightIcon { notification, search }
+import 'package:movie_wtc/pages/tab_container.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;
@@ -66,7 +64,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             //padding: const EdgeInsets.only(top: 15),
             child: Image.asset('assets/icons/icon_search.png'),
             onPressed: () {
-              context.goNamed(SearchPage.pageName);
+              context.pushNamed(SearchPage.pageName);
             },
           ),
         if (hasNotificationButton)
@@ -82,7 +80,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
           //padding: const EdgeInsets.only(top: 15),
           child: Image.asset('assets/icons/icon_profile.png'),
-          onPressed: () {},
+          onPressed: () {
+            //OBRISATI
+            context.goNamed(TabContainer.pageName);
+          },
         ),
       ],
     );

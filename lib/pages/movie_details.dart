@@ -65,7 +65,7 @@ class MovieDetails extends StatelessWidget {
                           width: MediaQuery.of(context).size.width - 32.0,
                           iconPath: 'assets/icons/icon_play_filled.png',
                           onPressed: () {
-                            context.goNamed(MoviePlayer.pageName, params: {'id': movieId});
+                            context.goNamed(MoviePlayer.pageNameFromDetails, params: {'id': movieId});
                           },
                         ),
                         const SizedBox(height: 12),

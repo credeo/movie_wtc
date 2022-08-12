@@ -34,10 +34,14 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientStart!;
   Color get tabbarGradientEnd =>
       Theme.of(_context).extension<CustomColorScheme>()!.tabbarGradientEnd!;
-  Color get searchField =>
-      Theme.of(_context).extension<CustomColorScheme>()!.searchField!;
   Color get searchBackground =>
       Theme.of(_context).extension<CustomColorScheme>()!.searchBackground!;
+  Color get searchDivider =>
+      Theme.of(_context).extension<CustomColorScheme>()!.searchDivider!;
+  Color get hintText =>
+      Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
+  Color get textCursor =>
+      Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
 }
 
 @immutable
@@ -56,8 +60,11 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? coverGradientEnd;
   final Color? tabbarGradientStart;
   final Color? tabbarGradientEnd;
-  final Color? searchField;
+
   final Color? searchBackground;
+  final Color? searchDivider;
+  final Color? hintText;
+  final Color? textCursor;
 
   const CustomColorScheme({
     required this.primary,
@@ -74,8 +81,10 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.coverGradientEnd,
     required this.tabbarGradientEnd,
     required this.tabbarGradientStart,
-    required this.searchField,
     required this.searchBackground,
+    required this.searchDivider,
+    required this.hintText,
+    required this.textCursor,
   });
 
   const CustomColorScheme.light({
@@ -92,9 +101,11 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.coverGradientStart = const Color(0xff141414),
     this.coverGradientEnd = const Color(0x00141414),
     this.tabbarGradientStart = const Color(0xF02F2F2F),
-    this.searchField = const Color(0xffEBEBF5),
+    this.searchBackground = const Color(0x3D767680),
+    this.searchDivider = const Color(0xFF2C2C2C),
     this.tabbarGradientEnd = const Color(0xF0161616),
-    this.searchBackground = const Color(0x18767680),
+    this.hintText = const Color(0x99ebebf5),
+    this.textCursor = const Color(0xffEAEAEB),
   });
 
   @override
@@ -113,8 +124,10 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? coverGradientEnd,
     Color? tabbarGradientEnd,
     Color? tabbarGradientStart,
-    Color? searchField,
     Color? searchBackground,
+    Color? searchDivider,
+    Color? hintText,
+    Color? textCursor,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -132,9 +145,11 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       coverGradientStart: coverGradientStart ?? this.coverGradientStart,
       coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
       tabbarGradientEnd: tabbarGradientEnd ?? this.tabbarGradientEnd,
-      searchField: searchField ?? this.searchField,
       tabbarGradientStart: tabbarGradientStart ?? this.tabbarGradientStart,
       searchBackground: searchBackground ?? this.searchBackground,
+      searchDivider: searchDivider ?? this.searchDivider,
+      hintText: hintText ?? this.hintText,
+      textCursor: textCursor ?? this.textCursor,
     );
   }
 
@@ -163,10 +178,12 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       coverGradientEnd: Color.lerp(coverGradientEnd, other.coverGradientEnd, t),
       tabbarGradientEnd:
           Color.lerp(tabbarGradientEnd, other.tabbarGradientEnd, t),
-      searchField: Color.lerp(searchField, other.searchField, t),
+      searchBackground: Color.lerp(searchBackground, other.searchBackground, t),
+      searchDivider: Color.lerp(searchDivider, other.searchDivider, t),
+      hintText: Color.lerp(hintText, other.hintText, t),
+      textCursor: Color.lerp(textCursor, other.textCursor, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
-      searchBackground: Color.lerp(searchBackground, other.searchBackground, t),
     );
   }
 }
