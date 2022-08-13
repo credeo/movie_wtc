@@ -28,31 +28,38 @@ class CategoryDetailsPage extends StatelessWidget {
                 hasBackButton: true,
                 hasSearchButton: true,
               ),
-              body: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
-                      style: CustomTextStyles.of(context).semiBold24,
-                    ),
-                  ),
-                  getSection(
-                      context: context,
-                      sectionTitle: 'Trending Now',
-                      categoriesProvider: categoriesProvider),
-                  getSection(
-                      context: context,
-                      sectionTitle: 'Most Recent',
-                      categoriesProvider: categoriesProvider),
-                  getSection(
-                    context: context,
-                    sectionTitle: 'Most Viewed',
-                    categoriesProvider: categoriesProvider,
-                  ),
-                ],
-              ));
+              body: categoriesProvider.map.keys.contains(categoryName)
+                  ? ListView(
+                      padding: EdgeInsets.zero,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Text(
+                            '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
+                            style: CustomTextStyles.of(context).semiBold24,
+                          ),
+                        ),
+                        getSection(
+                            context: context,
+                            sectionTitle: 'Trending Now',
+                            categoriesProvider: categoriesProvider),
+                        getSection(
+                            context: context,
+                            sectionTitle: 'Most Recent',
+                            categoriesProvider: categoriesProvider),
+                        getSection(
+                          context: context,
+                          sectionTitle: 'Most Viewed',
+                          categoriesProvider: categoriesProvider,
+                        ),
+                      ],
+                    )
+                  : Center(
+                      child: Text(
+                        'No movies in selected category!',
+                        style: CustomTextStyles.of(context).regular24,
+                      ),
+                    ));
         },
       ),
     );

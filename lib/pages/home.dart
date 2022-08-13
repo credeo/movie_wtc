@@ -17,6 +17,8 @@ import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'category_details.dart';
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
@@ -316,27 +318,33 @@ class Home extends StatelessWidget {
       {required BuildContext context,
       required String title,
       required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: [
-          SizedBox(
-            width: 64,
-            height: 64,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.fitWidth,
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(CategoryDetailsPage.pageName,
+            params: {'name': title.toLowerCase()});
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            SizedBox(
+              width: 64,
+              height: 64,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: CustomTextStyles.of(context).regular12,
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: CustomTextStyles.of(context).regular12,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -490,9 +498,7 @@ class Home extends StatelessWidget {
                   title: movie.title,
                   subtitle: movie.subtitle,
                   imagePath: movie.coverImage,
-                  callback: () {
-                    print('clicked on my movie tile');
-                  },
+                  callback: () {},
                 );
               },
             ),
