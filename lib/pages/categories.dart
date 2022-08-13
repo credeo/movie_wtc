@@ -53,7 +53,6 @@ class CategoriesPage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              top: 20.0,
               left: 20,
               right: 20,
             ),
