@@ -31,9 +31,12 @@ class CategoryDetailsPage extends StatelessWidget {
               body: ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  Text(
-                    '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
-                    style: CustomTextStyles.of(context).semiBold24,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Text(
+                      '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
+                      style: CustomTextStyles.of(context).semiBold24,
+                    ),
                   ),
                   getSection(
                       context: context,
@@ -44,9 +47,10 @@ class CategoryDetailsPage extends StatelessWidget {
                       sectionTitle: 'Most Recent',
                       categoriesProvider: categoriesProvider),
                   getSection(
-                      context: context,
-                      sectionTitle: 'Most Viewed',
-                      categoriesProvider: categoriesProvider),
+                    context: context,
+                    sectionTitle: 'Most Viewed',
+                    categoriesProvider: categoriesProvider,
+                  ),
                 ],
               ));
         },
