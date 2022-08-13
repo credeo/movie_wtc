@@ -64,7 +64,7 @@ class CategoryDetailsPage extends StatelessWidget {
     required CategoriesProvider categoriesProvider,
   }) {
     return SizedBox(
-      height: 301,
+      height: 280,
       child: Column(
         children: [
           Padding(
