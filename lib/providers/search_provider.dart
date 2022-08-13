@@ -11,7 +11,7 @@ class SearchProvider extends ChangeNotifier {
   String _category = '';
   String _duration = '';
   String _productionYear = '';
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
 
   String get category => _category;
   String get duration => _duration;

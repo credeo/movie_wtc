@@ -52,7 +52,7 @@ class RouterService {
             GoRoute(
                 path: 'categories',
                 name: CategoriesPage.pageName,
-                builder: (context, state) => CategoriesPage(),
+                builder: (context, state) => const CategoriesPage(),
                 routes: [
                   GoRoute(
                       path: ':name',

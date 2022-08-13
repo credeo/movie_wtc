@@ -17,7 +17,7 @@ import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'category_details.dart';
+import 'package:movie_wtc/pages/category_details.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

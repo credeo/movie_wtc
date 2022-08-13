@@ -6,10 +6,10 @@ import 'package:movie_wtc/providers/my_list_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
-import 'movie_details.dart';
+import 'package:movie_wtc/pages/movie_details.dart';
 
 class MyListPage extends StatelessWidget {
-  static const pageName = "my_list";
+  static const pageName = 'my_list';
 
   const MyListPage({Key? key}) : super(key: key);
 
@@ -21,7 +21,7 @@ class MyListPage extends StatelessWidget {
         builder: (context, myListProvider, child) {
           return Scaffold(
               backgroundColor: CustomColors.of(context).background,
-              appBar: CustomAppBar(
+              appBar: const CustomAppBar(
                 hasBackButton: true,
                 hasSearchButton: true,
               ),
@@ -36,7 +36,7 @@ class MyListPage extends StatelessWidget {
                         style: CustomTextStyles.of(context).semiBold24,
                       ),
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     Expanded(
                       child: myListProvider.myMovies.isNotEmpty
                           ? GridView.builder(

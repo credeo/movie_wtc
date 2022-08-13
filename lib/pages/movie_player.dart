@@ -2,7 +2,6 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/providers/movie_player_provider.dart';
-import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class MoviePlayer extends StatelessWidget {
@@ -31,7 +30,8 @@ class MoviePlayer extends StatelessWidget {
                 ),
               ),
               body: SafeArea(
-                child: FlickVideoPlayer(flickManager: moviePlayerProvider.flickManager),
+                child: FlickVideoPlayer(
+                    flickManager: moviePlayerProvider.flickManager),
               ),
             ),
           );
