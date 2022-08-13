@@ -55,60 +55,74 @@ class ProfilePage extends StatelessWidget {
             color: CustomColors.of(context).inactive.withOpacity(0.25),
           ),
           getRow(
-              context: context,
-              text: 'My List',
-              iconPath: 'assets/icons/icon_profile.png'),
+            context: context,
+            text: 'My List',
+            iconPath: 'assets/icons/icon_checkmark.png',
+            callback: () {},
+          ),
           getRow(
-              context: context,
-              text: 'Edit Profile',
-              iconPath: 'assets/icons/icon_profile.png'),
+            context: context,
+            text: 'Edit Profile',
+            iconPath: 'assets/icons/icon_edit.png',
+            callback: () {},
+          ),
           getRow(
-              context: context,
-              text: 'App Preferences',
-              iconPath: 'assets/icons/icon_profile.png'),
+            context: context,
+            text: 'App Preferences',
+            iconPath: 'assets/icons/icon_preferences.png',
+            callback: () {},
+          ),
           getRow(
-              context: context,
-              text: 'Help',
-              iconPath: 'assets/icons/icon_profile.png'),
+            context: context,
+            text: 'Help',
+            iconPath: 'assets/icons/icon_help.png',
+            callback: () {},
+          ),
           getRow(
-              context: context,
-              text: 'Sign Out',
-              iconPath: 'assets/icons/icon_profile.png'),
+            context: context,
+            text: 'Sign Out',
+            iconPath: 'assets/icons/icon_logout.png',
+            callback: () {},
+          ),
         ],
       ),
     );
   }
 
   Widget getRow(
-      {required BuildContext context,
+      {required VoidCallback callback,
+      required BuildContext context,
       required String text,
       required String iconPath}) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 60,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 20,
-                  right: 16,
+    return GestureDetector(
+      onTap: callback,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 60,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 20,
+                    right: 16,
+                  ),
+                  child: Image.asset(iconPath),
                 ),
-                child: Image.asset(iconPath),
-              ),
-              Text(
-                text,
-                style: CustomTextStyles.of(context).regular12,
-              )
-            ],
+                Text(
+                  text,
+                  style: CustomTextStyles.of(context).regular12,
+                )
+              ],
+            ),
           ),
-        ),
-        Divider(
-          height: 1,
-          color: CustomColors.of(context).inactive.withOpacity(0.25),
-        ),
-      ],
+          Divider(
+            height: 1,
+            color: CustomColors.of(context).inactive.withOpacity(0.25),
+          ),
+        ],
+      ),
     );
   }
 }
