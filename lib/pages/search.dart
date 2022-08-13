@@ -164,7 +164,7 @@ class SearchPage extends StatelessWidget {
                     ),
                   ),
             prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: 8, right: 6),
+              padding: const EdgeInsets.only(left: 8, right: 6, bottom: 3),
               child: SizedBox(
                 height: 16,
                 width: 16,
