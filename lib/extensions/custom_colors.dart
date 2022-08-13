@@ -44,6 +44,8 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
   Color get dividerProfile =>
       Theme.of(_context).extension<CustomColorScheme>()!.dividerProfile!;
+  Color get underlineProfile =>
+      Theme.of(_context).extension<CustomColorScheme>()!.underlineProfile!;
 }
 
 @immutable
@@ -67,6 +69,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? hintText;
   final Color? textCursor;
   final Color? dividerProfile;
+  final Color? underlineProfile;
 
   const CustomColorScheme({
     required this.primary,
@@ -88,6 +91,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.hintText,
     required this.textCursor,
     required this.dividerProfile,
+    required this.underlineProfile,
   });
 
   const CustomColorScheme.light({
@@ -110,6 +114,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.hintText = const Color(0x99ebebf5),
     this.textCursor = const Color(0xffEAEAEB),
     this.dividerProfile = const Color(0xffE5E5E5),
+    this.underlineProfile = const Color(0xff707070),
   });
 
   @override
@@ -133,6 +138,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? hintText,
     Color? textCursor,
     Color? dividerProfile,
+    Color? underlineProfile,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -156,6 +162,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       hintText: hintText ?? this.hintText,
       textCursor: textCursor ?? this.textCursor,
       dividerProfile: dividerProfile ?? this.dividerProfile,
+      underlineProfile: underlineProfile ?? this.underlineProfile,
     );
   }
 
@@ -191,6 +198,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
       dividerProfile: Color.lerp(dividerProfile, other.dividerProfile, t),
+      underlineProfile: Color.lerp(underlineProfile, other.underlineProfile, t),
     );
   }
 }

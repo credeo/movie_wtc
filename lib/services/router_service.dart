@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
@@ -39,10 +40,16 @@ class RouterService {
           builder: (context, state) => const SearchPage(),
         ),
         GoRoute(
-          path: '/profile',
-          name: ProfilePage.pageName,
-          builder: (context, state) => const ProfilePage(),
-        ),
+            path: '/profile',
+            name: ProfilePage.pageName,
+            builder: (context, state) => const ProfilePage(),
+            routes: [
+              GoRoute(
+                path: 'edit_profile',
+                name: EditProfilePage.pageName,
+                builder: (context, state) => const EditProfilePage(),
+              ),
+            ]),
         GoRoute(
           path: '/my_list',
           name: MyListPage.pageName,

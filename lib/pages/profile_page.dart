@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
@@ -53,8 +54,10 @@ class ProfilePage extends StatelessWidget {
             context.pushNamed(MyListPage.pageName);
           }),
           dividerForProfile(context),
-          cellForProfile(
-              context, 'assets/icons/icon_edit.png', 'Edit Profile', () {}),
+          cellForProfile(context, 'assets/icons/icon_edit.png', 'Edit Profile',
+              () {
+            context.pushNamed(EditProfilePage.pageName);
+          }),
           dividerForProfile(context),
           cellForProfile(context, 'assets/icons/icon_ preferences.png',
               'App Preferences', () {}),
