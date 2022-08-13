@@ -3,16 +3,18 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
-import 'package:movie_wtc/pages/category_details.dart';
-import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/providers/categories_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
 
-class CategoriesPage extends StatelessWidget {
-  static const pageName = 'categories';
+import 'package:movie_wtc/pages/movie_details.dart';
 
-  const CategoriesPage({Key? key}) : super(key: key);
+class CategoryDetailsPage extends StatelessWidget {
+  const CategoryDetailsPage({Key? key, required this.categoryName})
+      : super(key: key);
+  static const pageName = 'category-details';
+
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -21,30 +23,40 @@ class CategoriesPage extends StatelessWidget {
       child: Consumer<CategoriesProvider>(
         builder: (context, categoriesProvider, child) {
           return Scaffold(
-            backgroundColor: CustomColors.of(context).background,
-            appBar: const CustomAppBar(
-              hasBackButton: true,
-              hasSearchButton: true,
-            ),
-            body: ListView.builder(
+              backgroundColor: CustomColors.of(context).background,
+              appBar: const CustomAppBar(
+                hasBackButton: true,
+                hasSearchButton: true,
+              ),
+              body: ListView(
                 padding: EdgeInsets.zero,
-                itemCount: categoriesProvider.map.keys.length,
-                itemBuilder: (context, index) {
-                  return getCategorySection(
+                children: [
+                  Text(
+                    '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
+                    style: CustomTextStyles.of(context).semiBold24,
+                  ),
+                  getSection(
                       context: context,
-                      categoryTitle:
-                          categoriesProvider.map.keys.elementAt(index),
-                      categoriesProvider: categoriesProvider);
-                }),
-          );
+                      sectionTitle: 'Trending Now',
+                      categoriesProvider: categoriesProvider),
+                  getSection(
+                      context: context,
+                      sectionTitle: 'Most Recent',
+                      categoriesProvider: categoriesProvider),
+                  getSection(
+                      context: context,
+                      sectionTitle: 'Most Viewed',
+                      categoriesProvider: categoriesProvider),
+                ],
+              ));
         },
       ),
     );
   }
 
-  Widget getCategorySection({
+  Widget getSection({
     required BuildContext context,
-    required String categoryTitle,
+    required String sectionTitle,
     required CategoriesProvider categoriesProvider,
   }) {
     return SizedBox(
@@ -61,22 +73,10 @@ class CategoriesPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${categoryTitle[0].toUpperCase()}${categoryTitle.substring(1)}',
+                  sectionTitle,
                   style: CustomTextStyles.of(context).semiBold18,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    context.goNamed(CategoryDetailsPage.pageName,
-                        params: {'name': categoryTitle});
-                  },
-                  child: Text(
-                    'See More',
-                    style: CustomTextStyles.of(context).regular12.apply(
-                          color: CustomColors.of(context).primary,
-                        ),
-                  ),
                 ),
               ],
             ),
@@ -92,10 +92,10 @@ class CategoriesPage extends StatelessWidget {
                   return getOneItem(
                     context: context,
                     movie:
-                        categoriesProvider.map[categoryTitle]!.elementAt(index),
+                        categoriesProvider.map[categoryName]!.elementAt(index),
                   );
                 },
-                itemCount: categoriesProvider.map[categoryTitle]!.length,
+                itemCount: categoriesProvider.map[categoryName]!.length,
               ),
             ),
           )

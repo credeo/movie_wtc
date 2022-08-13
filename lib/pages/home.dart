@@ -365,7 +365,7 @@ class Home extends StatelessWidget {
                       .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  context.goNamed(CategoriesPage.pageName);
+                  context.pushNamed(CategoriesPage.pageName);
                 },
               ),
             ],

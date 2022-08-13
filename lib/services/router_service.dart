@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/pages/categories.dart';
+import 'package:movie_wtc/pages/category_details.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
@@ -43,10 +44,17 @@ class RouterService {
           builder: (context, state) => const TabContainer(),
           routes: [
             GoRoute(
-              path: 'categories',
-              name: CategoriesPage.pageName,
-              builder: (context, state) => CategoriesPage(),
-            ),
+                path: 'categories',
+                name: CategoriesPage.pageName,
+                builder: (context, state) => CategoriesPage(),
+                routes: [
+                  GoRoute(
+                      path: ':name',
+                      name: CategoryDetailsPage.pageName,
+                      builder: (context, state) => CategoryDetailsPage(
+                            categoryName: state.params['name']!,
+                          )),
+                ]),
             GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,
