@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 
@@ -68,8 +69,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         CupertinoButton(
           child: Image.asset('assets/icons/icon_profile.png'),
           onPressed: () {
-            //OBRISATI
-            context.goNamed(TabContainer.pageName);
+            context.pushNamed(ProfilePage.pageName);
           },
         ),
       ],
