@@ -8,6 +8,7 @@ import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/categories.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
+import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -466,7 +467,7 @@ class Home extends StatelessWidget {
                       .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  print('clicked see more');
+                  context.pushNamed(MyListPage.pageName);
                 },
               ),
             ],

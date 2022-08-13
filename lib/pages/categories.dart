@@ -107,7 +107,7 @@ class CategoriesPage extends StatelessWidget {
   Widget getOneItem({required BuildContext context, required Movie movie}) {
     return GestureDetector(
       onTap: () {
-        context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+        context.pushNamed(MovieDetails.pageName, params: {'id': movie.id});
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),

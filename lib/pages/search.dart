@@ -286,7 +286,7 @@ class SearchPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  context.goNamed(MovieDetails.pageName, params: {
+                  context.pushNamed(MovieDetails.pageName, params: {
                     'id': searchProvider.searched.elementAt(index).id
                   });
                 },
