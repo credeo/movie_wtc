@@ -19,6 +19,14 @@ class MovieService {
     ];
   }
 
+  // String fetchCategories() {
+  //   for (var element in suggestedMovies) {
+  //     var g = element.genres;
+  //     g.map((e) => e.value);
+  //     return g;
+  //   }
+  // }
+
   Future<void> fetchComingSoonMovies() async {
     await Future.delayed(const Duration(seconds: 1));
     _comingSoonMovies = [
@@ -34,5 +42,15 @@ class MovieService {
         _suggestedMovies.firstWhereOrNull((element) => element.id == id);
     movie ??= _comingSoonMovies.firstWhereOrNull((element) => element.id == id);
     return movie;
+  }
+
+  List<dynamic> getMovieWithGenre() {
+    var genre = [];
+    for (var movie in _suggestedMovies) {
+      print('genre');
+      genre = movie.genres;
+    }
+
+    return genre;
   }
 }

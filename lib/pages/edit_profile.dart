@@ -73,19 +73,19 @@ class EditProfilePage extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 50),
                     cellTextField(
                       context,
                       'assets/icons/icon_profile_small.png',
                       'Change Name',
                     ),
-                    const SizedBox(height: 11),
+                    const SizedBox(height: 12),
                     cellTextField(
                       context,
                       'assets/icons/icon_eye_crossed.png',
                       'New Password',
                     ),
-                    const SizedBox(height: 11),
+                    const SizedBox(height: 12),
                     cellTextField(
                       context,
                       'assets/icons/icon_eye_crossed.png',

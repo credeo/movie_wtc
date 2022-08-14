@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:movie_wtc/pages/categories.dart';
 import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
@@ -60,6 +61,11 @@ class RouterService {
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
           routes: [
+            GoRoute(
+              path: 'categories',
+              name: CategoriesPage.pageName,
+              builder: (context, state) => const CategoriesPage(),
+            ),
             GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,

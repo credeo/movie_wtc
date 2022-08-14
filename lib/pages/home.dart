@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/categories.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
@@ -347,7 +348,7 @@ class Home extends StatelessWidget {
                       .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  print('clicked see moreii');
+                  context.pushNamed(CategoriesPage.pageName);
                 },
               ),
             ],

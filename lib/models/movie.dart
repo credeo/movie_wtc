@@ -22,8 +22,6 @@ enum Genre {
   }
 }
 
-enum AgeRating { restricted }
-
 class Movie {
   final String id;
   final String title;
