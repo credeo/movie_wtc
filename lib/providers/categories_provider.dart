@@ -11,6 +11,9 @@ class CategoriesProvider extends ChangeNotifier {
   Map<String, List<Movie>> get map => _map;
 
   CategoriesProvider() {
+    // for (Genre g in Genre.values) { AKO TREBA DA BUDU PRIKAZANI SVI ZANROVI, IAKO NEMAJU FILM
+    //   _map.putIfAbsent(g.value, () => []);
+    // }
     for (Movie m in _movies) {
       for (int i = 0; i < m.genres.length; i++) {
         _map.putIfAbsent(m.genres[i].value, () => []);
