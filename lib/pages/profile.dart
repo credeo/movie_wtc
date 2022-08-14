@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
+import 'package:movie_wtc/pages/edit_profile.dart';
+import 'package:movie_wtc/pages/login_page.dart';
+import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -15,6 +20,7 @@ class ProfilePage extends StatelessWidget {
       appBar: const CustomAppBar(
         hasNotificationButton: true,
         hasBackButton: true,
+        isProfilePage: true,
       ),
       body: Column(
         children: [
@@ -58,13 +64,17 @@ class ProfilePage extends StatelessWidget {
             context: context,
             text: 'My List',
             iconPath: 'assets/icons/icon_checkmark.png',
-            callback: () {},
+            callback: () {
+              context.pushNamed(MyListPage.pageName);
+            },
           ),
           getRow(
             context: context,
             text: 'Edit Profile',
             iconPath: 'assets/icons/icon_edit.png',
-            callback: () {},
+            callback: () {
+              context.goNamed(EditProfilePage.pageName);
+            },
           ),
           getRow(
             context: context,
@@ -82,7 +92,9 @@ class ProfilePage extends StatelessWidget {
             context: context,
             text: 'Sign Out',
             iconPath: 'assets/icons/icon_logout.png',
-            callback: () {},
+            callback: () {
+              context.goNamed(LoginPage.pageName);
+            },
           ),
         ],
       ),
@@ -95,6 +107,7 @@ class ProfilePage extends StatelessWidget {
       required String text,
       required String iconPath}) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: callback,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

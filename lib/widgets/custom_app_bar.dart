@@ -9,6 +9,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;
   final bool hasSearchButton;
   final bool hasNotificationButton;
+  final bool isProfilePage;
   final Color? backgroundColor;
 
   const CustomAppBar({
@@ -16,6 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.hasBackButton = false,
     this.hasSearchButton = false,
     this.hasNotificationButton = false,
+    this.isProfilePage = false,
     this.backgroundColor,
   });
 
@@ -69,7 +71,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         CupertinoButton(
           child: Image.asset('assets/icons/icon_profile.png'),
           onPressed: () {
-            context.pushNamed(ProfilePage.pageName);
+            if (!isProfilePage) context.pushNamed(ProfilePage.pageName);
           },
         ),
       ],
