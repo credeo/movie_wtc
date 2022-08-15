@@ -14,4 +14,10 @@ class ProfileProvider extends ChangeNotifier {
     _myService.name = _controller.text;
     notifyListeners();
   }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
