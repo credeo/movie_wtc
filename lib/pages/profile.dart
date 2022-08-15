@@ -6,7 +6,9 @@ import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
+import 'package:movie_wtc/providers/profile_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatelessWidget {
   static const pageName = 'profile';
@@ -15,88 +17,94 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomColors.of(context).background,
-      appBar: const CustomAppBar(
-        hasNotificationButton: true,
-        hasBackButton: true,
-        isProfilePage: true,
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 16.0, bottom: 28, left: 20, right: 20),
-            child: Row(
+    return ChangeNotifierProvider(
+      create: (context) => ProfileProvider(),
+      child: Consumer<ProfileProvider>(
+        builder: (context, profileProvider, child) {
+          return Scaffold(
+            backgroundColor: CustomColors.of(context).background,
+            appBar: const CustomAppBar(
+              hasNotificationButton: true,
+              hasBackButton: true,
+              isProfilePage: true,
+            ),
+            body: Column(
               children: [
-                SizedBox(
-                  height: 68,
-                  width: 68,
-                  child: Image.asset(
-                    'assets/icons/icon_profile.png',
-                    fit: BoxFit.cover,
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 16.0, bottom: 28, left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        height: 68,
+                        width: 68,
+                        child: Image.asset(
+                          'assets/icons/icon_profile.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            profileProvider.name,
+                            style: CustomTextStyles.of(context).semiBold24,
+                          ),
+                          Text(
+                            'janko36@outlook.com',
+                            style: CustomTextStyles.of(context).regular12.apply(
+                                color: CustomColors.of(context).inactive),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
-                const SizedBox(width: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Janko Tufegdzic',
-                      style: CustomTextStyles.of(context).semiBold24,
-                    ),
-                    Text(
-                      'janko36@outlook.com',
-                      style: CustomTextStyles.of(context)
-                          .regular12
-                          .apply(color: CustomColors.of(context).inactive),
-                    ),
-                  ],
-                )
+                Divider(
+                  height: 1,
+                  color: CustomColors.of(context).inactive.withOpacity(0.25),
+                ),
+                getRow(
+                  context: context,
+                  text: 'My List',
+                  iconPath: 'assets/icons/icon_checkmark.png',
+                  callback: () {
+                    context.pushNamed(MyListPage.pageName);
+                  },
+                ),
+                getRow(
+                  context: context,
+                  text: 'Edit Profile',
+                  iconPath: 'assets/icons/icon_edit.png',
+                  callback: () {
+                    context.pushNamed(EditProfilePage.pageName);
+                  },
+                ),
+                getRow(
+                  context: context,
+                  text: 'App Preferences',
+                  iconPath: 'assets/icons/icon_preferences.png',
+                  callback: () {},
+                ),
+                getRow(
+                  context: context,
+                  text: 'Help',
+                  iconPath: 'assets/icons/icon_help.png',
+                  callback: () {},
+                ),
+                getRow(
+                  context: context,
+                  text: 'Sign Out',
+                  iconPath: 'assets/icons/icon_logout.png',
+                  callback: () {
+                    context.goNamed(LoginPage.pageName);
+                  },
+                ),
               ],
             ),
-          ),
-          Divider(
-            height: 1,
-            color: CustomColors.of(context).inactive.withOpacity(0.25),
-          ),
-          getRow(
-            context: context,
-            text: 'My List',
-            iconPath: 'assets/icons/icon_checkmark.png',
-            callback: () {
-              context.pushNamed(MyListPage.pageName);
-            },
-          ),
-          getRow(
-            context: context,
-            text: 'Edit Profile',
-            iconPath: 'assets/icons/icon_edit.png',
-            callback: () {
-              context.pushNamed(EditProfilePage.pageName);
-            },
-          ),
-          getRow(
-            context: context,
-            text: 'App Preferences',
-            iconPath: 'assets/icons/icon_preferences.png',
-            callback: () {},
-          ),
-          getRow(
-            context: context,
-            text: 'Help',
-            iconPath: 'assets/icons/icon_help.png',
-            callback: () {},
-          ),
-          getRow(
-            context: context,
-            text: 'Sign Out',
-            iconPath: 'assets/icons/icon_logout.png',
-            callback: () {
-              context.goNamed(LoginPage.pageName);
-            },
-          ),
-        ],
+          );
+        },
       ),
     );
   }

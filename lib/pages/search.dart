@@ -204,7 +204,7 @@ class SearchPage extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+        context.pushNamed(MovieDetails.pageName, params: {'id': movie.id});
       },
       child: Container(
         height: 60,
