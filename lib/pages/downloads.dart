@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 import '../extensions/custom_colors.dart';
 import '../extensions/custom_text_styles.dart';
 
-import 'package:movie_wtc/providers/download_provider.dart';
+import 'package:movie_wtc/providers/downloads_provider.dart';
 
 class Downloads extends StatelessWidget {
   const Downloads({super.key});

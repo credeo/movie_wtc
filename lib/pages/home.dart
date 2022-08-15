@@ -100,7 +100,7 @@ class Home extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
-                                    bottom: 15.0,
+                                    bottom: 0.0,
                                     left: 0.0,
                                     right: 0.0,
                                     child: Column(
@@ -113,47 +113,12 @@ class Home extends StatelessWidget {
                                               .semiBold40,
                                         ),
                                         const SizedBox(height: 16),
-
-                                        Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              movie.genres
-                                                  .map((e) =>
-                                                      e.toLocalisedString())
-                                                  .join(' ')
-                                                  .toString(),
-                                              style:
-                                                  CustomTextStyles.of(context)
-                                                      .regular12,
-                                            ),
-                                            Container(
-                                              width: 4,
-                                              height: 4,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8),
-                                              decoration: BoxDecoration(
-                                                  color:
-                                                      CustomColors.of(context)
-                                                          .primaryText,
-                                                  shape: BoxShape.circle),
-                                            ),
-                                            Text(
-                                              movie.details,
-                                              style:
-                                                  CustomTextStyles.of(context)
-                                                      .regular12,
-                                            ),
-                                          ],
-
                                         MovieDetailsRow(
-                                          leftText: movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
+                                          leftText: movie.genres
+                                              .map((e) => e.toLocalisedString())
+                                              .join(' ')
+                                              .toString(),
                                           rightText: movie.details,
-
                                         ),
                                         // Row(
                                         //   crossAxisAlignment: CrossAxisAlignment.center,
@@ -183,35 +148,37 @@ class Home extends StatelessWidget {
                                           children: [
                                             Expanded(
                                               child: Align(
-
                                                 alignment:
                                                     Alignment.centerRight,
-                                                child: CustomSecondaryButton(
-                                                  iconPath:
-                                                      'assets/icons/icon_checkmark.png',
-                                                  title: 'home_my_list_button'
-                                                      .tr(),
-                                                  onPressed: () {},
-
-                                                alignment: Alignment.centerRight,
                                                 child: SizedBox(
                                                   width: 72,
-                                                  child: homeProvider.isMovieInMyList(movie)
+                                                  child: homeProvider
+                                                          .isMovieInMyList(
+                                                              movie)
                                                       ? CustomSecondaryButton(
-                                                          iconPath: 'assets/icons/icon_checkmark.png',
-                                                          title: 'home_my_list_button'.tr(),
+                                                          iconPath:
+                                                              'assets/icons/icon_checkmark.png',
+                                                          title:
+                                                              'home_my_list_button'
+                                                                  .tr(),
                                                           onPressed: () {
-                                                            homeProvider.removeMovieFromMyList(movie);
+                                                            homeProvider
+                                                                .removeMovieFromMyList(
+                                                                    movie);
                                                           },
                                                         )
                                                       : CustomSecondaryButton(
-                                                          iconPath: 'assets/icons/icon_plus_circle.png',
-                                                          title: 'home_my_list_button'.tr(),
+                                                          iconPath:
+                                                              'assets/icons/icon_plus_circle.png',
+                                                          title:
+                                                              'home_my_list_button'
+                                                                  .tr(),
                                                           onPressed: () {
-                                                            homeProvider.addMovieToMyList(movie);
+                                                            homeProvider
+                                                                .addMovieToMyList(
+                                                                    movie);
                                                           },
                                                         ),
-
                                                 ),
                                               ),
                                             ),
@@ -222,39 +189,34 @@ class Home extends StatelessWidget {
                                               child: CustomButtonWithIcon(
                                                 title: 'home_play'.tr(),
                                                 width: 100,
-
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
-                                                onPressed: () {},
-
-                                                iconPath: 'assets/icons/icon_play_filled.png',
                                                 onPressed: () {
-                                                  context.goNamed(MoviePlayer.pageNameFromHome, extra: movie.id);
+                                                  context.goNamed(
+                                                      MoviePlayer
+                                                          .pageNameFromHome,
+                                                      extra: movie.id);
                                                 },
-
                                               ),
                                             ),
                                             Expanded(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
-
-                                                child: CustomSecondaryButton(
-                                                  iconPath:
-                                                      'assets/icons/icon_info.png',
-                                                  title:
-                                                      'home_info_button'.tr(),
-                                                  onPressed: () {},
-
                                                 child: SizedBox(
                                                   width: 72,
                                                   child: CustomSecondaryButton(
-                                                    iconPath: 'assets/icons/icon_info.png',
-                                                    title: 'home_info_button'.tr(),
+                                                    iconPath:
+                                                        'assets/icons/icon_info.png',
+                                                    title:
+                                                        'home_info_button'.tr(),
                                                     onPressed: () {
-                                                      context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+                                                      context.goNamed(
+                                                          MovieDetails.pageName,
+                                                          params: {
+                                                            'id': movie.id
+                                                          });
                                                     },
                                                   ),
-
                                                 ),
                                               ),
                                             ),
@@ -322,16 +284,11 @@ class Home extends StatelessWidget {
                           ),
                           actions: [
                             CupertinoButton(
-
                               child:
                                   Image.asset('assets/icons/icon_search.png'),
-                              onPressed: () {},
-
-                              child: Image.asset('assets/icons/icon_search.png'),
                               onPressed: () {
                                 context.pushNamed(SearchPage.pageName);
                               },
-
                             ),
                             CupertinoButton(
                               child:
