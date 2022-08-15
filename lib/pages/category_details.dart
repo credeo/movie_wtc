@@ -54,11 +54,26 @@ class CategoryDetailsPage extends StatelessWidget {
                         ),
                       ],
                     )
-                  : Center(
-                      child: Text(
-                        'No movies in selected category!',
-                        style: CustomTextStyles.of(context).regular24,
-                      ),
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Align(
+                          alignment: Alignment.topLeft,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Text(
+                              '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
+                              style: CustomTextStyles.of(context).semiBold24,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'No movies in selected category!',
+                          style: CustomTextStyles.of(context).regular24,
+                        ),
+                        const Text(''),
+                      ],
                     ));
         },
       ),
