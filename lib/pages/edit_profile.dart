@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
@@ -83,6 +84,7 @@ class EditProfilePage extends StatelessWidget {
                             title: 'Confirm',
                             onPressed: () {
                               profileProvider.setName();
+                              context.pop();
                             },
                           ),
                         ),
