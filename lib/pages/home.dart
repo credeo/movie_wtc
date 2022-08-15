@@ -1,12 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/movie_details.dart';
+import 'package:movie_wtc/pages/movie_player.dart';
+import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
+import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -108,6 +113,7 @@ class Home extends StatelessWidget {
                                               .semiBold40,
                                         ),
                                         const SizedBox(height: 16),
+
                                         Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
@@ -143,7 +149,33 @@ class Home extends StatelessWidget {
                                                       .regular12,
                                             ),
                                           ],
+
+                                        MovieDetailsRow(
+                                          leftText: movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
+                                          rightText: movie.details,
+
                                         ),
+                                        // Row(
+                                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                                        //   mainAxisAlignment: MainAxisAlignment.center,
+                                        //   children: [
+                                        //     Text(
+                                        //       movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
+                                        //       style: CustomTextStyles.of(context).regular12,
+                                        //     ),
+                                        //     Container(
+                                        //       width: 4,
+                                        //       height: 4,
+                                        //       margin: const EdgeInsets.symmetric(horizontal: 8),
+                                        //       decoration: BoxDecoration(
+                                        //           color: CustomColors.of(context).primaryText, shape: BoxShape.circle),
+                                        //     ),
+                                        //     Text(
+                                        //       movie.details,
+                                        //       style: CustomTextStyles.of(context).regular12,
+                                        //     ),
+                                        //   ],
+                                        // ),
                                         const SizedBox(height: 8),
                                         Row(
                                           mainAxisAlignment:
@@ -151,6 +183,7 @@ class Home extends StatelessWidget {
                                           children: [
                                             Expanded(
                                               child: Align(
+
                                                 alignment:
                                                     Alignment.centerRight,
                                                 child: CustomSecondaryButton(
@@ -159,6 +192,26 @@ class Home extends StatelessWidget {
                                                   title: 'home_my_list_button'
                                                       .tr(),
                                                   onPressed: () {},
+
+                                                alignment: Alignment.centerRight,
+                                                child: SizedBox(
+                                                  width: 72,
+                                                  child: homeProvider.isMovieInMyList(movie)
+                                                      ? CustomSecondaryButton(
+                                                          iconPath: 'assets/icons/icon_checkmark.png',
+                                                          title: 'home_my_list_button'.tr(),
+                                                          onPressed: () {
+                                                            homeProvider.removeMovieFromMyList(movie);
+                                                          },
+                                                        )
+                                                      : CustomSecondaryButton(
+                                                          iconPath: 'assets/icons/icon_plus_circle.png',
+                                                          title: 'home_my_list_button'.tr(),
+                                                          onPressed: () {
+                                                            homeProvider.addMovieToMyList(movie);
+                                                          },
+                                                        ),
+
                                                 ),
                                               ),
                                             ),
@@ -169,20 +222,39 @@ class Home extends StatelessWidget {
                                               child: CustomButtonWithIcon(
                                                 title: 'home_play'.tr(),
                                                 width: 100,
+
                                                 iconPath:
                                                     'assets/icons/icon_play_filled.png',
                                                 onPressed: () {},
+
+                                                iconPath: 'assets/icons/icon_play_filled.png',
+                                                onPressed: () {
+                                                  context.goNamed(MoviePlayer.pageNameFromHome, extra: movie.id);
+                                                },
+
                                               ),
                                             ),
                                             Expanded(
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
+
                                                 child: CustomSecondaryButton(
                                                   iconPath:
                                                       'assets/icons/icon_info.png',
                                                   title:
                                                       'home_info_button'.tr(),
                                                   onPressed: () {},
+
+                                                child: SizedBox(
+                                                  width: 72,
+                                                  child: CustomSecondaryButton(
+                                                    iconPath: 'assets/icons/icon_info.png',
+                                                    title: 'home_info_button'.tr(),
+                                                    onPressed: () {
+                                                      context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+                                                    },
+                                                  ),
+
                                                 ),
                                               ),
                                             ),
@@ -250,9 +322,16 @@ class Home extends StatelessWidget {
                           ),
                           actions: [
                             CupertinoButton(
+
                               child:
                                   Image.asset('assets/icons/icon_search.png'),
                               onPressed: () {},
+
+                              child: Image.asset('assets/icons/icon_search.png'),
+                              onPressed: () {
+                                context.pushNamed(SearchPage.pageName);
+                              },
+
                             ),
                             CupertinoButton(
                               child:
