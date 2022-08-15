@@ -73,7 +73,7 @@ class ProfilePage extends StatelessWidget {
             text: 'Edit Profile',
             iconPath: 'assets/icons/icon_edit.png',
             callback: () {
-              context.goNamed(EditProfilePage.pageName);
+              context.pushNamed(EditProfilePage.pageName);
             },
           ),
           getRow(
