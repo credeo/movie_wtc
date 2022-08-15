@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/pages/categories.dart';
+import 'package:movie_wtc/pages/category_details.dart';
 import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
@@ -41,6 +42,11 @@ class RouterService {
           builder: (context, state) => const SearchPage(),
         ),
         GoRoute(
+          path: '/my_list',
+          name: MyListPage.pageName,
+          builder: (context, state) => const MyListPage(),
+        ),
+        GoRoute(
             path: '/profile',
             name: ProfilePage.pageName,
             builder: (context, state) => const ProfilePage(),
@@ -52,11 +58,6 @@ class RouterService {
               ),
             ]),
         GoRoute(
-          path: '/my_list',
-          name: MyListPage.pageName,
-          builder: (context, state) => const MyListPage(),
-        ),
-        GoRoute(
           path: '/home',
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
@@ -65,6 +66,15 @@ class RouterService {
               path: 'categories',
               name: CategoriesPage.pageName,
               builder: (context, state) => const CategoriesPage(),
+              routes: [
+                GoRoute(
+                  path: ':categoryName',
+                  name: CategoryDetailsPage.pageName,
+                  builder: (context, state) => CategoryDetailsPage(
+                    categoryName: state.params['categoryName']!,
+                  ),
+                ),
+              ],
             ),
             GoRoute(
               path: 'movie_player',

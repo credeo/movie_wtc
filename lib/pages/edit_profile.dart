@@ -37,6 +37,7 @@ class EditProfilePage extends StatelessWidget {
             Stack(
               children: [
                 Positioned(
+                  width: MediaQuery.of(context).size.width,
                   child: Container(
                     height: 285,
                     margin: const EdgeInsets.only(left: 22, right: 18, top: 27),

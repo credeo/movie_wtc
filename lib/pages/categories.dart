@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/helpers/capitalized_helper.dart';
+import 'package:movie_wtc/pages/category_details.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/providers/categories_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
@@ -46,14 +47,21 @@ class CategoriesPage extends StatelessWidget {
                                     color:
                                         CustomColors.of(context).primaryText),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 12),
-                            child: Text(
-                              'See More',
-                              style: CustomTextStyles.of(context)
-                                  .regular12
-                                  .apply(
-                                      color: CustomColors.of(context).primary),
+                          GestureDetector(
+                            onTap: () {
+                              context.pushNamed(CategoryDetailsPage.pageName,
+                                  params: {'categoryName': keyGenre});
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: Text(
+                                'See More',
+                                style: CustomTextStyles.of(context)
+                                    .regular12
+                                    .apply(
+                                        color:
+                                            CustomColors.of(context).primary),
+                              ),
                             ),
                           ),
                         ],

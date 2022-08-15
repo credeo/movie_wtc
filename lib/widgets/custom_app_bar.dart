@@ -68,11 +68,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {},
           ),
         CupertinoButton(
-          onPressed: isProfilePage
-              ? null
-              : () {
-                  context.pushNamed(ProfilePage.pageName);
-                },
+          onPressed: () {
+            if (!isProfilePage) context.pushNamed(ProfilePage.pageName);
+          },
           child: Image.asset('assets/icons/icon_profile.png'),
         ),
       ],

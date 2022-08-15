@@ -6,6 +6,7 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/categories.dart';
+import 'package:movie_wtc/pages/category_details.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
@@ -361,10 +362,16 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             scrollDirection: Axis.horizontal,
             children: [
-              ...Genre.values.map((genre) => categoriesWidget(
-                    context: context,
-                    title: genre.toLocalisedString(),
-                    imagePath: genre.getThumbnailPath(),
+              ...Genre.values.map((genre) => GestureDetector(
+                    onTap: () {
+                      context.pushNamed(CategoryDetailsPage.pageName,
+                          params: {'categoryName': genre.name});
+                    },
+                    child: categoriesWidget(
+                      context: context,
+                      title: genre.toLocalisedString(),
+                      imagePath: genre.getThumbnailPath(),
+                    ),
                   )),
             ],
           ),
