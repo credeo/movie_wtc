@@ -4,19 +4,29 @@ import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
 
 class CategoriesProvider extends ChangeNotifier {
-  final _moviesService = KiwiContainer().resolve<MovieService>();
+  final _movieService = KiwiContainer().resolve<MovieService>();
 
-  List<Movie> get movie => _moviesService.suggestedMovies;
+  final Map<String, List<Movie>> _mapOfCategories = {};
+  Map<String, List<Movie>> get mapOfCategories => _mapOfCategories;
 
-  List<Genre> gen = [];
+  List<Movie> get _movies => _movieService.suggestedMovies;
 
-  void addGen(int index) {
-    gen.add(Genre.values[index]);
-    notifyListeners();
+  CategoriesProvider() {
+    for (var movie in _movies) {
+      for (var genre in movie.genres) {
+        var key = genre.name;
+        _mapOfCategories.putIfAbsent(key, () => []);
+        _mapOfCategories[key]!.add(movie);
+      }
+    }
   }
-
-  bool a(Movie mov) {
-    var b = movie.any((element) => element.genres == mov.genres);
-    return b;
-  }
+  // CategoriesProvider() {
+  //   for (int i = 0; i < _movies.length; i++) {
+  //     for (int j = 0; j < _movies[i].genres.length; j++) {
+  //       var key = _movies[i].genres[j].name;
+  //       _mapOfCategories.putIfAbsent(key, () => []);
+  //       _mapOfCategories[key]!.add(_movies[i]);
+  //     }
+  //   }
+  // }
 }

@@ -54,3 +54,12 @@ class MovieService {
     return genre;
   }
 }
+// List<String> Genre
+// Lis
+//   void addToMyList(Movie movie) {
+//     movie.genres.forEach((element) {element==genre?  _myMoviesList.add(movie): })
+   
+//     notifyListeners();
+//   }
+
+// }
