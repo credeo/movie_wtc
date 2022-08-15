@@ -18,9 +18,6 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(
-        hasBackButton: true,
-      ),
       backgroundColor: CustomColors.of(context).background,
       body: ChangeNotifierProvider(
         create: (context) => SearchProvider(),

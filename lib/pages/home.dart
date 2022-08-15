@@ -7,6 +7,7 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
+import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -293,7 +294,9 @@ class Home extends StatelessWidget {
                             CupertinoButton(
                               child:
                                   Image.asset('assets/icons/icon_profile.png'),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.pushNamed(ProfilePage.pageName);
+                              },
                             ),
                           ],
                         ),

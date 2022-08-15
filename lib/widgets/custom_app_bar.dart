@@ -16,6 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.hasSearchButton = false,
     this.hasNotificationButton = false,
     this.backgroundColor,
+    required bool isProfilePage,
   });
 
   @override

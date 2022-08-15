@@ -3,13 +3,13 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
-import 'package:movie_wtc/providers/my_list_provider.dart';
-import 'package:movie_wtc/widgets/custom_app_bar.dart';
+import 'package:movie_wtc/providers/myllist_provider.dart';
+
 import 'package:provider/provider.dart';
 
 class MyListPage extends StatelessWidget {
   static const pageName = 'my_list';
-
+//!!
   const MyListPage({
     Key? key,
   }) : super(key: key);
@@ -18,10 +18,6 @@ class MyListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.of(context).background,
-      appBar: const CustomAppBar(
-        hasBackButton: true,
-        hasSearchButton: true,
-      ),
       body: ChangeNotifierProvider(
           create: ((context) => MyListProvider()),
           child: Consumer<MyListProvider>(

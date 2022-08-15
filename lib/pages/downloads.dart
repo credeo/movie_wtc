@@ -5,7 +5,6 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/providers/downloads_provider.dart';
 import 'package:movie_wtc/widgets/bottom_sheet_downloads.dart';
-import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/download_movie_cell.dart';
 import 'package:provider/provider.dart';
 
@@ -20,10 +19,6 @@ class Downloads extends StatelessWidget {
         builder: (context, downloadsProvider, child) {
           return Column(
             children: [
-              const SafeArea(
-                  child: CustomAppBar(
-                hasNotificationButton: true,
-              )),
               Expanded(
                   child: renderPage(
                       context: context, downloadsProvider: downloadsProvider))
