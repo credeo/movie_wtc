@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
@@ -34,8 +35,8 @@ class EditProfilePage extends StatelessWidget {
             ),
           ),
           GestureDetector(
-            onTap: () {
-              print('change avatar');
+            onTap: () async {
+              await ImagePicker().pickImage(source: ImageSource.gallery);
             },
             child: Text(
               'Change Avatar',
