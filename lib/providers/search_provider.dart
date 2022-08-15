@@ -4,7 +4,8 @@ import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
 
 class SearchProvider extends ChangeNotifier {
-  final List<Movie> _movies = KiwiContainer().resolve<MovieService>().suggestedMovies;
+  final List<Movie> _movies =
+      KiwiContainer().resolve<MovieService>().suggestedMovies;
   List<Movie> _searched = [];
   String _query = '';
   String _category = '';
@@ -16,15 +17,32 @@ class SearchProvider extends ChangeNotifier {
   String get productionYear => _productionYear;
   List<Movie> get movies => List.unmodifiable(_movies);
   List<Movie> get searched => List.unmodifiable(_searched);
-  bool get isSearchActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty || _query.isNotEmpty;
-  bool get isFiltersActive => _category.isNotEmpty || _duration.isNotEmpty || _productionYear.isNotEmpty;
+  bool get isSearchActive =>
+      _category.isNotEmpty ||
+      _duration.isNotEmpty ||
+      _productionYear.isNotEmpty ||
+      _query.isNotEmpty;
+  bool get isFiltersActive =>
+      _category.isNotEmpty ||
+      _duration.isNotEmpty ||
+      _productionYear.isNotEmpty;
+
+//cleartext
+  final TextEditingController _controller = TextEditingController();
+  TextEditingController get controller => _controller;
+
+  void clearText() {
+    controller.clear();
+    notifyListeners();
+  }
 
   void search(String query) {
     _query = query;
     applyFilters();
   }
 
-  void applyFilters({String? category, String? duration, String? productionYear}) {
+  void applyFilters(
+      {String? category, String? duration, String? productionYear}) {
     _category = category ?? _category;
     _duration = duration ?? _duration;
     _productionYear = productionYear ?? _productionYear;
@@ -33,7 +51,10 @@ class SearchProvider extends ChangeNotifier {
       if (_query.isEmpty) {
         _searched = [];
       } else {
-        _searched = _movies.where((element) => element.title.toLowerCase().contains(_query.toLowerCase())).toList();
+        _searched = _movies
+            .where((element) =>
+                element.title.toLowerCase().contains(_query.toLowerCase()))
+            .toList();
       }
       notifyListeners();
       return;
@@ -57,7 +78,8 @@ class SearchProvider extends ChangeNotifier {
       if (_duration == '60') {
         list.removeWhere((element) => element.length > 60);
       } else if (_duration == '120') {
-        list.removeWhere((element) => element.length < 60 || element.length > 120);
+        list.removeWhere(
+            (element) => element.length < 60 || element.length > 120);
       } else {
         list.removeWhere((element) => element.length < 120);
       }
@@ -75,7 +97,10 @@ class SearchProvider extends ChangeNotifier {
 
     _searched = list;
     if (_query.isNotEmpty) {
-      _searched = _searched.where((element) => element.title.toLowerCase().contains(_query.toLowerCase())).toList();
+      _searched = _searched
+          .where((element) =>
+              element.title.toLowerCase().contains(_query.toLowerCase()))
+          .toList();
     }
 
     notifyListeners();

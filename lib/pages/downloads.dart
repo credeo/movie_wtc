@@ -9,17 +9,6 @@ import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/download_movie_cell.dart';
 import 'package:provider/provider.dart';
 
-//cupertino button-iOS like
-import 'package:flutter/cupertino.dart';
-
-import 'package:movie_wtc/widgets/custom_app_bar.dart';
-
-import 'package:provider/provider.dart';
-import '../extensions/custom_colors.dart';
-import '../extensions/custom_text_styles.dart';
-
-import 'package:movie_wtc/providers/downloads_provider.dart';
-
 class Downloads extends StatelessWidget {
   const Downloads({super.key});
 

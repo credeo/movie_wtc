@@ -35,7 +35,9 @@ class SearchPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 12),
                     child: Text(
-                      searchProvider.isSearchActive ? 'search_movies_and_shows'.tr() : 'search_top_searches'.tr(),
+                      searchProvider.isSearchActive
+                          ? 'search_movies_and_shows'.tr()
+                          : 'search_top_searches'.tr(),
                       style: CustomTextStyles.of(context).semiBold18,
                     ),
                   ),
@@ -57,6 +59,10 @@ class SearchPage extends StatelessWidget {
       child: SizedBox(
         height: 36,
         child: TextField(
+          style: CustomTextStyles.of(context)
+              .regular17
+              .apply(color: CustomColors.of(context).textCursor),
+          controller: searchProvider.controller,
           cursorHeight: 20,
           cursorColor: CustomColors.of(context).textCursor,
           textAlignVertical: TextAlignVertical.center,
@@ -77,72 +83,106 @@ class SearchPage extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(10),
             ),
-            contentPadding: EdgeInsets.zero,
-            suffixIconConstraints: const BoxConstraints.tightFor(width: 40, height: 36),
-            suffixIcon: GestureDetector(
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    backgroundColor: CustomColors.of(context).background,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    builder: (context) {
-                      return MovieSearchBottomSheet(
-                        initialCategory: searchProvider.category.isEmpty ? null : searchProvider.category,
-                        initialDuration: searchProvider.duration.isEmpty ? null : searchProvider.duration,
-                        initialProductionYear: searchProvider.productionYear.isEmpty ? null : searchProvider.productionYear,
-                        onCategoryChanged: (category) {
-                          searchProvider.applyFilters(category: category, duration: null, productionYear: null);
-                        },
-                        onDurationChanged: (duration) {
-                          searchProvider.applyFilters(category: null, duration: duration, productionYear: null);
-                        },
-                        onProductionYearChanged: (production) {
-                          searchProvider.applyFilters(category: null, duration: null, productionYear: production);
-                        },
-                      );
-                    });
-              },
-              child: Stack(
-                children: [
-                  Positioned(
-                    left: 0.0,
-                    right: 0.0,
-                    top: 6.0,
-                    bottom: 6.0,
-                    child: Image.asset(
-                      'assets/icons/icon_slider.png',
-                      fit: BoxFit.contain,
-                      color: CustomColors.of(context).hintText,
-                    ),
-                  ),
-                  if (searchProvider.isFiltersActive)
-                    Positioned(
-                      top: 7.0,
-                      right: 9.0,
-                      height: 7.0,
-                      width: 7.0,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          color: CustomColors.of(context).primary,
-                          shape: BoxShape.circle,
-                        ),
+            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            suffixIconConstraints:
+                const BoxConstraints.tightFor(width: 35, height: 46),
+            suffixIcon: searchProvider.controller.text.isNotEmpty
+                ? GestureDetector(
+                    onTap: searchProvider.clearText,
+                    child: Padding(
+                      padding: const EdgeInsets.all(1.0),
+                      child: Image.asset(
+                        'assets/icons/icon_close.png',
                       ),
                     ),
-                ],
-              ),
-            ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                          context: context,
+                          backgroundColor: CustomColors.of(context).background,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          builder: (context) {
+                            return MovieSearchBottomSheet(
+                              initialCategory: searchProvider.category.isEmpty
+                                  ? null
+                                  : searchProvider.category,
+                              initialDuration: searchProvider.duration.isEmpty
+                                  ? null
+                                  : searchProvider.duration,
+                              initialProductionYear:
+                                  searchProvider.productionYear.isEmpty
+                                      ? null
+                                      : searchProvider.productionYear,
+                              onCategoryChanged: (category) {
+                                searchProvider.applyFilters(
+                                    category: category,
+                                    duration: null,
+                                    productionYear: null);
+                              },
+                              onDurationChanged: (duration) {
+                                searchProvider.applyFilters(
+                                    category: null,
+                                    duration: duration,
+                                    productionYear: null);
+                              },
+                              onProductionYearChanged: (production) {
+                                searchProvider.applyFilters(
+                                    category: null,
+                                    duration: null,
+                                    productionYear: production);
+                              },
+                            );
+                          });
+                    },
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          left: 0.0,
+                          right: 0.0,
+                          top: 11.0,
+                          bottom: 11.0,
+                          child: Image.asset(
+                            'assets/icons/icon_slider.png',
+                            fit: BoxFit.contain,
+                            color: CustomColors.of(context).hintText,
+                          ),
+                        ),
+                        if (searchProvider.isFiltersActive)
+                          Positioned(
+                            top: 7.0,
+                            right: 9.0,
+                            height: 7.0,
+                            width: 7.0,
+                            child: DecoratedBox(
+                              decoration: BoxDecoration(
+                                color: CustomColors.of(context).primary,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
             prefixIcon: Padding(
-              padding: const EdgeInsets.only(left: 8, right: 6),
+              padding: const EdgeInsets.only(
+                left: 8,
+                right: 6,
+                bottom: 3,
+              ),
               child: SizedBox(
                 height: 16,
                 width: 16,
-                child: Image.asset('assets/icons/icon_search.png', color: CustomColors.of(context).hintText),
+                child: Image.asset('assets/icons/icon_search.png',
+                    color: CustomColors.of(context).hintText),
               ),
             ),
             hintText: 'search_hint_text'.tr(),
-            hintStyle: CustomTextStyles.of(context).regular17.apply(color: CustomColors.of(context).hintText),
+            hintStyle: CustomTextStyles.of(context)
+                .regular17
+                .apply(color: CustomColors.of(context).hintText),
             prefixIconConstraints: const BoxConstraints(
               maxWidth: 35,
             ),
@@ -205,12 +245,16 @@ class SearchPage extends StatelessWidget {
                   const SizedBox(height: 6),
                   Text(
                     movie.genres.map((e) => e.toLocalisedString()).join(', '),
-                    style: CustomTextStyles.of(context).regular10.apply(color: CustomColors.of(context).inactive),
+                    style: CustomTextStyles.of(context)
+                        .regular10
+                        .apply(color: CustomColors.of(context).inactive),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     '${movie.releaseDate.year} | ${movie.rated}+ | ${movie.length.toStringAsFixed(0)}min',
-                    style: CustomTextStyles.of(context).regular10.apply(color: CustomColors.of(context).inactive),
+                    style: CustomTextStyles.of(context)
+                        .regular10
+                        .apply(color: CustomColors.of(context).inactive),
                   ),
                 ],
               ),
@@ -249,7 +293,9 @@ class SearchPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  context.goNamed(MovieDetails.pageName, params: {'id': searchProvider.searched.elementAt(index).id});
+                  context.goNamed(MovieDetails.pageName, params: {
+                    'id': searchProvider.searched.elementAt(index).id
+                  });
                 },
                 child: SizedBox(
                   height: 138,
