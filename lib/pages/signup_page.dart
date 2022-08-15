@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -49,10 +50,8 @@ class SignUpPage extends StatelessWidget {
                       heightFactor: 8.96,
                       alignment: Alignment.bottomCenter,
                       child: CustomButton(
-                        title: 'Sign Up',
-                        onPressed: () {
-                          print('hello');
-                        },
+                        title: 'signup'.tr(),
+                        onPressed: () {},
                       ),
                     ),
                     Align(
@@ -65,7 +64,7 @@ class SignUpPage extends StatelessWidget {
                             child: Container(
                               margin: const EdgeInsets.only(right: 56.0),
                               child: Text(
-                                'Sign Up',
+                                'signup'.tr(),
                                 style: CustomTextStyles.of(context).regular24,
                               ),
                             ),
@@ -84,19 +83,19 @@ class SignUpPage extends StatelessWidget {
                           textFieldForLoginSignUp(
                             context: context,
                             imagePath: 'assets/icons/icon_profile_small.png',
-                            hintText: 'Full Name',
+                            hintText: 'full_name'.tr(),
                           ),
                           const SizedBox(height: 15),
                           textFieldForLoginSignUp(
                             context: context,
                             imagePath: 'assets/icons/icon_email_small.png',
-                            hintText: 'Email Address',
+                            hintText: 'email'.tr(),
                           ),
                           const SizedBox(height: 15),
                           textFieldForLoginSignUp(
                             context: context,
                             imagePath: 'assets/icons/icon_eye_crossed.png',
-                            hintText: 'Password',
+                            hintText: 'password'.tr(),
                           ),
                         ],
                       ),
@@ -122,7 +121,7 @@ class SignUpPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: Text(
-                        'OR',
+                        'or'.tr(),
                         style: CustomTextStyles.of(context).extraBold15,
                       ),
                     ),

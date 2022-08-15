@@ -47,16 +47,15 @@ class RouterService {
           builder: (context, state) => const MyListPage(),
         ),
         GoRoute(
-            path: '/profile',
-            name: ProfilePage.pageName,
-            builder: (context, state) => const ProfilePage(),
-            routes: [
-              GoRoute(
-                path: 'edit_profile',
-                name: EditProfilePage.pageName,
-                builder: (context, state) => const EditProfilePage(),
-              ),
-            ]),
+          path: '/edit_profile',
+          name: EditProfilePage.pageName,
+          builder: (context, state) => const EditProfilePage(),
+        ),
+        GoRoute(
+          path: '/profile',
+          name: ProfilePage.pageName,
+          builder: (context, state) => const ProfilePage(),
+        ),
         GoRoute(
           path: '/home',
           name: TabContainer.pageName,

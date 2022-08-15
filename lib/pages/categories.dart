@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -54,14 +55,12 @@ class CategoriesPage extends StatelessWidget {
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(right: 12),
-                              child: Text(
-                                'See More',
-                                style: CustomTextStyles.of(context)
-                                    .regular12
-                                    .apply(
-                                        color:
-                                            CustomColors.of(context).primary),
-                              ),
+                              child: Text('categories_see_more'.tr(),
+                                  style: CustomTextStyles.of(context)
+                                      .regular12
+                                      .apply(
+                                          color: CustomColors.of(context)
+                                              .primary)),
                             ),
                           ),
                         ],

@@ -4,6 +4,8 @@ import 'package:movie_wtc/models/movie.dart';
 class UserService extends ChangeNotifier {
   final List<Movie> _myMoviesList = [];
 
+  String name = 'xxx';
+
   List<Movie> get myMoviesList => List.unmodifiable(_myMoviesList);
 
   void addToMyList(Movie movie) {

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -39,32 +40,40 @@ class MyListPage extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            mainAxisExtent: 138,
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemCount: myListProvider.myMovieList.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: GestureDetector(
-                                onTap: () => context.pushNamed(
-                                  MovieDetails.pageName,
-                                  params: {
-                                    'id': myListProvider.myMovieList[index].id
-                                  },
-                                ),
-                                child: Image.asset(
-                                  myListProvider.myMovieList[index].coverImage,
-                                  fit: BoxFit.cover,
-                                ),
+                      child: myListProvider.myMovieList.isNotEmpty
+                          ? GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                mainAxisExtent: 138,
+                                crossAxisCount: 3,
+                                crossAxisSpacing: 10,
+                                mainAxisSpacing: 10,
                               ),
-                            );
-                          }),
+                              itemCount: myListProvider.myMovieList.length,
+                              itemBuilder: (BuildContext ctx, index) {
+                                final movie = myListProvider.myMovieList[index];
+                                return ClipRRect(
+                                  borderRadius: BorderRadius.circular(8),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      context.pushNamed(MovieDetails.pageName,
+                                          params: {'id': movie.id});
+                                    },
+                                    child: Image.asset(movie.coverImage,
+                                        fit: BoxFit.cover),
+                                  ),
+                                );
+                              })
+                          : Center(
+                              child: Text(
+                                'my_list_no_movie'.tr(),
+                                style: CustomTextStyles.of(context)
+                                    .regular15
+                                    .apply(
+                                        color:
+                                            CustomColors.of(context).inactive),
+                              ),
+                            ),
                     ),
                   ),
                 ],

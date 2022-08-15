@@ -211,7 +211,7 @@ class SearchPage extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
-        context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+        context.pushNamed(MovieDetails.pageName, params: {'id': movie.id});
       },
       child: Container(
         height: 60,
@@ -273,7 +273,7 @@ class SearchPage extends StatelessWidget {
         child: Align(
           alignment: Alignment.topCenter,
           child: Text(
-            'No results to display',
+            'search_no_results'.tr(),
             textAlign: TextAlign.center,
             style: CustomTextStyles.of(context).semiBold24,
           ),
@@ -293,7 +293,7 @@ class SearchPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  context.goNamed(MovieDetails.pageName, params: {
+                  context.pushNamed(MovieDetails.pageName, params: {
                     'id': searchProvider.searched.elementAt(index).id
                   });
                 },

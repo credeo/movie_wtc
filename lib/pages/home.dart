@@ -465,7 +465,7 @@ class Home extends StatelessWidget {
         const SizedBox(height: 4),
         if (homeProvider.myMovieList.isEmpty)
           Text(
-            'no movies in my list',
+            'my_list_no_movie'.tr(),
             style: CustomTextStyles.of(context).regular12,
           )
         else
@@ -483,7 +483,6 @@ class Home extends StatelessWidget {
                   subtitle: movie.subtitle,
                   imagePath: movie.coverImage,
                   callback: () {
-                    print('clicked on my movie tile');
                     context.pushNamed(MovieDetails.pageName,
                         params: {'id': movie.id});
                   },

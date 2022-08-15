@@ -1,6 +1,7 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/providers/movie_player_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +22,7 @@ class MoviePlayer extends StatelessWidget {
           return SafeArea(
             child: Scaffold(
               appBar: AppBar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: CustomColors.of(context).background,
                 leading: IconButton(
                   icon: Image.asset('assets/icons/icon_arrow_back.png'),
                   onPressed: () {

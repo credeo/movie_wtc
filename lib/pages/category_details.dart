@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -47,17 +48,17 @@ class CategoryDetailsPage extends StatelessWidget {
                         categorySection(
                             context: context,
                             categoryName: categoryName,
-                            sectionTitle: 'Trending Now',
+                            sectionTitle: 'category_details_trending_now'.tr(),
                             categoriesProvider: categoriesProvider),
                         categorySection(
                             context: context,
                             categoryName: categoryName,
-                            sectionTitle: 'Most Recent',
+                            sectionTitle: 'category_details_most_recent'.tr(),
                             categoriesProvider: categoriesProvider),
                         categorySection(
                           context: context,
                           categoryName: categoryName,
-                          sectionTitle: 'Most Viewed',
+                          sectionTitle: 'category_details_most_viewed'.tr(),
                           categoriesProvider: categoriesProvider,
                         ),
                       ],
@@ -78,7 +79,7 @@ class CategoryDetailsPage extends StatelessWidget {
                           const SizedBox(height: 20),
                           Center(
                             child: Text(
-                              'No movie in this category.',
+                              'category_details_no_movie'.tr(),
                               style: CustomTextStyles.of(context)
                                   .regular12
                                   .apply(
