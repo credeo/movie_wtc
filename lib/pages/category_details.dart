@@ -11,8 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 
 class CategoryDetailsPage extends StatelessWidget {
-  const CategoryDetailsPage({Key? key, required this.categoryName})
-      : super(key: key);
+  const CategoryDetailsPage({Key? key, required this.categoryName}) : super(key: key);
   static const pageName = 'category-details';
 
   final String categoryName;
@@ -61,8 +60,7 @@ class CategoryDetailsPage extends StatelessWidget {
                         Align(
                           alignment: Alignment.topLeft,
                           child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
                             child: Text(
                               '${categoryName[0].toUpperCase()}${categoryName.substring(1)}',
                               style: CustomTextStyles.of(context).semiBold24,
@@ -86,90 +84,83 @@ class CategoryDetailsPage extends StatelessWidget {
     required String sectionTitle,
     required CategoriesProvider categoriesProvider,
   }) {
-    return SizedBox(
-      height: 280,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 20.0,
-              left: 20,
-              right: 20,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  sectionTitle,
-                  style: CustomTextStyles.of(context).semiBold18,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              height: 220,
-              padding: const EdgeInsets.only(top: 20.0, left: 12),
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return getOneItem(
-                    context: context,
-                    movie:
-                        categoriesProvider.map[categoryName]!.elementAt(index),
-                  );
-                },
-                itemCount: categoriesProvider.map[categoryName]!.length,
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0, left: 20, right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                sectionTitle,
+                style: CustomTextStyles.of(context).semiBold18,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
-            ),
-          )
-        ],
-      ),
+            ],
+          ),
+        ),
+        Container(
+          height: 220,
+          margin: const EdgeInsets.only(top: 20.0, left: 12),
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            scrollDirection: Axis.horizontal,
+            itemCount: categoriesProvider.map[categoryName]!.length,
+            itemBuilder: (context, index) {
+              return getCategoryCell(
+                context: context,
+                movie: categoriesProvider.map[categoryName]!.elementAt(index),
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 
-  Widget getOneItem({required BuildContext context, required Movie movie}) {
+  Widget getCategoryCell({required BuildContext context, required Movie movie}) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         context.pushNamed(MovieDetails.pageName, params: {'id': movie.id});
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: SizedBox(
-              height: 170,
-              width: 134,
-              child: Image.asset(
-                movie.coverImage,
-                fit: BoxFit.cover,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: SizedBox(
+                  width: 134,
+                  child: Image.asset(
+                    movie.coverImage,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: 134,
-            child: Text(
-              movie.title,
-              style: CustomTextStyles.of(context).semiBold14,
-              overflow: TextOverflow.ellipsis,
+            const SizedBox(height: 8),
+            SizedBox(
+              width: 134,
+              child: Text(
+                movie.title,
+                style: CustomTextStyles.of(context).semiBold14,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: 134,
-            child: Text(
-              movie.details,
-              style: CustomTextStyles.of(context).regular12.apply(
-                    color: CustomColors.of(context).inactive,
-                  ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: 134,
+              child: Text(
+                movie.details,
+                style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }

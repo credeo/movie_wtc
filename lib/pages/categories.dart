@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -28,14 +29,16 @@ class CategoriesPage extends StatelessWidget {
               hasSearchButton: true,
             ),
             body: ListView.builder(
-                padding: EdgeInsets.zero,
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
                 itemCount: categoriesProvider.map.keys.length,
                 itemBuilder: (context, index) {
-                  return getCategorySection(
-                      context: context,
-                      categoryTitle:
-                          categoriesProvider.map.keys.elementAt(index),
-                      categoriesProvider: categoriesProvider);
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: index + 1 < categoriesProvider.map.keys.length ? 40.0 : 0.0),
+                    child: getCategorySection(
+                        context: context,
+                        categoryTitle: categoriesProvider.map.keys.elementAt(index),
+                        categoriesProvider: categoriesProvider),
+                  );
                 }),
           );
         },
@@ -53,10 +56,7 @@ class CategoriesPage extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              right: 20,
-            ),
+            padding: const EdgeInsets.only(left: 20.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -66,16 +66,17 @@ class CategoriesPage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    context.goNamed(CategoryDetailsPage.pageName,
-                        params: {'name': categoryTitle});
-                  },
-                  child: Text(
-                    'category_see_more'.tr(),
-                    style: CustomTextStyles.of(context).regular12.apply(
-                          color: CustomColors.of(context).primary,
-                        ),
+                SizedBox(
+                  height: 28,
+                  child: CupertinoButton(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                    onPressed: () {
+                      context.goNamed(CategoryDetailsPage.pageName, params: {'name': categoryTitle});
+                    },
+                    child: Text(
+                      'category_see_more'.tr(),
+                      style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                    ),
                   ),
                 ),
               ],
@@ -84,15 +85,14 @@ class CategoriesPage extends StatelessWidget {
           Expanded(
             child: Container(
               height: 220,
-              padding: const EdgeInsets.only(top: 20.0, left: 12),
+              margin: const EdgeInsets.only(top: 12.0),
               child: ListView.builder(
-                padding: EdgeInsets.zero,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return getOneItem(
                     context: context,
-                    movie:
-                        categoriesProvider.map[categoryTitle]!.elementAt(index),
+                    movie: categoriesProvider.map[categoryTitle]!.elementAt(index),
                   );
                 },
                 itemCount: categoriesProvider.map[categoryTitle]!.length,
@@ -106,43 +106,49 @@ class CategoriesPage extends StatelessWidget {
 
   Widget getOneItem({required BuildContext context, required Movie movie}) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         context.pushNamed(MovieDetails.pageName, params: {'id': movie.id});
       },
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: SizedBox(
-              height: 170,
-              width: 134,
-              child: Image.asset(
-                movie.coverImage,
-                fit: BoxFit.cover,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: SizedBox(
+                  height: 170,
+                  width: 134,
+                  child: Image.asset(
+                    movie.coverImage,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: 134,
-            child: Text(
-              movie.title,
-              style: CustomTextStyles.of(context).semiBold14,
-              overflow: TextOverflow.ellipsis,
+            const SizedBox(height: 8),
+            SizedBox(
+              width: 134,
+              child: Text(
+                movie.title,
+                style: CustomTextStyles.of(context).semiBold14,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: 134,
-            child: Text(
-              movie.details,
-              style: CustomTextStyles.of(context).regular12.apply(
-                    color: CustomColors.of(context).inactive,
-                  ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: 134,
+              child: Text(
+                movie.details,
+                style: CustomTextStyles.of(context).regular12.apply(
+                      color: CustomColors.of(context).inactive,
+                    ),
+              ),
             ),
-          ),
-        ]),
+          ],
+        ),
       ),
     );
   }
