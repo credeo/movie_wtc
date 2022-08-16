@@ -22,14 +22,12 @@ class RouterService {
   void _buildRouter() {
     _goRouter = GoRouter(
       navigatorBuilder: (context, state, child) {
-        final themeData =
-            KiwiContainer().resolve<AppearanceService>().buildTheme();
+        final themeData = KiwiContainer().resolve<AppearanceService>().buildTheme();
         return Theme(
           data: themeData,
           child: child,
         );
       },
-      initialLocation: '/home',
       routes: [
         GoRoute(
           path: '/',
@@ -76,20 +74,17 @@ class RouterService {
             GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,
-              builder: (context, state) =>
-                  MoviePlayer(movieId: state.extra as String),
+              builder: (context, state) => MoviePlayer(movieId: state.extra as String),
             ),
             GoRoute(
               path: ':id',
               name: MovieDetails.pageName,
-              builder: (context, state) =>
-                  MovieDetails(movieId: state.params['id']!),
+              builder: (context, state) => MovieDetails(movieId: state.params['id']!),
               routes: [
                 GoRoute(
                   path: 'movie_player',
                   name: MoviePlayer.pageNameFromDetails,
-                  builder: (context, state) =>
-                      MoviePlayer(movieId: state.params['id']!),
+                  builder: (context, state) => MoviePlayer(movieId: state.params['id']!),
                 ),
               ],
             ),
