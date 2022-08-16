@@ -1,72 +1,85 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
-import 'package:movie_wtc/pages/movie_details.dart';
-import 'package:movie_wtc/providers/myllist_provider.dart';
-
+import 'package:movie_wtc/providers/my_list_provider.dart';
+import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+
+import 'package:movie_wtc/pages/movie_details.dart';
 
 class MyListPage extends StatelessWidget {
   static const pageName = 'my_list';
-//!!
-  const MyListPage({
-    Key? key,
-  }) : super(key: key);
+
+  const MyListPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomColors.of(context).background,
-      body: ChangeNotifierProvider(
-          create: ((context) => MyListProvider()),
-          child: Consumer<MyListProvider>(
-            builder: (context, myListProvider, child) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, bottom: 24),
-                    child: Text(
-                      'My List',
-                      style: CustomTextStyles.of(context).semiBold24,
+    return ChangeNotifierProvider(
+      create: (context) => MyListProvider(),
+      child: Consumer<MyListProvider>(
+        builder: (context, myListProvider, child) {
+          return Scaffold(
+              backgroundColor: CustomColors.of(context).background,
+              appBar: const CustomAppBar(
+                hasBackButton: true,
+                hasSearchButton: true,
+              ),
+              body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'My List',
+                        style: CustomTextStyles.of(context).semiBold24,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            mainAxisExtent: 138,
-                            crossAxisCount: 3,
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                          ),
-                          itemCount: myListProvider.myMovieList.length,
-                          itemBuilder: (BuildContext ctx, index) {
-                            return ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: GestureDetector(
-                                onTap: () => context.pushNamed(
-                                  MovieDetails.pageName,
-                                  params: {
-                                    'id': myListProvider.myMovieList[index].id
-                                  },
-                                ),
-                                child: Image.asset(
-                                  myListProvider.myMovieList[index].coverImage,
-                                  fit: BoxFit.cover,
-                                ),
+                    const SizedBox(height: 24),
+                    Expanded(
+                      child: myListProvider.myMovies.isNotEmpty
+                          ? GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 10,
+                                crossAxisSpacing: 10,
                               ),
-                            );
-                          }),
-                    ),
-                  ),
-                ],
-              );
-            },
-          )),
+                              itemCount: myListProvider.myMovies.length,
+                              itemBuilder: (context, index) {
+                                final movie = myListProvider.myMovies[index];
+                                return GestureDetector(
+                                  onTap: () {
+                                    context.pushNamed(MovieDetails.pageName,
+                                        params: {'id': movie.id});
+                                  },
+                                  child: SizedBox(
+                                    height: 138,
+                                    width: 108,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image.asset(
+                                        movie.coverImage,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              })
+                          : Center(
+                              child: Text(
+                                'my_list_no_movie'.tr(),
+                                style: CustomTextStyles.of(context).semiBold24,
+                              ),
+                            ),
+                    )
+                  ],
+                ),
+              ));
+        },
+      ),
     );
   }
 }

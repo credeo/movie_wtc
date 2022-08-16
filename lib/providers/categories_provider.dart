@@ -1,22 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
 
 class CategoriesProvider extends ChangeNotifier {
-  final _moviesService = KiwiContainer().resolve<MovieService>();
+  final Map<String, List<Movie>> _map = <String, List<Movie>>{};
+  final List<Movie> _movies =
+      KiwiContainer().resolve<MovieService>().suggestedMovies;
 
-  List<Movie> get movie => _moviesService.suggestedMovies;
+  Map<String, List<Movie>> get map => _map;
 
-  List<Genre> gen = [];
-
-  void addGen(int index) {
-    gen.add(Genre.values[index]);
-    notifyListeners();
-  }
-
-  bool a(Movie mov) {
-    var b = movie.any((element) => element.genres == mov.genres);
-    return b;
+  CategoriesProvider() {
+    // for (Genre g in Genre.values) { AKO TREBA DA BUDU PRIKAZANI SVI ZANROVI, IAKO NEMAJU FILM
+    //   _map.putIfAbsent(g.value, () => []);
+    // }
+    for (Movie m in _movies) {
+      for (int i = 0; i < m.genres.length; i++) {
+        _map.putIfAbsent(m.genres[i].value, () => []);
+        _map[m.genres[i].value]!.add(m);
+      }
+    }
   }
 }
