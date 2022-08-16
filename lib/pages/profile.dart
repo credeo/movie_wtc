@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -52,7 +53,7 @@ class ProfilePage extends StatelessWidget {
                             style: CustomTextStyles.of(context).semiBold24,
                           ),
                           Text(
-                            'janko36@outlook.com',
+                            'profile_email'.tr(),
                             style: CustomTextStyles.of(context).regular12.apply(
                                 color: CustomColors.of(context).inactive),
                           ),
@@ -67,7 +68,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 getRow(
                   context: context,
-                  text: 'My List',
+                  text: 'profile_my_list'.tr(),
                   iconPath: 'assets/icons/icon_checkmark.png',
                   callback: () {
                     context.pushNamed(MyListPage.pageName);
@@ -75,7 +76,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 getRow(
                   context: context,
-                  text: 'Edit Profile',
+                  text: 'profile_edit'.tr(),
                   iconPath: 'assets/icons/icon_edit.png',
                   callback: () {
                     context.pushNamed(EditProfilePage.pageName);
@@ -83,19 +84,19 @@ class ProfilePage extends StatelessWidget {
                 ),
                 getRow(
                   context: context,
-                  text: 'App Preferences',
+                  text: 'profile_app_pref'.tr(),
                   iconPath: 'assets/icons/icon_preferences.png',
                   callback: () {},
                 ),
                 getRow(
                   context: context,
-                  text: 'Help',
+                  text: 'profile_help'.tr(),
                   iconPath: 'assets/icons/icon_help.png',
                   callback: () {},
                 ),
                 getRow(
                   context: context,
-                  text: 'Sign Out',
+                  text: 'profile_signout'.tr(),
                   iconPath: 'assets/icons/icon_logout.png',
                   callback: () {
                     context.goNamed(LoginPage.pageName);

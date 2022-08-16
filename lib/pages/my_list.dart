@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
@@ -69,7 +70,7 @@ class MyListPage extends StatelessWidget {
                               })
                           : Center(
                               child: Text(
-                                'No movies in my list',
+                                'my_list_no_movie'.tr(),
                                 style: CustomTextStyles.of(context).semiBold24,
                               ),
                             ),

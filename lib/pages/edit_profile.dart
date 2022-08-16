@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -46,7 +47,7 @@ class EditProfilePage extends StatelessWidget {
                     await ImagePicker().pickImage(source: ImageSource.gallery);
                   },
                   child: Text(
-                    'Change Avatar',
+                    'edit_profile_avatar'.tr(),
                     style: CustomTextStyles.of(context).regular12.apply(
                           color: CustomColors.of(context).primary,
                         ),
@@ -81,7 +82,7 @@ class EditProfilePage extends StatelessWidget {
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: CustomButton(
-                            title: 'Confirm',
+                            title: 'edit_confirm'.tr(),
                             onPressed: () {
                               profileProvider.setName();
                               context.pop();
@@ -99,7 +100,7 @@ class EditProfilePage extends StatelessWidget {
                                   child: TextField(
                                     controller: profileProvider.controller,
                                     decoration: InputDecoration(
-                                      hintText: 'Change Name',
+                                      hintText: 'edit_profile_name'.tr(),
                                       hintStyle: CustomTextStyles.of(context)
                                           .regular15,
                                       prefixIconConstraints:
@@ -118,7 +119,7 @@ class EditProfilePage extends StatelessWidget {
                                       horizontal: 34.0),
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      hintText: 'New Password',
+                                      hintText: 'edit_profile_new_pass'.tr(),
                                       hintStyle: CustomTextStyles.of(context)
                                           .regular15,
                                       prefixIconConstraints:
@@ -137,7 +138,8 @@ class EditProfilePage extends StatelessWidget {
                                       horizontal: 34.0),
                                   child: TextField(
                                     decoration: InputDecoration(
-                                      hintText: 'Confirm New Password',
+                                      hintText:
+                                          'edit_profile_confirm_pass'.tr(),
                                       hintStyle: CustomTextStyles.of(context)
                                           .regular15,
                                       prefixIconConstraints:
