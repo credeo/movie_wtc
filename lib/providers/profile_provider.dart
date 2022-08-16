@@ -8,10 +8,11 @@ class ProfileProvider extends ChangeNotifier {
 
   TextEditingController get controller => _controller;
 
-  String get name => _myService.name;
+  String get name => _myService.user!.name;
+  String get email => _myService.user!.email;
 
   void setName() {
-    _myService.name = _controller.text;
+    _myService.changeName(_controller.text);
     notifyListeners();
   }
 

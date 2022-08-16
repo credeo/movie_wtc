@@ -29,80 +29,80 @@ class ProfilePage extends StatelessWidget {
               hasBackButton: true,
               isProfilePage: true,
             ),
-            body: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 16.0, bottom: 28, left: 20, right: 20),
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 68,
-                        width: 68,
-                        child: Image.asset(
-                          'assets/icons/icon_profile.png',
-                          fit: BoxFit.cover,
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0, bottom: 28, left: 20, right: 20),
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 68,
+                          width: 68,
+                          child: Image.asset(
+                            'assets/icons/icon_profile_medium.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      const SizedBox(width: 20),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            profileProvider.name,
-                            style: CustomTextStyles.of(context).semiBold24,
-                          ),
-                          Text(
-                            'profile_email'.tr(),
-                            style: CustomTextStyles.of(context).regular12.apply(
-                                color: CustomColors.of(context).inactive),
-                          ),
-                        ],
-                      )
-                    ],
+                        const SizedBox(width: 20),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              profileProvider.name,
+                              style: CustomTextStyles.of(context).semiBold24,
+                            ),
+                            Text(
+                              profileProvider.email,
+                              style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                Divider(
-                  height: 1,
-                  color: CustomColors.of(context).inactive.withOpacity(0.25),
-                ),
-                getRow(
-                  context: context,
-                  text: 'profile_my_list'.tr(),
-                  iconPath: 'assets/icons/icon_checkmark.png',
-                  callback: () {
-                    context.pushNamed(MyListPage.pageName);
-                  },
-                ),
-                getRow(
-                  context: context,
-                  text: 'profile_edit'.tr(),
-                  iconPath: 'assets/icons/icon_edit.png',
-                  callback: () {
-                    context.pushNamed(EditProfilePage.pageName);
-                  },
-                ),
-                getRow(
-                  context: context,
-                  text: 'profile_app_pref'.tr(),
-                  iconPath: 'assets/icons/icon_preferences.png',
-                  callback: () {},
-                ),
-                getRow(
-                  context: context,
-                  text: 'profile_help'.tr(),
-                  iconPath: 'assets/icons/icon_help.png',
-                  callback: () {},
-                ),
-                getRow(
-                  context: context,
-                  text: 'profile_signout'.tr(),
-                  iconPath: 'assets/icons/icon_logout.png',
-                  callback: () {
-                    context.goNamed(LoginPage.pageName);
-                  },
-                ),
-              ],
+                  Divider(
+                    height: 1,
+                    color: CustomColors.of(context).inactive.withOpacity(0.25),
+                  ),
+                  getRow(
+                    context: context,
+                    text: 'profile_my_list'.tr(),
+                    iconPath: 'assets/icons/icon_checkmark.png',
+                    callback: () {
+                      context.pushNamed(MyListPage.pageName);
+                    },
+                  ),
+                  getRow(
+                    context: context,
+                    text: 'profile_edit'.tr(),
+                    iconPath: 'assets/icons/icon_edit.png',
+                    callback: () {
+                      context.pushNamed(EditProfilePage.pageName);
+                    },
+                  ),
+                  getRow(
+                    context: context,
+                    text: 'profile_app_pref'.tr(),
+                    iconPath: 'assets/icons/icon_preferences.png',
+                    callback: () {},
+                  ),
+                  getRow(
+                    context: context,
+                    text: 'profile_help'.tr(),
+                    iconPath: 'assets/icons/icon_help.png',
+                    callback: () {},
+                  ),
+                  getRow(
+                    context: context,
+                    text: 'profile_signout'.tr(),
+                    iconPath: 'assets/icons/icon_logout.png',
+                    callback: () {
+                      context.goNamed(LoginPage.pageName);
+                    },
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -110,11 +110,12 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget getRow(
-      {required VoidCallback callback,
-      required BuildContext context,
-      required String text,
-      required String iconPath}) {
+  Widget getRow({
+    required VoidCallback callback,
+    required BuildContext context,
+    required String text,
+    required String iconPath,
+  }) {
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: callback,
@@ -130,7 +131,10 @@ class ProfilePage extends StatelessWidget {
                     left: 20,
                     right: 16,
                   ),
-                  child: Image.asset(iconPath),
+                  child: Image.asset(
+                    iconPath,
+                    fit: BoxFit.contain,
+                  ),
                 ),
                 Text(
                   text,
