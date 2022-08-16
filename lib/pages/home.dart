@@ -5,8 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
+import 'package:movie_wtc/pages/categories.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
+import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -14,6 +17,8 @@ import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'package:movie_wtc/pages/category_details.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -70,8 +75,10 @@ class Home extends StatelessWidget {
                                           begin: Alignment.topCenter,
                                           end: Alignment.bottomCenter,
                                           colors: [
-                                            CustomColors.of(context).coverGradientStart,
-                                            CustomColors.of(context).coverGradientEnd,
+                                            CustomColors.of(context)
+                                                .coverGradientStart,
+                                            CustomColors.of(context)
+                                                .coverGradientEnd,
                                           ],
                                         ),
                                       ),
@@ -88,8 +95,10 @@ class Home extends StatelessWidget {
                                           begin: Alignment.bottomCenter,
                                           end: Alignment.topCenter,
                                           colors: [
-                                            CustomColors.of(context).coverGradientStart,
-                                            CustomColors.of(context).coverGradientEnd,
+                                            CustomColors.of(context)
+                                                .coverGradientStart,
+                                            CustomColors.of(context)
+                                                .coverGradientEnd,
                                           ],
                                         ),
                                       ),
@@ -100,15 +109,20 @@ class Home extends StatelessWidget {
                                     left: 0.0,
                                     right: 0.0,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         Text(
                                           movie.title,
-                                          style: CustomTextStyles.of(context).semiBold40,
+                                          style: CustomTextStyles.of(context)
+                                              .semiBold40,
                                         ),
                                         const SizedBox(height: 16),
                                         MovieDetailsRow(
-                                          leftText: movie.genres.map((e) => e.toLocalisedString()).join(' ').toString(),
+                                          leftText: movie.genres
+                                              .map((e) => e.toLocalisedString())
+                                              .join(' ')
+                                              .toString(),
                                           rightText: movie.details,
                                         ),
                                         // Row(
@@ -134,39 +148,59 @@ class Home extends StatelessWidget {
                                         // ),
                                         const SizedBox(height: 8),
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             Expanded(
                                               child: Align(
-                                                alignment: Alignment.centerRight,
+                                                alignment:
+                                                    Alignment.centerRight,
                                                 child: SizedBox(
                                                   width: 72,
-                                                  child: homeProvider.isMovieInMyList(movie)
+                                                  child: homeProvider
+                                                          .isMovieInMyList(
+                                                              movie)
                                                       ? CustomSecondaryButton(
-                                                          iconPath: 'assets/icons/icon_checkmark.png',
-                                                          title: 'home_my_list_button'.tr(),
+                                                          iconPath:
+                                                              'assets/icons/icon_checkmark.png',
+                                                          title:
+                                                              'home_my_list_button'
+                                                                  .tr(),
                                                           onPressed: () {
-                                                            homeProvider.removeMovieFromMyList(movie);
+                                                            homeProvider
+                                                                .removeMovieFromMyList(
+                                                                    movie);
                                                           },
                                                         )
                                                       : CustomSecondaryButton(
-                                                          iconPath: 'assets/icons/icon_plus_circle.png',
-                                                          title: 'home_my_list_button'.tr(),
+                                                          iconPath:
+                                                              'assets/icons/icon_plus_circle.png',
+                                                          title:
+                                                              'home_my_list_button'
+                                                                  .tr(),
                                                           onPressed: () {
-                                                            homeProvider.addMovieToMyList(movie);
+                                                            homeProvider
+                                                                .addMovieToMyList(
+                                                                    movie);
                                                           },
                                                         ),
                                                 ),
                                               ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 24.0),
                                               child: CustomButtonWithIcon(
                                                 title: 'home_play'.tr(),
                                                 width: 100,
-                                                iconPath: 'assets/icons/icon_play_filled.png',
+                                                iconPath:
+                                                    'assets/icons/icon_play_filled.png',
                                                 onPressed: () {
-                                                  context.goNamed(MoviePlayer.pageNameFromHome, extra: movie.id);
+                                                  context.goNamed(
+                                                      MoviePlayer
+                                                          .pageNameFromHome,
+                                                      extra: movie.id);
                                                 },
                                               ),
                                             ),
@@ -176,10 +210,16 @@ class Home extends StatelessWidget {
                                                 child: SizedBox(
                                                   width: 72,
                                                   child: CustomSecondaryButton(
-                                                    iconPath: 'assets/icons/icon_info.png',
-                                                    title: 'home_info_button'.tr(),
+                                                    iconPath:
+                                                        'assets/icons/icon_info.png',
+                                                    title:
+                                                        'home_info_button'.tr(),
                                                     onPressed: () {
-                                                      context.goNamed(MovieDetails.pageName, params: {'id': movie.id});
+                                                      context.goNamed(
+                                                          MovieDetails.pageName,
+                                                          params: {
+                                                            'id': movie.id
+                                                          });
                                                     },
                                                   ),
                                                 ),
@@ -212,7 +252,8 @@ class Home extends StatelessWidget {
                         const SizedBox(height: 12),
                         buildCategoriesSection(context),
                         const SizedBox(height: 12),
-                        buildMyListSection(context: context, homeProvider: homeProvider),
+                        buildMyListSection(
+                            context: context, homeProvider: homeProvider),
                       ],
                     ),
                   ),
@@ -221,9 +262,14 @@ class Home extends StatelessWidget {
                     left: 0.0,
                     right: 0.0,
                     child: Container(
-                      height: kToolbarHeight + MediaQuery.of(context).viewPadding.top,
-                      color: CustomColors.of(context).background.withOpacity(calculateAppBarOpacity(
-                          homeProvider.scrollController.hasClients ? homeProvider.scrollController.offset : 0.0, coverHeight)),
+                      height: kToolbarHeight +
+                          MediaQuery.of(context).viewPadding.top,
+                      color: CustomColors.of(context).background.withOpacity(
+                          calculateAppBarOpacity(
+                              homeProvider.scrollController.hasClients
+                                  ? homeProvider.scrollController.offset
+                                  : 0.0,
+                              coverHeight)),
                       child: SafeArea(
                         child: AppBar(
                           backgroundColor: Colors.transparent,
@@ -243,14 +289,18 @@ class Home extends StatelessWidget {
                           ),
                           actions: [
                             CupertinoButton(
-                              child: Image.asset('assets/icons/icon_search.png'),
+                              child:
+                                  Image.asset('assets/icons/icon_search.png'),
                               onPressed: () {
                                 context.pushNamed(SearchPage.pageName);
                               },
                             ),
                             CupertinoButton(
-                              child: Image.asset('assets/icons/icon_profile.png'),
-                              onPressed: () {},
+                              child:
+                                  Image.asset('assets/icons/icon_profile.png'),
+                              onPressed: () {
+                                context.pushNamed(ProfilePage.pageName);
+                              },
                             ),
                           ],
                         ),
@@ -267,28 +317,37 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget categoriesWidget({required BuildContext context, required String title, required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: [
-          SizedBox(
-            width: 64,
-            height: 64,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.fitWidth,
+  Widget categoriesWidget(
+      {required BuildContext context,
+      required String title,
+      required String imagePath}) {
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(CategoryDetailsPage.pageName,
+            params: {'name': title.toLowerCase()});
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            SizedBox(
+              width: 64,
+              height: 64,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: CustomTextStyles.of(context).regular12,
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: CustomTextStyles.of(context).regular12,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -309,13 +368,16 @@ class Home extends StatelessWidget {
               ),
               const Spacer(),
               CupertinoButton(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
                   'home_see_more'.tr(),
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  print('clicked see more');
+                  context.pushNamed(CategoriesPage.pageName);
                 },
               ),
             ],
@@ -390,7 +452,8 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildMyListSection({required BuildContext context, required HomeProvider homeProvider}) {
+  Widget buildMyListSection(
+      {required BuildContext context, required HomeProvider homeProvider}) {
     return Column(
       children: [
         SizedBox(
@@ -406,13 +469,16 @@ class Home extends StatelessWidget {
               ),
               const Spacer(),
               CupertinoButton(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 child: Text(
                   'home_see_more'.tr(),
-                  style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                  style: CustomTextStyles.of(context)
+                      .regular12
+                      .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  print('clicked see more');
+                  context.pushNamed(MyListPage.pageName);
                 },
               ),
             ],
@@ -435,9 +501,7 @@ class Home extends StatelessWidget {
                   title: movie.title,
                   subtitle: movie.subtitle,
                   imagePath: movie.coverImage,
-                  callback: () {
-                    print('clicked on my movie tile');
-                  },
+                  callback: () {},
                 );
               },
             ),
