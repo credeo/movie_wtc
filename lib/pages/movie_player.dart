@@ -2,8 +2,6 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_wtc/extensions/custom_colors.dart';
-import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/providers/movie_player_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,8 +21,11 @@ class MoviePlayer extends StatelessWidget {
         builder: (context, moviePlayerProvider, child) {
           return SafeArea(
             child: Scaffold(
+              backgroundColor: Colors.transparent,
+              extendBodyBehindAppBar: true,
               appBar: AppBar(
-                backgroundColor: CustomColors.of(context).background,
+                elevation: 0,
+                backgroundColor: Colors.transparent,
                 leading: IconButton(
                   icon: Image.asset('assets/icons/icon_arrow_back.png'),
                   onPressed: () {
@@ -32,26 +33,24 @@ class MoviePlayer extends StatelessWidget {
                   },
                 ),
               ),
-              body: SafeArea(
-                child: FlickVideoPlayer(
-                  flickVideoWithControls: FlickVideoWithControls(
-                    videoFit: BoxFit.fill,
-                    controls: SafeArea(
-                      child: FlickPortraitControls(
-                        progressBarSettings: FlickProgressBarSettings(
-                            bufferedColor: Colors.lightBlueAccent,
-                            playedColor: Colors.blue,
-                            height: 5,
-                            handleColor: Colors.white24,
-                            handleRadius: 5),
-                      ),
+              body: FlickVideoPlayer(
+                flickVideoWithControls: FlickVideoWithControls(
+                  videoFit: BoxFit.fill,
+                  controls: SafeArea(
+                    child: FlickPortraitControls(
+                      progressBarSettings: FlickProgressBarSettings(
+                          bufferedColor: Colors.lightBlueAccent,
+                          playedColor: Colors.blue,
+                          height: 5,
+                          handleColor: Colors.white24,
+                          handleRadius: 5),
                     ),
                   ),
-                  preferredDeviceOrientation: const [
-                    DeviceOrientation.landscapeLeft
-                  ],
-                  flickManager: moviePlayerProvider.flickManager,
                 ),
+                preferredDeviceOrientation: const [
+                  DeviceOrientation.landscapeLeft
+                ],
+                flickManager: moviePlayerProvider.flickManager,
               ),
             ),
           );
