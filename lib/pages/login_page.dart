@@ -118,7 +118,7 @@ class LoginPage extends StatelessWidget {
                               : CrossFadeState.showSecond,
                       firstChild: Text.rich(
                         TextSpan(
-                          text: 'no_account'.tr(),
+                          text: '${'no_account'.tr()} ',
                           children: [
                             TextSpan(
                               text: 'signup'.tr(),
@@ -137,7 +137,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       secondChild: Text.rich(
                         TextSpan(
-                          text: 'has_account'.tr(),
+                          text: '${'has_account'.tr()} ',
                           children: [
                             TextSpan(
                               text: 'login'.tr(),

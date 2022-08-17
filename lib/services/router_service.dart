@@ -8,7 +8,8 @@ import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
-import 'package:movie_wtc/pages/profile_page.dart';
+
+import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
@@ -29,7 +30,6 @@ class RouterService {
           child: child,
         );
       },
-      initialLocation: '/home',
       routes: [
         GoRoute(
           path: '/',
@@ -62,19 +62,17 @@ class RouterService {
           builder: (context, state) => const TabContainer(),
           routes: [
             GoRoute(
-              path: 'categories',
-              name: CategoriesPage.pageName,
-              builder: (context, state) => const CategoriesPage(),
-              routes: [
-                GoRoute(
-                  path: ':categoryName',
-                  name: CategoryDetailsPage.pageName,
-                  builder: (context, state) => CategoryDetailsPage(
-                    categoryName: state.params['categoryName']!,
-                  ),
-                ),
-              ],
-            ),
+                path: 'categories',
+                name: CategoriesPage.pageName,
+                builder: (context, state) => const CategoriesPage(),
+                routes: [
+                  GoRoute(
+                      path: ':name',
+                      name: CategoryDetailsPage.pageName,
+                      builder: (context, state) => CategoryDetailsPage(
+                            categoryName: state.params['name']!,
+                          )),
+                ]),
             GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,
@@ -100,6 +98,4 @@ class RouterService {
       ],
     );
   }
-// @override
-// String get className => ‘Router Service’;
 }

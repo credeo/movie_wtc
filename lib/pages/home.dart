@@ -6,11 +6,11 @@ import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/categories.dart';
-import 'package:movie_wtc/pages/category_details.dart';
+
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
-import 'package:movie_wtc/pages/profile_page.dart';
+import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/providers/home_provider.dart';
 import 'package:movie_wtc/widgets/custom_button_with_icon.dart';
@@ -18,6 +18,8 @@ import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:movie_wtc/widgets/movie_details_row.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'package:movie_wtc/pages/category_details.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -299,27 +301,33 @@ class Home extends StatelessWidget {
       {required BuildContext context,
       required String title,
       required String imagePath}) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        children: [
-          SizedBox(
-            width: 64,
-            height: 64,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.fitWidth,
+    return GestureDetector(
+      onTap: () {
+        context.pushNamed(CategoryDetailsPage.pageName,
+            params: {'name': title.toLowerCase()});
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          children: [
+            SizedBox(
+              width: 64,
+              height: 64,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            style: CustomTextStyles.of(context).regular12,
-          ),
-        ],
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: CustomTextStyles.of(context).regular12,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -349,7 +357,7 @@ class Home extends StatelessWidget {
                       .apply(color: CustomColors.of(context).primary),
                 ),
                 onPressed: () {
-                  context.goNamed(CategoriesPage.pageName);
+                  context.pushNamed(CategoriesPage.pageName);
                 },
               ),
             ],
@@ -389,17 +397,18 @@ class Home extends StatelessWidget {
   }) {
     return GestureDetector(
       onTap: callback,
+      behavior: HitTestBehavior.opaque,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: SizedBox(
           height: 220,
           width: 136,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: SizedBox(
                   width: 179,
-                  height: 134,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(12.0)),
                     child: Image.asset(
@@ -430,8 +439,10 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildMyListSection(
-      {required BuildContext context, required HomeProvider homeProvider}) {
+  Widget buildMyListSection({
+    required BuildContext context,
+    required HomeProvider homeProvider,
+  }) {
     return Column(
       children: [
         SizedBox(
@@ -483,7 +494,7 @@ class Home extends StatelessWidget {
                   subtitle: movie.subtitle,
                   imagePath: movie.coverImage,
                   callback: () {
-                    context.pushNamed(MovieDetails.pageName,
+                    context.goNamed(MovieDetails.pageName,
                         params: {'id': movie.id});
                   },
                 );

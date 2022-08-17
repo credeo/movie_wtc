@@ -19,7 +19,7 @@ dependencies:
   share_plus: ^4.0.10
   video_player: ^2.4.6
   flick_video_player: ^0.5.0
-  js: ^0.6.4
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:

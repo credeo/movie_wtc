@@ -48,14 +48,21 @@
   "search_movies_and_shows": "Movies & TV Shows",
   "search_filters": "Search Filters",
   "search_hint_text": "Search for a show, movie, genre,...",
+<<<<<<< HEAD
   "search_no_results": "No results to display",
   "category_see_more": "See More",
+=======
+  "category_see_more":"See More",
+>>>>>>> origin
   "category_details_trending_now": "Trending Now",
   "category_details_most_recent": "Most Recent",
   "category_details_most_viewed": "Most Viewed",
   "category_details_no_movie": "No movie in this category.",
   "my_list_no_movie": "No movies in my list.",
+<<<<<<< HEAD
   "profile_email": "albert.flores@example.com",
+=======
+>>>>>>> origin
   "profile_my_list": "My List",
   "profile_edit": "Edit Profile",
   "profile_app_pref": "App Preferences",
@@ -66,4 +73,9 @@
   "edit_profile_name": "Change Name",
   "edit_profile_new_pass": "New Password",
   "edit_profile_confirm_pass": "Confirm New Password"
+<<<<<<< HEAD
 }
+=======
+
+}
+>>>>>>> origin

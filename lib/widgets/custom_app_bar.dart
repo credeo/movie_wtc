@@ -1,23 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_wtc/pages/profile_page.dart';
+
+import 'package:movie_wtc/pages/profile.dart';
+
 import 'package:movie_wtc/pages/search.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;
   final bool hasSearchButton;
   final bool hasNotificationButton;
-  final Color? backgroundColor;
   final bool isProfilePage;
+  final Color? backgroundColor;
 
   const CustomAppBar({
     super.key,
     this.hasBackButton = false,
     this.hasSearchButton = false,
     this.hasNotificationButton = false,
-    this.backgroundColor,
     this.isProfilePage = false,
+    this.backgroundColor,
   });
 
   @override

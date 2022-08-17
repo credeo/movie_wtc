@@ -59,10 +59,7 @@ class SearchPage extends StatelessWidget {
       child: SizedBox(
         height: 36,
         child: TextField(
-          style: CustomTextStyles.of(context)
-              .regular17
-              .apply(color: CustomColors.of(context).textCursor),
-          controller: searchProvider.controller,
+          controller: searchProvider.textEditingController,
           cursorHeight: 20,
           cursorColor: CustomColors.of(context).textCursor,
           textAlignVertical: TextAlignVertical.center,
@@ -83,20 +80,11 @@ class SearchPage extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(10),
             ),
-            contentPadding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            contentPadding: EdgeInsets.zero,
             suffixIconConstraints:
-                const BoxConstraints.tightFor(width: 35, height: 46),
-            suffixIcon: searchProvider.controller.text.isNotEmpty
+                const BoxConstraints.tightFor(width: 40, height: 36),
+            suffixIcon: searchProvider.query.isEmpty
                 ? GestureDetector(
-                    onTap: searchProvider.clearText,
-                    child: Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: Image.asset(
-                        'assets/icons/icon_close.png',
-                      ),
-                    ),
-                  )
-                : GestureDetector(
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
@@ -142,8 +130,8 @@ class SearchPage extends StatelessWidget {
                         Positioned(
                           left: 0.0,
                           right: 0.0,
-                          top: 11.0,
-                          bottom: 11.0,
+                          top: 6.0,
+                          bottom: 6.0,
                           child: Image.asset(
                             'assets/icons/icon_slider.png',
                             fit: BoxFit.contain,
@@ -165,13 +153,18 @@ class SearchPage extends StatelessWidget {
                           ),
                       ],
                     ),
+                  )
+                : GestureDetector(
+                    onTap: () {
+                      searchProvider.clearQuery();
+                    },
+                    child: Image.asset(
+                      'assets/icons/icon_close.png',
+                      color: CustomColors.of(context).hintText,
+                    ),
                   ),
             prefixIcon: Padding(
-              padding: const EdgeInsets.only(
-                left: 8,
-                right: 6,
-                bottom: 3,
-              ),
+              padding: const EdgeInsets.only(left: 8, right: 6, bottom: 3),
               child: SizedBox(
                 height: 16,
                 width: 16,

@@ -12,6 +12,7 @@ class SearchProvider extends ChangeNotifier {
   String _category = '';
   String _duration = '';
   String _productionYear = '';
+  final TextEditingController _textEditingController = TextEditingController();
 
   final TextEditingController _controller = TextEditingController();
   TextEditingController get controller => _controller;
@@ -30,8 +31,11 @@ class SearchProvider extends ChangeNotifier {
   String get category => _category;
   String get duration => _duration;
   String get productionYear => _productionYear;
+  String get query => _query;
   List<Movie> get movies => List.unmodifiable(_movies);
   List<Movie> get searched => List.unmodifiable(_searched);
+
+  TextEditingController get textEditingController => _textEditingController;
   bool get isSearchActive =>
       _category.isNotEmpty ||
       _duration.isNotEmpty ||
@@ -41,6 +45,12 @@ class SearchProvider extends ChangeNotifier {
       _category.isNotEmpty ||
       _duration.isNotEmpty ||
       _productionYear.isNotEmpty;
+
+  void clearQuery() {
+    _textEditingController.text = '';
+    _query = '';
+    notifyListeners();
+  }
 
   void search(String query) {
     _query = query;
