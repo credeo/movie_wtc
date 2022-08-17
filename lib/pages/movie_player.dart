@@ -2,7 +2,6 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:movie_wtc/extensions/custom_colors.dart';
 import 'package:movie_wtc/providers/movie_player_provider.dart';
 import 'package:provider/provider.dart';
 

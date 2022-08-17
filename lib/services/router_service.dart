@@ -8,6 +8,7 @@ import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/notifications.dart';
 import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
@@ -22,7 +23,8 @@ class RouterService {
   void _buildRouter() {
     _goRouter = GoRouter(
       navigatorBuilder: (context, state, child) {
-        final themeData = KiwiContainer().resolve<AppearanceService>().buildTheme();
+        final themeData =
+            KiwiContainer().resolve<AppearanceService>().buildTheme();
         return Theme(
           data: themeData,
           child: child,
@@ -55,6 +57,11 @@ class RouterService {
           builder: (context, state) => const ProfilePage(),
         ),
         GoRoute(
+          path: '/notifications',
+          name: NotificationsPage.pageName,
+          builder: (context, state) => const NotificationsPage(),
+        ),
+        GoRoute(
           path: '/home',
           name: TabContainer.pageName,
           builder: (context, state) => const TabContainer(),
@@ -74,17 +81,20 @@ class RouterService {
             GoRoute(
               path: 'movie_player',
               name: MoviePlayer.pageNameFromHome,
-              builder: (context, state) => MoviePlayer(movieId: state.extra as String),
+              builder: (context, state) =>
+                  MoviePlayer(movieId: state.extra as String),
             ),
             GoRoute(
               path: ':id',
               name: MovieDetails.pageName,
-              builder: (context, state) => MovieDetails(movieId: state.params['id']!),
+              builder: (context, state) =>
+                  MovieDetails(movieId: state.params['id']!),
               routes: [
                 GoRoute(
                   path: 'movie_player',
                   name: MoviePlayer.pageNameFromDetails,
-                  builder: (context, state) => MoviePlayer(movieId: state.params['id']!),
+                  builder: (context, state) =>
+                      MoviePlayer(movieId: state.params['id']!),
                 ),
               ],
             ),

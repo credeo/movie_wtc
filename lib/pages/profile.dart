@@ -6,7 +6,6 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/my_list.dart';
-import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/providers/profile_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';

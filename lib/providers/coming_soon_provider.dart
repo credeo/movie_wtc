@@ -44,4 +44,18 @@ class ComingSoonProvider extends ChangeNotifier {
   bool isMovieInMyList(Movie movie) {
     return _userService.isMovieInMyList(movie);
   }
+
+  void addMovieToNotifyme(Movie movie) {
+    _userService.addToNotifyMe(movie);
+    notifyListeners();
+  }
+
+  void removeMovieFromNotifyMe(Movie movie) {
+    _userService.removeFromNotifyMe(movie);
+    notifyListeners();
+  }
+
+  bool isMovieInNotifyMe(Movie movie) {
+    return _userService.isMovieInNotifyMe(movie);
+  }
 }

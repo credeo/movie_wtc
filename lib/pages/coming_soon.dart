@@ -190,7 +190,16 @@ class ComingSoon extends StatelessWidget {
                     ),
                     CustomSecondaryButton(
                       title: 'coming_soon_remind'.tr(),
-                      iconPath: 'assets/icons/icon_notification.png',
+                      iconPath: comingSoonProvider.isMovieInNotifyMe(movie)
+                          ? 'assets/icons/icon_notification_filled.png'
+                          : 'assets/icons/icon_notification.png',
+                      onPressed: () {
+                        if (comingSoonProvider.isMovieInNotifyMe(movie)) {
+                          comingSoonProvider.removeMovieFromNotifyMe(movie);
+                        } else {
+                          comingSoonProvider.addMovieToNotifyme(movie);
+                        }
+                      },
                     ),
                     Expanded(
                       child: Align(
