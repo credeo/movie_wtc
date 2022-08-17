@@ -25,6 +25,7 @@ class MyListPage extends StatelessWidget {
               appBar: const CustomAppBar(
                 hasBackButton: true,
                 hasSearchButton: true,
+                isProfilePage: false,
               ),
               body: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),

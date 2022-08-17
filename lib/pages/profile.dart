@@ -33,7 +33,8 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0, bottom: 28, left: 20, right: 20),
+                    padding: const EdgeInsets.only(
+                        top: 16.0, bottom: 28, left: 20, right: 20),
                     child: Row(
                       children: [
                         SizedBox(
@@ -54,7 +55,10 @@ class ProfilePage extends StatelessWidget {
                             ),
                             Text(
                               profileProvider.email,
-                              style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+                              style: CustomTextStyles.of(context)
+                                  .regular12
+                                  .apply(
+                                      color: CustomColors.of(context).inactive),
                             ),
                           ],
                         )
@@ -92,15 +96,7 @@ class ProfilePage extends StatelessWidget {
                     text: 'profile_help'.tr(),
                     iconPath: 'assets/icons/icon_help.png',
                     callback: () {},
-                  ),
-                  getRow(
-                    context: context,
-                    text: 'profile_signout'.tr(),
-                    iconPath: 'assets/icons/icon_logout.png',
-                    callback: () {
-                      context.goNamed(LoginPage.pageName);
-                    },
-                  ),
+                  )
                 ],
               ),
             ),

@@ -27,16 +27,22 @@ class CategoriesPage extends StatelessWidget {
             appBar: const CustomAppBar(
               hasBackButton: true,
               hasSearchButton: true,
+              isProfilePage: false,
             ),
             body: ListView.builder(
-                padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).padding.bottom),
                 itemCount: categoriesProvider.map.keys.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: index + 1 < categoriesProvider.map.keys.length ? 40.0 : 0.0),
+                    padding: EdgeInsets.only(
+                        bottom: index + 1 < categoriesProvider.map.keys.length
+                            ? 40.0
+                            : 0.0),
                     child: getCategorySection(
                         context: context,
-                        categoryTitle: categoriesProvider.map.keys.elementAt(index),
+                        categoryTitle:
+                            categoriesProvider.map.keys.elementAt(index),
                         categoriesProvider: categoriesProvider),
                   );
                 }),
@@ -69,13 +75,17 @@ class CategoriesPage extends StatelessWidget {
                 SizedBox(
                   height: 28,
                   child: CupertinoButton(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 8.0),
                     onPressed: () {
-                      context.goNamed(CategoryDetailsPage.pageName, params: {'name': categoryTitle});
+                      context.goNamed(CategoryDetailsPage.pageName,
+                          params: {'name': categoryTitle});
                     },
                     child: Text(
                       'category_see_more'.tr(),
-                      style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).primary),
+                      style: CustomTextStyles.of(context)
+                          .regular12
+                          .apply(color: CustomColors.of(context).primary),
                     ),
                   ),
                 ),
@@ -92,7 +102,8 @@ class CategoriesPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return getOneItem(
                     context: context,
-                    movie: categoriesProvider.map[categoryTitle]!.elementAt(index),
+                    movie:
+                        categoriesProvider.map[categoryTitle]!.elementAt(index),
                   );
                 },
                 itemCount: categoriesProvider.map[categoryTitle]!.length,
