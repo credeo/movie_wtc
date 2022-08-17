@@ -6,10 +6,10 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/pages/edit_profile.dart';
 import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/my_list.dart';
-import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/providers/profile_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   static const pageName = 'profile';
@@ -33,7 +33,8 @@ class ProfilePage extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 16.0, bottom: 28, left: 20, right: 20),
+                    padding: const EdgeInsets.only(
+                        top: 16.0, bottom: 28, left: 20, right: 20),
                     child: Row(
                       children: [
                         SizedBox(
@@ -54,7 +55,10 @@ class ProfilePage extends StatelessWidget {
                             ),
                             Text(
                               profileProvider.email,
-                              style: CustomTextStyles.of(context).regular12.apply(color: CustomColors.of(context).inactive),
+                              style: CustomTextStyles.of(context)
+                                  .regular12
+                                  .apply(
+                                      color: CustomColors.of(context).inactive),
                             ),
                           ],
                         )
@@ -91,7 +95,9 @@ class ProfilePage extends StatelessWidget {
                     context: context,
                     text: 'profile_help'.tr(),
                     iconPath: 'assets/icons/icon_help.png',
-                    callback: () {},
+                    callback: () {
+                      profileProvider.getUrl();
+                    },
                   ),
                   getRow(
                     context: context,
