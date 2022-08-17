@@ -1,5 +1,7 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
@@ -12,14 +14,19 @@ class MoviePlayerProvider extends ChangeNotifier {
 
   MoviePlayerProvider(String movieId) {
     movie = _movieService.getMovieWithId(movieId)!;
+
     flickManager = FlickManager(
-      videoPlayerController:
-          VideoPlayerController.network('https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'),
+      videoPlayerController: VideoPlayerController.network(
+          'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4'),
     );
   }
 
   @override
-  void dispose() {
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     flickManager.dispose();
     super.dispose();
   }

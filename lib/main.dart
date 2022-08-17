@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/injection_container.dart';
 import 'package:movie_wtc/pages/splash_page.dart';
@@ -12,7 +13,8 @@ void main() {
 
   initKiwi();
 
-  runApp(const MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  runApp((const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
