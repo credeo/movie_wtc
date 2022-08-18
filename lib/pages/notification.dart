@@ -37,13 +37,11 @@ class NotificationPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                           gradient: LinearGradient(
                             colors: [
-                              CustomColors.of(context)
-                                  .buttonBackgroundGradientEnd,
-                              CustomColors.of(context)
-                                  .buttonBackgroundGradientStart,
+                              CustomColors.of(context).tabbarGradientEnd,
+                              CustomColors.of(context).tabbarGradientStart,
                             ],
-                            end: Alignment.bottomLeft,
-                            begin: Alignment.topCenter,
+                            end: Alignment.topCenter,
+                            begin: Alignment.bottomCenter,
                           ),
                         ),
                         child: Image.asset(
@@ -74,7 +72,7 @@ class NotificationPage extends StatelessWidget {
                       height: 1, color: CustomColors.of(context).searchDivider),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: notificationProvider.myMovieList.length,
+                      itemCount: notificationProvider.notificationList.length,
                       itemBuilder: (context, index) {
                         return notificationCell(
                             context, notificationProvider, index);
@@ -98,7 +96,7 @@ String formatDateMonthDay(DateTime date) {
 
 Widget notificationCell(
     BuildContext context, NotificationProvider notPro, int index) {
-  final movie = notPro.myMovieList[index];
+  final movie = notPro.notificationList[index];
 
   return Dismissible(
     key: Key(movie.title),

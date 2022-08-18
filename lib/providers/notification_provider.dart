@@ -7,28 +7,28 @@ class NotificationProvider extends ChangeNotifier {
   final _userService = KiwiContainer().resolve<UserService>();
 
   List<Movie> get myMovieList => _userService.myMoviesList;
+  List<Movie> get notificationList => _userService.notificationList;
 
-  int get counter => _userService.myMoviesList.length;
+  int get counter => _userService.notificationList.length;
 
   void addMovieNotification(Movie movie) {
-    _userService.addToMyList(movie);
-    print(myMovieList.length);
-
+    _userService.addToNotification(movie);
+    print(notificationList.length);
     notifyListeners();
   }
 
   void removeMovieNotification(Movie movie) {
-    _userService.removeFromMyList(movie);
-    print(myMovieList.length);
+    _userService.removeNotification(movie);
+    print(notificationList.length);
     notifyListeners();
   }
 
   bool isMovieInNotifications(Movie movie) {
-    return _userService.isMovieInMyList(movie);
+    return _userService.isMovieNotification(movie);
   }
 
   void clearList() {
-    _userService.clearList();
+    _userService.clearNotification();
     notifyListeners();
   }
 }

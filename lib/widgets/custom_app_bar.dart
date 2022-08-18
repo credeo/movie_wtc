@@ -73,53 +73,54 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ChangeNotifierProvider(
             create: ((context) => NotificationProvider()),
             child: Consumer<NotificationProvider>(
-              builder: (context, notPro, child) => notPro.myMovieList.isNotEmpty
-                  ? CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      child: Stack(
-                        fit: StackFit.passthrough,
-                        textDirection: TextDirection.rtl,
-                        children: [
-                          Positioned(
-                            child: SizedBox(
-                              height: 25,
-                              width: 24,
-                              child: Image.asset(
-                                'assets/icons/icon_notification_filled.png',
-                              ),
-                            ),
-                          ),
-                          Positioned.directional(
+              builder: (context, notPro, child) =>
+                  notPro.notificationList.isNotEmpty
+                      ? CupertinoButton(
+                          padding: EdgeInsets.zero,
+                          child: Stack(
+                            fit: StackFit.passthrough,
                             textDirection: TextDirection.rtl,
-                            end: 14,
-                            bottom: 10,
-                            child: Container(
-                              height: 16.0,
-                              width: 9.5,
-                              color: Colors.blue,
-                              child: Text(
-                                notPro.counter.toString(),
-                                style: CustomTextStyles.of(context)
-                                    .semiBold14
-                                    .apply(
-                                        color: CustomColors.of(context)
-                                            .primaryText),
+                            children: [
+                              Positioned(
+                                child: SizedBox(
+                                  height: 25,
+                                  width: 24,
+                                  child: Image.asset(
+                                    'assets/icons/icon_notification_filled.png',
+                                  ),
+                                ),
                               ),
-                            ),
+                              Positioned.directional(
+                                textDirection: TextDirection.rtl,
+                                end: 14,
+                                bottom: 10,
+                                child: Container(
+                                  height: 16.0,
+                                  width: 9.5,
+                                  color: Colors.blue,
+                                  child: Text(
+                                    notPro.counter.toString(),
+                                    style: CustomTextStyles.of(context)
+                                        .semiBold14
+                                        .apply(
+                                            color: CustomColors.of(context)
+                                                .primaryText),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      onPressed: () {
-                        context.pushNamed(NotificationPage.pageName);
-                      },
-                    )
-                  : CupertinoButton(
-                      child: Image.asset(
-                        'assets/icons/icon_notification_filled.png',
-                      ),
-                      onPressed: () {
-                        context.pushNamed(NotificationPage.pageName);
-                      }),
+                          onPressed: () {
+                            context.pushNamed(NotificationPage.pageName);
+                          },
+                        )
+                      : CupertinoButton(
+                          child: Image.asset(
+                            'assets/icons/icon_notification_filled.png',
+                          ),
+                          onPressed: () {
+                            context.pushNamed(NotificationPage.pageName);
+                          }),
             ),
           ),
         CupertinoButton(
