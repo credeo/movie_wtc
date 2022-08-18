@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+// ignore: depend_on_referenced_packages
+import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
@@ -14,6 +16,7 @@ void main() async {
 
   initKiwi();
 
+  EasyLocalization.logger.enableLevels = [LevelMessages.info, LevelMessages.warning, LevelMessages.error];
   await EasyLocalization.ensureInitialized();
 
   runApp(const MyApp());

@@ -1,4 +1,5 @@
 import 'package:movie_wtc/models/movie.dart';
+// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
 
 class MovieService {

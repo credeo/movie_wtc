@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_wtc/pages/notifications.dart';
 import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
-import 'package:movie_wtc/pages/tab_container.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final bool hasBackButton;

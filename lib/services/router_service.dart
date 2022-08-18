@@ -14,9 +14,7 @@ import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/splash_page.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
-import 'package:movie_wtc/providers/app_provider.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
-import 'package:provider/provider.dart';
 
 class RouterService {
   late final GoRouter _goRouter;
