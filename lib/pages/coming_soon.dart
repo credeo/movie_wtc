@@ -6,6 +6,7 @@ import 'package:movie_wtc/extensions/custom_text_styles.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/providers/coming_soon_provider.dart';
+import 'package:movie_wtc/providers/notification_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:movie_wtc/widgets/custom_secondary_button.dart';
 import 'package:provider/provider.dart';
@@ -188,9 +189,29 @@ class ComingSoon extends StatelessWidget {
                         ),
                       ),
                     ),
-                    CustomSecondaryButton(
-                      title: 'coming_soon_remind'.tr(),
-                      iconPath: 'assets/icons/icon_notification.png',
+                    ChangeNotifierProvider(
+                      create: (context) => NotificationProvider(),
+                      child: Consumer<NotificationProvider>(
+                        builder: (context, notProvider, child) {
+                          return notProvider.isMovieInNotifications(movie)
+                              ? CustomSecondaryButton(
+                                  title: 'coming_soon_remind'.tr(),
+                                  iconPath:
+                                      'assets/icons/icon_notification_filled.png',
+                                  onPressed: () {
+                                    notProvider.removeMovieNotification(movie);
+                                  },
+                                )
+                              : CustomSecondaryButton(
+                                  title: 'coming_soon_remind'.tr(),
+                                  iconPath:
+                                      'assets/icons/icon_notification.png',
+                                  onPressed: () {
+                                    notProvider.addMovieNotification(movie);
+                                  },
+                                );
+                        },
+                      ),
                     ),
                     Expanded(
                       child: Align(

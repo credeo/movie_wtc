@@ -7,20 +7,32 @@ class UserService extends ChangeNotifier {
   User? _user;
 
   User? get user => _user;
-  List<Movie> get myMoviesList => List.unmodifiable(_myMoviesList);
+  List<Movie> get myMoviesList => _myMoviesList;
 
   UserService() {
     _user = const User(name: 'Mr. X', email: 'johnappleased@gmail.com');
   }
 
+  // void numOfNotification() {
+  //   _myMoviesList.length;
+  //   notifyListeners();
+  // }
+
+  void clearList() {
+    myMoviesList.clear();
+    notifyListeners();
+  }
+
   void addToMyList(Movie movie) {
     _myMoviesList.add(movie);
-    notifyListeners();
+
+    // notifyListeners();
   }
 
   void removeFromMyList(Movie movie) {
     _myMoviesList.remove(movie);
-    notifyListeners();
+
+    //notifyListeners();
   }
 
   bool isMovieInMyList(Movie movie) {

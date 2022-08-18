@@ -8,6 +8,7 @@ import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/notification.dart';
 
 import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
@@ -56,6 +57,11 @@ class RouterService {
           path: '/profile',
           name: ProfilePage.pageName,
           builder: (context, state) => const ProfilePage(),
+        ),
+        GoRoute(
+          path: '/notification',
+          name: NotificationPage.pageName,
+          builder: (context, state) => const NotificationPage(),
         ),
         GoRoute(
           path: '/home',

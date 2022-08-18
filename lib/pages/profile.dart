@@ -9,7 +9,6 @@ import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/providers/profile_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   static const pageName = 'profile';
