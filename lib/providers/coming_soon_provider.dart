@@ -14,6 +14,7 @@ class ComingSoonProvider extends ChangeNotifier {
 
   HomeState get state => _state;
   List<Movie> get comingSoonMovies => _movieService.comingSoonMovies;
+  List<Movie> get notificationMovies => _userService.myNotificationsList;
 
   ComingSoonProvider() {
     _getComingSoonMovies();
@@ -43,5 +44,18 @@ class ComingSoonProvider extends ChangeNotifier {
 
   bool isMovieInMyList(Movie movie) {
     return _userService.isMovieInMyList(movie);
+  }
+
+  void toggleNotificationForMovie(Movie movie) {
+    if (isMovieInNotificationsList(movie)) {
+      _userService.removeNotification(movie);
+    } else {
+      _userService.addNotification(movie);
+    }
+    notifyListeners();
+  }
+
+  bool isMovieInNotificationsList(Movie movie) {
+    return _userService.isMovieInNotifications(movie);
   }
 }

@@ -8,6 +8,7 @@ import 'package:movie_wtc/pages/login_page.dart';
 import 'package:movie_wtc/pages/movie_details.dart';
 import 'package:movie_wtc/pages/movie_player.dart';
 import 'package:movie_wtc/pages/my_list.dart';
+import 'package:movie_wtc/pages/notifications.dart';
 import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
@@ -89,6 +90,11 @@ class RouterService {
               ],
             ),
           ],
+        ),
+        GoRoute(
+          path: '/notifications',
+          name: Notifications.pageName,
+          builder: (context, state) => const Notifications(),
         ),
       ],
     );

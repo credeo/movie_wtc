@@ -22,6 +22,7 @@ class CustomColors {
   Color get searchDivider => Theme.of(_context).extension<CustomColorScheme>()!.searchDivider!;
   Color get hintText => Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
   Color get textCursor => Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
+  Color get error => Theme.of(_context).extension<CustomColorScheme>()!.error!;
 }
 
 @immutable
@@ -44,6 +45,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? searchDivider;
   final Color? hintText;
   final Color? textCursor;
+  final Color? error;
 
   const CustomColorScheme({
     required this.primary,
@@ -64,6 +66,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.searchDivider,
     required this.hintText,
     required this.textCursor,
+    required this.error,
   });
 
   const CustomColorScheme.light({
@@ -85,6 +88,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.tabbarGradientEnd = const Color(0xF0161616),
     this.hintText = const Color(0x99ebebf5),
     this.textCursor = const Color(0xffEAEAEB),
+    this.error = Colors.red,
   });
 
   @override
@@ -107,6 +111,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? searchDivider,
     Color? hintText,
     Color? textCursor,
+    Color? error,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -127,6 +132,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       searchDivider: searchDivider ?? this.searchDivider,
       hintText: hintText ?? this.hintText,
       textCursor: textCursor ?? this.textCursor,
+      error: error ?? this.error,
     );
   }
 
@@ -154,6 +160,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       hintText: Color.lerp(hintText, other.hintText, t),
       textCursor: Color.lerp(textCursor, other.textCursor, t),
       tabbarGradientStart: Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
+      error: Color.lerp(error, other.error, t),
     );
   }
 }
