@@ -16,12 +16,7 @@ void main() async {
 
   await EasyLocalization.ensureInitialized();
 
-  runApp(EasyLocalization(
-      supportedLocales: const [Locale('en')],
-      fallbackLocale: const Locale('en'),
-      useOnlyLangCode: true,
-      path: 'assets/localization',
-      child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,21 +24,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final router = KiwiContainer().resolve<RouterService>().router;
-    return ChangeNotifierProvider<AppProvider>(
-      create: (context) => AppProvider(),
-      child: Consumer<AppProvider>(
-        builder: (context, appProvider, child) {
-          return MaterialApp.router(
-            title: 'Movie Wtc',
-            routerDelegate: router.routerDelegate,
-            routeInformationParser: router.routeInformationParser,
-            routeInformationProvider: router.routeInformationProvider,
-            debugShowCheckedModeBanner: false,
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-          );
-        },
+    return EasyLocalization(
+      supportedLocales: const [Locale('en')],
+      fallbackLocale: const Locale('en'),
+      useOnlyLangCode: true,
+      path: 'assets/localization',
+      child: ChangeNotifierProvider<AppProvider>(
+        create: (context) => AppProvider(),
+        child: Consumer<AppProvider>(
+          builder: (context, appProvider, child) {
+            final router = KiwiContainer().resolve<RouterService>().router;
+            return MaterialApp.router(
+              title: 'Movie Wtc',
+              routerDelegate: router.routerDelegate,
+              routeInformationParser: router.routeInformationParser,
+              routeInformationProvider: router.routeInformationProvider,
+              debugShowCheckedModeBanner: false,
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+            );
+          },
+        ),
       ),
     );
   }
