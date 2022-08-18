@@ -10,6 +10,8 @@ import 'package:movie_wtc/pages/tab_container.dart';
 import 'package:movie_wtc/providers/profile_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+//https://pub.dev/packages/url_launcher
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   static const pageName = 'profile';
@@ -95,7 +97,16 @@ class ProfilePage extends StatelessWidget {
                     context: context,
                     text: 'profile_help'.tr(),
                     iconPath: 'assets/icons/icon_help.png',
-                    callback: () {},
+                    //open url on click
+                    callback: () async {
+                      Uri url = Uri.parse('http://flutter.dev');
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url,
+                            mode: LaunchMode.externalApplication);
+                      } else {
+                        print('Cant launch URL');
+                      }
+                    },
                   )
                 ],
               ),

@@ -5,6 +5,7 @@ import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
 import 'package:video_player/video_player.dart';
 
+import 'package:flutter/services.dart';
 class MoviePlayerProvider extends ChangeNotifier {
   final _movieService = KiwiContainer().resolve<MovieService>();
   late final Movie movie;
@@ -19,6 +20,7 @@ class MoviePlayerProvider extends ChangeNotifier {
   }
 
   @override
+   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   void dispose() {
     flickManager.dispose();
     super.dispose();
