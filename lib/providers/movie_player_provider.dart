@@ -1,5 +1,6 @@
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/models/movie.dart';
 import 'package:movie_wtc/services/movie_service.dart';
@@ -21,6 +22,7 @@ class MoviePlayerProvider extends ChangeNotifier {
   @override
   void dispose() {
     flickManager.dispose();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     super.dispose();
   }
 }
