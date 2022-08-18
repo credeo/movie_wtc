@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kiwi/kiwi.dart';
+import 'package:movie_wtc/pages/page_transition/instant_page.dart';
 import 'package:movie_wtc/pages/categories.dart';
 import 'package:movie_wtc/pages/category_details.dart';
 import 'package:movie_wtc/pages/edit_profile.dart';
@@ -11,8 +12,11 @@ import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/pages/notifications.dart';
 import 'package:movie_wtc/pages/profile.dart';
 import 'package:movie_wtc/pages/search.dart';
+import 'package:movie_wtc/pages/splash_page.dart';
 import 'package:movie_wtc/pages/tab_container.dart';
+import 'package:movie_wtc/providers/app_provider.dart';
 import 'package:movie_wtc/services/appearance_service.dart';
+import 'package:provider/provider.dart';
 
 class RouterService {
   late final GoRouter _goRouter;
@@ -32,9 +36,30 @@ class RouterService {
       routes: [
         GoRoute(
           path: '/',
-          name: LoginPage.pageName,
-          builder: (context, state) => const LoginPage(),
+          name: 'splash',
+          builder: (context, state) => SplashPage(
+            onAnimationEnd: () => _goRouter.goNamed(
+              LoginPage.pageName,
+              extra: {'instant': true},
+            ),
+          ),
         ),
+        GoRoute(
+            path: '/login',
+            name: LoginPage.pageName,
+            pageBuilder: (context, state) {
+              final extraParams = state.extra as Map<String, dynamic>?;
+              final instant = extraParams?['instant'] == true;
+              if (instant) {
+                return const InstantPage(
+                  child: LoginPage(),
+                );
+              } else {
+                return const MaterialPage(
+                  child: LoginPage(),
+                );
+              }
+            }),
         GoRoute(
           path: '/search',
           name: SearchPage.pageName,

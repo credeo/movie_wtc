@@ -3,19 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:movie_wtc/injection_container.dart';
-import 'package:movie_wtc/pages/splash_page.dart';
 import 'package:movie_wtc/providers/app_provider.dart';
 import 'package:movie_wtc/services/router_service.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   initKiwi();
 
-  runApp(const MyApp());
+  await EasyLocalization.ensureInitialized();
+
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en')],
+      fallbackLocale: const Locale('en'),
+      useOnlyLangCode: true,
+      path: 'assets/localization',
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,34 +29,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final router = KiwiContainer().resolve<RouterService>().router;
     return ChangeNotifierProvider<AppProvider>(
       create: (context) => AppProvider(),
       child: Consumer<AppProvider>(
         builder: (context, appProvider, child) {
-          if (!appProvider.isLoaded) {
-            // show splash screen here if needed
-            return SplashPage(
-              onAnimationEnd: appProvider.splashFinished,
-            );
-          }
-          final router = KiwiContainer().resolve<RouterService>().router;
-
-          return EasyLocalization(
-            supportedLocales: const [Locale('en')],
-            fallbackLocale: const Locale('en'),
-            useOnlyLangCode: true,
-            path: 'assets/localization',
-            child: Builder(builder: (context) {
-              return MaterialApp.router(
-                title: 'Movie Wtc',
-                routerDelegate: router.routerDelegate,
-                routeInformationParser: router.routeInformationParser,
-                routeInformationProvider: router.routeInformationProvider,
-                debugShowCheckedModeBanner: false,
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-              );
-            }),
+          return MaterialApp.router(
+            title: 'Movie Wtc',
+            routerDelegate: router.routerDelegate,
+            routeInformationParser: router.routeInformationParser,
+            routeInformationProvider: router.routeInformationProvider,
+            debugShowCheckedModeBanner: false,
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
           );
         },
       ),
