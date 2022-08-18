@@ -21,35 +21,33 @@ class MoviePlayer extends StatelessWidget {
         builder: (context, moviePlayerProvider, child) {
           return SafeArea(
             child: Scaffold(
-              body: SafeArea(
-                child: FlickVideoPlayer(
-                  flickManager: moviePlayerProvider.flickManager,
-                  flickVideoWithControls: FlickVideoWithControls(
-                    controls: Stack(
-                      children: [
-                        Positioned(
-                          top: 20,
-                          left: 30,
-                          child: FlickPlayToggle(
-                            togglePlay: () {
-                              context.pop();
-                            },
-                            pauseChild:
-                                Image.asset('assets/icons/icon_arrow_back.png'),
-                            playChild:
-                                Image.asset('assets/icons/icon_arrow_back.png'),
-                            replayChild:
-                                Image.asset('assets/icons/icon_arrow_back.png'),
-                          ),
+              body: FlickVideoPlayer(
+                flickManager: moviePlayerProvider.flickManager,
+                flickVideoWithControls: FlickVideoWithControls(
+                  controls: Stack(
+                    children: [
+                      Positioned(
+                        top: 20,
+                        left: 30,
+                        child: FlickPlayToggle(
+                          togglePlay: () {
+                            context.pop();
+                          },
+                          pauseChild:
+                              Image.asset('assets/icons/icon_arrow_back.png'),
+                          playChild:
+                              Image.asset('assets/icons/icon_arrow_back.png'),
+                          replayChild:
+                              Image.asset('assets/icons/icon_arrow_back.png'),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  preferredDeviceOrientation: const [
-                    DeviceOrientation.portraitUp,
-                    DeviceOrientation.landscapeLeft,
-                  ],
                 ),
+                preferredDeviceOrientation: const [
+                  DeviceOrientation.portraitUp,
+                  DeviceOrientation.landscapeLeft,
+                ],
               ),
             ),
           );
