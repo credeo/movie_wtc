@@ -42,10 +42,7 @@ class CustomColors {
       Theme.of(_context).extension<CustomColorScheme>()!.hintText!;
   Color get textCursor =>
       Theme.of(_context).extension<CustomColorScheme>()!.textCursor!;
-  Color get dividerProfile =>
-      Theme.of(_context).extension<CustomColorScheme>()!.dividerProfile!;
-  Color get underlineProfile =>
-      Theme.of(_context).extension<CustomColorScheme>()!.underlineProfile!;
+  Color get error => Theme.of(_context).extension<CustomColorScheme>()!.error!;
 }
 
 @immutable
@@ -68,8 +65,8 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
   final Color? searchDivider;
   final Color? hintText;
   final Color? textCursor;
-  final Color? dividerProfile;
-  final Color? underlineProfile;
+
+  final Color? error;
 
   const CustomColorScheme({
     required this.primary,
@@ -90,8 +87,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     required this.searchDivider,
     required this.hintText,
     required this.textCursor,
-    required this.dividerProfile,
-    required this.underlineProfile,
+    required this.error,
   });
 
   const CustomColorScheme.light({
@@ -113,8 +109,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     this.tabbarGradientEnd = const Color(0xF0161616),
     this.hintText = const Color(0x99ebebf5),
     this.textCursor = const Color(0xffEAEAEB),
-    this.dividerProfile = const Color(0xffE5E5E5),
-    this.underlineProfile = const Color(0xff707070),
+    this.error = Colors.red,
   });
 
   @override
@@ -137,8 +132,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
     Color? searchDivider,
     Color? hintText,
     Color? textCursor,
-    Color? dividerProfile,
-    Color? underlineProfile,
+    Color? error,
   }) {
     return CustomColorScheme(
       primary: primary ?? this.primary,
@@ -161,8 +155,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       searchDivider: searchDivider ?? this.searchDivider,
       hintText: hintText ?? this.hintText,
       textCursor: textCursor ?? this.textCursor,
-      dividerProfile: dividerProfile ?? this.dividerProfile,
-      underlineProfile: underlineProfile ?? this.underlineProfile,
+      error: error ?? this.error,
     );
   }
 
@@ -197,8 +190,7 @@ class CustomColorScheme extends ThemeExtension<CustomColorScheme> {
       textCursor: Color.lerp(textCursor, other.textCursor, t),
       tabbarGradientStart:
           Color.lerp(tabbarGradientStart, other.tabbarGradientStart, t),
-      dividerProfile: Color.lerp(dividerProfile, other.dividerProfile, t),
-      underlineProfile: Color.lerp(underlineProfile, other.underlineProfile, t),
+      error: Color.lerp(error, other.error, t),
     );
   }
 }

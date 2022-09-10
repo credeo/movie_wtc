@@ -35,19 +35,21 @@ class MoviePlayer extends StatelessWidget {
               ),
               body: FlickVideoPlayer(
                 flickVideoWithControls: FlickVideoWithControls(
-                  videoFit: BoxFit.fill,
+                  videoFit: BoxFit.contain,
                   controls: SafeArea(
                     child: FlickPortraitControls(
                       progressBarSettings: FlickProgressBarSettings(
-                          bufferedColor: Colors.lightBlueAccent,
-                          playedColor: Colors.blue,
-                          height: 5,
-                          handleColor: Colors.white24,
-                          handleRadius: 5),
+                        bufferedColor: Colors.lightBlueAccent,
+                        playedColor: Colors.blue,
+                        height: 5,
+                        handleColor: Colors.white24,
+                        handleRadius: 5,
+                      ),
                     ),
                   ),
                 ),
                 preferredDeviceOrientation: const [
+                  DeviceOrientation.portraitUp,
                   DeviceOrientation.landscapeLeft
                 ],
                 flickManager: moviePlayerProvider.flickManager,

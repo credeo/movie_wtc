@@ -64,5 +64,6 @@
   "edit_profile_avatar": "Change Avatar",
   "edit_profile_name": "Change Name",
   "edit_profile_new_pass": "New Password",
-  "edit_profile_confirm_pass": "Confirm New Password"
+  "edit_profile_confirm_pass": "Confirm New Password",
+  "notifications_title": "Notifications"
 }

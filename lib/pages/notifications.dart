@@ -38,8 +38,7 @@ class Notifications extends StatelessWidget {
                         ),
                         const Spacer(),
                         CupertinoButton(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
+                          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           onPressed: () {
                             notificationProvider.clearList();
                           },
@@ -68,10 +67,7 @@ class Notifications extends StatelessWidget {
                           onPressed: () {
                             context.pushNamed(
                               MovieDetails.pageName,
-                              params: {
-                                'id': notificationProvider
-                                    .notificationList[index].id
-                              },
+                              params: {'id': notificationProvider.notificationList[index].id},
                             );
                           },
                         );
@@ -170,9 +166,7 @@ Widget notificationCell(
                         movie.subtitle,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
-                        style: CustomTextStyles.of(context)
-                            .regular13
-                            .apply(color: CustomColors.of(context).inactive),
+                        style: CustomTextStyles.of(context).regular13.apply(color: CustomColors.of(context).inactive),
                       ),
                     ],
                   ),

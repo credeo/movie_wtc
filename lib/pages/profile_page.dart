@@ -103,7 +103,7 @@ class ProfilePage extends StatelessWidget {
 Divider dividerForProfile(BuildContext context) {
   return Divider(
     height: 44,
-    color: CustomColors.of(context).dividerProfile.withOpacity(0.2),
+    color: CustomColors.of(context).inactive.withOpacity(0.2),
   );
 }
 

@@ -9,6 +9,7 @@ import 'package:movie_wtc/pages/my_list.dart';
 import 'package:movie_wtc/providers/profile_provider.dart';
 import 'package:movie_wtc/widgets/custom_app_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   static const pageName = 'profile';
@@ -94,8 +95,12 @@ class ProfilePage extends StatelessWidget {
                     context: context,
                     text: 'profile_help'.tr(),
                     iconPath: 'assets/icons/icon_help.png',
-                    callback: () {
-                      profileProvider.getUrl();
+                    callback: () async {
+                      final url = Uri.parse('https://flutter.dev');
+                      if (await canLaunchUrl(url)) {
+                        await launchUrl(url,
+                            mode: LaunchMode.externalApplication);
+                      }
                     },
                   ),
                   getRow(
